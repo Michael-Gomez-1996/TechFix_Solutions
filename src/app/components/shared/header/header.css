@@ -4,7 +4,7 @@
   padding: 10px 50px;
   background-color: white;
   border-bottom: 3px solid #005691;
-  justify-content: flex-start; /* Alinea todo al inicio */
+  justify-content: flex-start;
 }
 
 .logo-container {
@@ -12,11 +12,11 @@
   align-items: center;
   border: 2px solid #005691;
   padding: 5px;
-  margin-right: auto; /* <--- ESTO EMPUJA AL LOGO A LA IZQUIERDA Y DEJA EL RESTO AL CENTRO/DERECHA */
+  margin-right: auto;
 }
 
 .logo-img {
-  height: 100px; /* Ajusta esta altura según cómo se vea tu logo */
+  height: 100px;
   width: auto;
   display: block;
 }
@@ -24,7 +24,7 @@
 .menu {
   display: flex;
   gap: 45px;
-  margin-right: auto; /* <--- ESTO JUNTO CON EL ANTERIOR CENTRA EL MENÚ EN EL ESPACIO RESTANTE */
+  margin-right: auto;
 }
 
 .nav-btn {
@@ -32,7 +32,7 @@
   color: white;
   border: none;
   padding: 25px 80px;
-  border-radius: 10px; /* Bordes redondeados pero profesionales */
+  border-radius: 10px;
   font-size: 25px;
   font-weight: 600;
   cursor: pointer;
@@ -42,7 +42,7 @@
 
 .nav-btn:hover {
   background-color: #003d66;
-  transform: translateY(-2px); /* Un pequeño salto al pasar el mouse lo hace más interactivo */
+  transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
@@ -139,13 +139,197 @@
   }
 }
 
-/* Responsive */
+/* ======================================== */
+/* ========== HEADER RESPONSIVE ========== */
+/* ======================================== */
+
+/* Pantallas grandes (1200px) */
+@media (max-width: 1200px) {
+  .nav-btn {
+    padding: 20px 60px;
+    font-size: 22px;
+  }
+  
+  .user-name {
+    font-size: 22px;
+  }
+  
+  .login-btn {
+    padding: 10px 25px;
+    font-size: 18px;
+  }
+}
+
+/* Tablets (1024px) */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 10px 30px;
+  }
+  
+  .menu {
+    gap: 25px;
+  }
+  
+  .nav-btn {
+    padding: 15px 40px;
+    font-size: 18px;
+  }
+  
+  .user-name {
+    font-size: 18px;
+  }
+  
+  .login-btn {
+    padding: 8px 20px;
+    font-size: 16px;
+  }
+  
+  .logo-img {
+    height: 80px;
+  }
+}
+
+/* Tablets pequeñas y móviles grandes (900px) */
+@media (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  .logo-container {
+    margin-right: 0;
+  }
+  
+  .menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: 0;
+    gap: 15px;
+  }
+  
+  .user-area {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .nav-btn {
+    padding: 12px 30px;
+    font-size: 16px;
+  }
+  
+  .logo-img {
+    height: 70px;
+  }
+  
+  .user-name {
+    font-size: 16px;
+  }
+  
+  .login-btn {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+}
+
+/* Móviles (768px) */
 @media (max-width: 768px) {
+  .navbar {
+    padding: 12px;
+  }
+  
+  .logo-img {
+    height: 60px;
+  }
+  
+  .menu {
+    gap: 10px;
+  }
+  
+  .nav-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  
+  .user-name {
+    font-size: 14px;
+  }
+  
+  .login-btn {
+    padding: 6px 15px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+  
   .dropdown-menu {
     position: fixed;
     top: auto;
-    left: 20px;
-    right: 20px;
+    left: 10px;
+    right: 10px;
     width: auto;
+  }
+  
+  .dropdown-item {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+}
+
+/* Móviles pequeños (576px) */
+@media (max-width: 576px) {
+  .navbar {
+    padding: 10px;
+  }
+  
+  .logo-img {
+    height: 50px;
+  }
+  
+  .menu {
+    gap: 8px;
+  }
+  
+  .nav-btn {
+    padding: 8px 15px;
+    font-size: 12px;
+    border-radius: 8px;
+  }
+  
+  .user-area {
+    gap: 8px;
+  }
+  
+  .user-name {
+    font-size: 12px;
+  }
+  
+  .login-btn {
+    padding: 5px 12px;
+    font-size: 11px;
+  }
+}
+
+/* Móviles muy pequeños (375px) */
+@media (max-width: 375px) {
+  .logo-img {
+    height: 45px;
+  }
+  
+  .menu {
+    gap: 6px;
+  }
+  
+  .nav-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  
+  .user-name {
+    font-size: 11px;
+  }
+  
+  .dropdown-item {
+    padding: 8px 12px;
+    font-size: 12px;
   }
 }

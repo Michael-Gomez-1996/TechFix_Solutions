@@ -1,15 +1,13 @@
 .hero-container {
-  /* Fondo gris muy claro como en tu diseño */
-  background-color: #c5c5c5; 
+  background-color: #c5c5c5;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 80px 10%; /* Espaciado lateral para que no toque los bordes */
+  padding: 80px 10%;
   min-height: 350px;
 }
 
 .main-title {
-  /* Tipografía Serif para elegancia, similar a tu diseño */
   font-family: 'Times New Roman', Times, serif;
   font-size: 3.5rem;
   color: #1a1a1a;
@@ -21,7 +19,7 @@
   font-size: 1.5rem;
   color: #444;
   margin-top: 10px;
-  font-style: italic; /* Como se ve en tu imagen */
+  font-style: italic;
 }
 
 .btn-solicitar {
@@ -40,6 +38,146 @@
 
 .btn-solicitar:hover {
   background-color: #003d66;
-  transform: scale(1.05); /* Se agranda un poquito al pasar el mouse */
+  transform: scale(1.05);
   box-shadow: 0 6px 20px rgba(0, 86, 145, 0.4);
+}
+
+/* ======================================== */
+/* ========== HERO RESPONSIVE ========== */
+/* ======================================== */
+
+/* Tablets (1024px) */
+@media (max-width: 1024px) {
+  .hero-container {
+    padding: 60px 8%;
+    min-height: 300px;
+  }
+  
+  .main-title {
+    font-size: 2.8rem;
+  }
+  
+  .main-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .btn-solicitar {
+    margin-right: 50px;
+    padding: 18px 40px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Tablets pequeñas (900px) */
+@media (max-width: 900px) {
+  .hero-container {
+    padding: 50px 6%;
+  }
+  
+  .main-title {
+    font-size: 2.5rem;
+  }
+  
+  .main-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .btn-solicitar {
+    margin-right: 30px;
+    padding: 15px 35px;
+    font-size: 1rem;
+  }
+}
+
+/* Móviles grandes (768px) */
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 20px;
+    gap: 30px;
+    min-height: auto;
+  }
+  
+  .main-title {
+    font-size: 2rem;
+  }
+  
+  .main-subtitle {
+    font-size: 1rem;
+  }
+  
+  .btn-solicitar {
+    margin-right: 0;
+    padding: 14px 35px;
+    font-size: 1rem;
+    width: auto;
+    min-width: 200px;
+  }
+}
+
+/* Móviles (576px) */
+@media (max-width: 576px) {
+  .hero-container {
+    padding: 30px 15px;
+    gap: 20px;
+  }
+  
+  .main-title {
+    font-size: 1.6rem;
+  }
+  
+  .main-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .btn-solicitar {
+    padding: 12px 30px;
+    font-size: 0.9rem;
+    min-width: 180px;
+  }
+}
+
+/* Móviles pequeños (375px) */
+@media (max-width: 375px) {
+  .hero-container {
+    padding: 25px 12px;
+    gap: 15px;
+  }
+  
+  .main-title {
+    font-size: 1.4rem;
+  }
+  
+  .main-subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .btn-solicitar {
+    padding: 10px 25px;
+    font-size: 0.85rem;
+    min-width: 160px;
+  }
+}
+
+/* Ajustes para pantallas muy grandes (más de 1600px) */
+@media (min-width: 1600px) {
+  .hero-container {
+    padding: 100px 15%;
+    min-height: 450px;
+  }
+  
+  .main-title {
+    font-size: 4rem;
+  }
+  
+  .main-subtitle {
+    font-size: 1.8rem;
+  }
+  
+  .btn-solicitar {
+    margin-right: 150px;
+    padding: 25px 55px;
+    font-size: 1.4rem;
+  }
 }

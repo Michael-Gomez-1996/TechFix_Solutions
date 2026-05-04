@@ -131,8 +131,265 @@
 .info-section::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
 .info-section::-webkit-scrollbar-thumb { background: #0056a3; border-radius: 10px; }
 
-@media (max-width: 968px) {
-  .detail-content { flex-direction: column; }
-  .detail-container { padding: 20px; }
-  .service-title { font-size: 1.4rem; }
+/* ======================================== */
+/* ========== RESPONSIVE DESIGN ========== */
+/* ======================================== */
+
+/* Tablets grandes (1024px) */
+@media (max-width: 1024px) {
+  .detail-container {
+    padding: 15px 25px;
+  }
+  
+  .main-logo {
+    height: 55px;
+  }
+  
+  .icon-badge {
+    height: 40px;
+  }
+  
+  .service-title {
+    font-size: 1.5rem;
+    margin: 20px 0;
+  }
+  
+  .detail-content {
+    gap: 35px;
+  }
+  
+  .categoria-titulo {
+    font-size: 1rem;
+  }
+  
+  .check-text {
+    font-size: 0.85rem;
+  }
+  
+  .time-value {
+    font-size: 1.2rem;
+  }
+}
+
+/* Tablets pequeñas (900px) - Layout vertical */
+@media (max-width: 900px) {
+  .detail-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .visual-section {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .info-section {
+    width: 100%;
+    max-height: none;
+    overflow-y: visible;
+  }
+}
+
+/* Móviles grandes (768px) */
+@media (max-width: 768px) {
+  .detail-container {
+    padding: 12px 15px;
+  }
+  
+  .detail-header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .main-logo {
+    height: 50px;
+  }
+  
+  .icon-badge {
+    height: 35px;
+  }
+  
+  .service-title {
+    font-size: 1.2rem;
+    margin: 15px 0;
+  }
+  
+  .categoria-titulo {
+    font-size: 0.9rem;
+    margin: 12px 0 8px 0;
+  }
+  
+  .check-item {
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .custom-check {
+    min-width: 20px;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .check-text {
+    font-size: 0.8rem;
+  }
+  
+  .check-desc {
+    font-size: 0.65rem;
+  }
+  
+  .check-precio {
+    font-size: 0.7rem;
+  }
+  
+  .action-area {
+    padding: 15px;
+    margin-top: 20px;
+  }
+  
+  .time-label {
+    font-size: 0.75rem;
+  }
+  
+  .time-icon {
+    font-size: 1.2rem;
+  }
+  
+  .time-value {
+    font-size: 1.1rem;
+  }
+  
+  .costo-label {
+    font-size: 0.75rem;
+  }
+  
+  .btn-config {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+  
+  .detail-footer {
+    margin-top: 30px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Móviles (576px) */
+@media (max-width: 576px) {
+  .detail-container {
+    padding: 10px 12px;
+  }
+  
+  .main-logo {
+    height: 45px;
+  }
+  
+  .icon-badge {
+    height: 30px;
+  }
+  
+  .service-title {
+    font-size: 1rem;
+    margin: 10px 0;
+  }
+  
+  .categoria-titulo {
+    font-size: 0.85rem;
+  }
+  
+  .check-item {
+    padding: 8px;
+    gap: 8px;
+  }
+  
+  .custom-check {
+    min-width: 18px;
+    width: 18px;
+    height: 18px;
+  }
+  
+  .check-text {
+    font-size: 0.75rem;
+  }
+  
+  .check-desc {
+    font-size: 0.6rem;
+  }
+  
+  .time-value {
+    font-size: 1rem;
+  }
+  
+  .btn-config {
+    font-size: 0.8rem;
+  }
+}
+
+/* Móviles pequeños (375px) */
+@media (max-width: 375px) {
+  .detail-container {
+    padding: 8px 10px;
+  }
+  
+  .main-logo {
+    height: 40px;
+  }
+  
+  .service-title {
+    font-size: 0.9rem;
+  }
+  
+  .check-text {
+    font-size: 0.7rem;
+  }
+  
+  .time-value {
+    font-size: 0.9rem;
+  }
+  
+  .btn-config {
+    font-size: 0.75rem;
+  }
+}
+
+/* Pantallas muy grandes (1600px+) */
+@media (min-width: 1600px) {
+  .detail-container {
+    max-width: 1600px;
+    padding: 30px 60px;
+  }
+  
+  .service-title {
+    font-size: 2rem;
+  }
+  
+  .detail-content {
+    gap: 70px;
+  }
+  
+  .categoria-titulo {
+    font-size: 1.2rem;
+  }
+  
+  .check-text {
+    font-size: 1rem;
+  }
+  
+  .check-desc {
+    font-size: 0.85rem;
+  }
+  
+  .check-precio {
+    font-size: 0.9rem;
+  }
+  
+  .time-value {
+    font-size: 1.5rem;
+  }
+  
+  .btn-config {
+    padding: 16px;
+    font-size: 1.1rem;
+  }
 }

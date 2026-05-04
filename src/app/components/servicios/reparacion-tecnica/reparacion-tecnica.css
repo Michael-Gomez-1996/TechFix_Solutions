@@ -163,10 +163,327 @@
   border-top: 1px solid #dee2e6;
 }
 
-@media (max-width: 968px) {
-  .detail-content { flex-direction: column; }
-  .detail-container { padding: 20px; }
-  .service-title { font-size: 1.4rem; }
-  .action-area { flex-direction: column; gap: 15px; }
-  .btn-config { width: 100%; justify-content: center; }
+/* ======================================== */
+/* ========== RESPONSIVE DESIGN ========== */
+/* ======================================== */
+
+/* Tablets grandes (1200px) */
+@media (max-width: 1200px) {
+  .detail-container {
+    padding: 15px 25px;
+  }
+  
+  .detail-content {
+    gap: 35px;
+  }
+  
+  .service-title {
+    font-size: 1.6rem;
+  }
+  
+  .block-header h3 {
+    font-size: 1.2rem;
+  }
+  
+  .check-text {
+    font-size: 0.9rem;
+  }
+  
+  .time-value {
+    font-size: 1.3rem;
+  }
+  
+  .btn-config {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Tablets (1024px) */
+@media (max-width: 1024px) {
+  .detail-container {
+    padding: 15px 20px;
+  }
+  
+  .main-logo {
+    height: 55px;
+  }
+  
+  .icon-badge {
+    height: 40px;
+  }
+  
+  .service-title {
+    font-size: 1.4rem;
+    margin: 20px 0;
+  }
+  
+  .detail-content {
+    gap: 30px;
+  }
+  
+  .check-item {
+    padding: 12px;
+  }
+  
+  .custom-check {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .btn-config {
+    padding: 10px 20px;
+  }
+}
+
+/* Tablets pequeñas (900px) - Layout vertical */
+@media (max-width: 900px) {
+  .detail-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .visual-section {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .info-section {
+    width: 100%;
+  }
+}
+
+/* Móviles grandes (768px) */
+@media (max-width: 768px) {
+  .detail-container {
+    padding: 12px 15px;
+  }
+  
+  .detail-header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .main-logo {
+    height: 50px;
+  }
+  
+  .icon-badge {
+    height: 35px;
+  }
+  
+  .service-title {
+    font-size: 1.2rem;
+    margin: 15px 0;
+  }
+  
+  .block-header {
+    gap: 8px;
+  }
+  
+  .header-icono {
+    font-size: 1.4rem;
+  }
+  
+  .block-header h3 {
+    font-size: 1rem;
+  }
+  
+  .check-item {
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .custom-check {
+    width: 18px;
+    height: 18px;
+    margin-top: 0;
+  }
+  
+  .check-text {
+    font-size: 0.85rem;
+  }
+  
+  .check-desc {
+    font-size: 0.7rem;
+  }
+  
+  .divider {
+    margin: 20px 0;
+  }
+  
+  .action-area {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+    padding: 15px 20px;
+  }
+  
+  .time-badge {
+    justify-content: center;
+  }
+  
+  .time-value {
+    font-size: 1.2rem;
+  }
+  
+  .btn-config {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+  }
+  
+  .detail-footer {
+    margin-top: 30px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Móviles (576px) */
+@media (max-width: 576px) {
+  .detail-container {
+    padding: 10px 12px;
+  }
+  
+  .main-logo {
+    height: 45px;
+  }
+  
+  .icon-badge {
+    height: 30px;
+  }
+  
+  .service-title {
+    font-size: 1rem;
+    margin: 10px 0;
+  }
+  
+  .block-header h3 {
+    font-size: 0.9rem;
+  }
+  
+  .header-icono {
+    font-size: 1.2rem;
+  }
+  
+  .check-item {
+    padding: 8px 10px;
+    gap: 8px;
+  }
+  
+  .custom-check {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .check-text {
+    font-size: 0.8rem;
+  }
+  
+  .check-desc {
+    font-size: 0.65rem;
+  }
+  
+  .time-label {
+    font-size: 0.75rem;
+  }
+  
+  .time-icon {
+    font-size: 1.2rem;
+  }
+  
+  .time-value {
+    font-size: 1.1rem;
+  }
+  
+  .btn-config {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+  
+  .btn-config span {
+    font-size: 1rem;
+  }
+}
+
+/* Móviles pequeños (375px) */
+@media (max-width: 375px) {
+  .detail-container {
+    padding: 8px 10px;
+  }
+  
+  .main-logo {
+    height: 40px;
+  }
+  
+  .icon-badge {
+    height: 25px;
+  }
+  
+  .service-title {
+    font-size: 0.9rem;
+  }
+  
+  .block-header h3 {
+    font-size: 0.85rem;
+  }
+  
+  .check-text {
+    font-size: 0.75rem;
+  }
+  
+  .check-desc {
+    font-size: 0.6rem;
+  }
+  
+  .time-value {
+    font-size: 1rem;
+  }
+  
+  .btn-config {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Pantallas muy grandes (1600px+) */
+@media (min-width: 1600px) {
+  .detail-container {
+    max-width: 1600px;
+    padding: 30px 60px;
+  }
+  
+  .service-title {
+    font-size: 2rem;
+  }
+  
+  .detail-content {
+    gap: 70px;
+  }
+  
+  .block-header h3 {
+    font-size: 1.6rem;
+  }
+  
+  .header-icono {
+    font-size: 2rem;
+  }
+  
+  .check-text {
+    font-size: 1.1rem;
+  }
+  
+  .check-desc {
+    font-size: 0.9rem;
+  }
+  
+  .time-value {
+    font-size: 1.7rem;
+  }
+  
+  .btn-config {
+    padding: 16px 35px;
+    font-size: 1.1rem;
+  }
 }

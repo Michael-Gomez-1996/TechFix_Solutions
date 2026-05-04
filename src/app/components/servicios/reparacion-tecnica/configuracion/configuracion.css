@@ -248,13 +248,356 @@ input:checked + .checkbox-custom { background: #0056a3; border-color: #0056a3; }
 }
 .btn-continuar:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(0,86,163,0.4); }
 
-@media (max-width: 1200px) {
-  .three-columns { grid-template-columns: 1fr; }
-  .config-container { padding: 20px; }
-  .stepper { flex-wrap: wrap; }
-  .step-line { display: none; }
-  .equipos-horizontal { flex-direction: column; }
-  .personalizacion-label { flex-direction: column; align-items: flex-start; }
-  .personalizacion-select { width: 100%; }
-  .resumen-sticky { position: static; }
+/* ======================================== */
+/* ========== RESPONSIVE DESIGN ========== */
+/* ======================================== */
+
+/* Pantallas grandes (1200px - 1400px) */
+@media (max-width: 1400px) {
+  .config-container {
+    padding: 25px 30px;
+  }
+  
+  .three-columns {
+    gap: 25px;
+  }
+  
+  .total-grande {
+    font-size: 1.8rem;
+  }
+}
+
+/* Tablets grandes (1024px) */
+@media (max-width: 1024px) {
+  .config-container {
+    padding: 20px 25px;
+  }
+  
+  .stepper {
+    padding: 15px 25px;
+  }
+  
+  .step-line {
+    width: 50px;
+  }
+  
+  .step-number {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+  
+  .step-label {
+    font-size: 12px;
+  }
+  
+  .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .column {
+    padding: 20px;
+  }
+  
+  .column h3 {
+    font-size: 1.1rem;
+  }
+  
+  .equipo-emoji {
+    font-size: 40px;
+  }
+  
+  .equipo-nombre {
+    font-size: 1rem;
+  }
+  
+  .equipo-precio-base {
+    font-size: 0.9rem;
+  }
+  
+  .total-grande {
+    font-size: 1.6rem;
+  }
+}
+
+/* Tablets (900px) */
+@media (max-width: 900px) {
+  .three-columns {
+    grid-template-columns: 1fr;
+  }
+  
+  .stepper {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .step-line {
+    display: none;
+  }
+  
+  .resumen-sticky {
+    position: static;
+  }
+}
+
+/* Móviles grandes (768px) */
+@media (max-width: 768px) {
+  .config-container {
+    padding: 15px;
+  }
+  
+  .stepper {
+    padding: 12px 20px;
+    margin-bottom: 25px;
+  }
+  
+  .step {
+    gap: 8px;
+  }
+  
+  .step-number {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+  }
+  
+  .step-label {
+    font-size: 10px;
+  }
+  
+  .page-title {
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+  }
+  
+  .column {
+    padding: 15px;
+  }
+  
+  .column h3 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+  
+  .equipos-horizontal {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .equipo-card {
+    padding: 15px;
+  }
+  
+  .equipo-emoji {
+    font-size: 35px;
+  }
+  
+  .equipo-nombre {
+    font-size: 0.9rem;
+  }
+  
+  .equipo-desc {
+    font-size: 10px;
+  }
+  
+  .personalizacion-label {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .personalizacion-select {
+    width: 100%;
+  }
+  
+  .personalizacion-nombre {
+    min-width: auto;
+  }
+  
+  .problema-item, .servicio-item {
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .problema-icono {
+    font-size: 20px;
+  }
+  
+  .problema-nombre {
+    font-size: 0.85rem;
+  }
+  
+  .problema-descripcion {
+    font-size: 10px;
+  }
+  
+  .total-grande {
+    font-size: 1.4rem;
+    padding: 15px;
+  }
+  
+  .total-linea {
+    font-size: 1rem;
+  }
+  
+  .total-final {
+    font-size: 1.2rem;
+  }
+  
+  .btn-continuar {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Móviles (576px) */
+@media (max-width: 576px) {
+  .config-container {
+    padding: 12px;
+  }
+  
+  .stepper {
+    padding: 10px 15px;
+  }
+  
+  .step-number {
+    width: 25px;
+    height: 25px;
+    font-size: 0.7rem;
+  }
+  
+  .step-label {
+    font-size: 9px;
+  }
+  
+  .page-title {
+    font-size: 1.1rem;
+  }
+  
+  .column {
+    padding: 12px;
+  }
+  
+  .column h3 {
+    font-size: 0.9rem;
+  }
+  
+  .equipo-emoji {
+    font-size: 30px;
+  }
+  
+  .equipo-nombre {
+    font-size: 0.85rem;
+  }
+  
+  .equipo-precio-base {
+    font-size: 0.85rem;
+  }
+  
+  .personalizacion-item {
+    padding: 10px;
+  }
+  
+  .personalizacion-nombre {
+    font-size: 12px;
+  }
+  
+  .personalizacion-select {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+  
+  .problema-nombre {
+    font-size: 0.8rem;
+  }
+  
+  .problema-precio, .servicio-precio {
+    font-size: 11px;
+  }
+  
+  .total-grande {
+    font-size: 1.2rem;
+  }
+  
+  .resumen-item {
+    padding: 10px 0;
+  }
+  
+  .item-titulo {
+    font-size: 10px;
+  }
+  
+  .item-valor {
+    font-size: 11px;
+  }
+  
+  .btn-continuar {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Móviles pequeños (375px) */
+@media (max-width: 375px) {
+  .config-container {
+    padding: 10px;
+  }
+  
+  .page-title {
+    font-size: 1rem;
+  }
+  
+  .equipo-emoji {
+    font-size: 25px;
+  }
+  
+  .equipo-nombre {
+    font-size: 0.75rem;
+  }
+  
+  .total-grande {
+    font-size: 1.1rem;
+  }
+  
+  .btn-continuar {
+    font-size: 0.8rem;
+  }
+}
+
+/* Pantallas muy grandes (1600px+) */
+@media (min-width: 1600px) {
+  .config-container {
+    max-width: 1800px;
+    padding: 40px 60px;
+  }
+  
+  .three-columns {
+    gap: 40px;
+  }
+  
+  .column {
+    padding: 35px;
+  }
+  
+  .column h3 {
+    font-size: 1.4rem;
+  }
+  
+  .equipo-emoji {
+    font-size: 60px;
+  }
+  
+  .equipo-nombre {
+    font-size: 1.3rem;
+  }
+  
+  .total-grande {
+    font-size: 2.2rem;
+  }
+  
+  .btn-continuar {
+    padding: 18px;
+    font-size: 1.1rem;
+  }
 }

@@ -60,7 +60,6 @@
   gap: 8px;
 }
 
-/* --- ESTILO DE PRUEBA: RESALTE DE SELECCIÓN --- */
 .check-item {
   display: flex;
   align-items: center;
@@ -71,11 +70,10 @@
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Cuando la casilla está marcada */
 .check-item.selected {
-  background-color: #f0f7ff; /* Fondo azul claro */
-  border: 1px solid #0056a3; /* Borde azul fuerte */
-  transform: scale(1.02); /* Crece un poquito */
+  background-color: #f0f7ff;
+  border: 1px solid #0056a3;
+  transform: scale(1.02);
   box-shadow: 0 4px 12px rgba(0, 86, 163, 0.1);
 }
 
@@ -84,10 +82,8 @@
   font-weight: 600;
 }
 
-/* Ocultar checkbox real */
 .check-item input { position: absolute; opacity: 0; }
 
-/* Cuadro personalizado */
 .custom-check {
   height: 22px;
   width: 22px;
@@ -104,7 +100,6 @@
   border-color: #0056a3;
 }
 
-/* El chulito */
 .custom-check:after {
   content: "";
   position: absolute;
@@ -120,7 +115,6 @@
 
 .check-item input:checked ~ .custom-check:after { display: block; }
 
-/* Otros */
 .divider { margin: 25px 0; border: 0; border-top: 1px solid #eee; }
 
 .action-area {
@@ -151,3 +145,184 @@
 .btn-config:hover { background: #003d75; }
 
 .detail-footer { text-align: center; margin-top: 50px; color: #999; font-size: 0.85rem; }
+
+/* ======================================== */
+/* ========== RESPONSIVE DESIGN ========== */
+/* ======================================== */
+
+/* Tablets (1024px) */
+@media (max-width: 1024px) {
+  .detail-container {
+    padding: 15px;
+  }
+  
+  .service-title {
+    font-size: 1.5rem;
+    margin: 20px 0;
+  }
+  
+  .detail-content {
+    gap: 30px;
+  }
+  
+  .block-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .btn-config {
+    padding: 12px 20px;
+  }
+}
+
+/* Tablets pequeñas (900px) */
+@media (max-width: 900px) {
+  .detail-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .visual-section {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .info-section {
+    width: 100%;
+  }
+  
+  .action-area {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .time-badge {
+    justify-content: center;
+  }
+  
+  .btn-config {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* Móviles grandes (768px) */
+@media (max-width: 768px) {
+  .detail-header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .main-logo {
+    height: 55px;
+  }
+  
+  .icon-badge {
+    height: 35px;
+  }
+  
+  .service-title {
+    font-size: 1.3rem;
+  }
+  
+  .block-header {
+    flex-wrap: wrap;
+  }
+  
+  .block-header h3 {
+    font-size: 1rem;
+  }
+  
+  .check-item {
+    padding: 10px 12px;
+  }
+  
+  .check-text {
+    font-size: 0.9rem;
+  }
+}
+
+/* Móviles (576px) */
+@media (max-width: 576px) {
+  .detail-container {
+    padding: 12px;
+  }
+  
+  .main-logo {
+    height: 48px;
+  }
+  
+  .icon-badge {
+    height: 30px;
+  }
+  
+  .service-title {
+    font-size: 1.1rem;
+    margin: 15px 0;
+  }
+  
+  .block-header h3 {
+    font-size: 0.9rem;
+  }
+  
+  .mini-icon {
+    width: 28px;
+  }
+  
+  .check-item {
+    padding: 8px 10px;
+  }
+  
+  .custom-check {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+  }
+  
+  .check-text {
+    font-size: 0.8rem;
+  }
+  
+  .btn-config {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .time-badge {
+    font-size: 0.9rem;
+  }
+  
+  .detail-footer {
+    font-size: 0.7rem;
+    margin-top: 30px;
+  }
+}
+
+/* Móviles pequeños (375px) */
+@media (max-width: 375px) {
+  .detail-container {
+    padding: 10px;
+  }
+  
+  .service-title {
+    font-size: 1rem;
+  }
+  
+  .block-header h3 {
+    font-size: 0.85rem;
+  }
+  
+  .mini-icon {
+    width: 24px;
+  }
+  
+  .check-text {
+    font-size: 0.75rem;
+  }
+  
+  .btn-config {
+    padding: 10px 15px;
+    font-size: 0.85rem;
+  }
+}

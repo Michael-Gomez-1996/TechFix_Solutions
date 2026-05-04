@@ -15,10 +15,13 @@ body {
 img {
   max-width: 100%;
   height: auto;
+  display: block;
 }
 
 button {
   cursor: pointer;
+  border: none;
+  background: none;
 }
 
 a {
@@ -34,4 +37,123 @@ a {
 
 .text-center {
   text-align: center;
+}
+
+/* ======================================== */
+/* ========== MEDIA QUERIES GLOBALES ========== */
+/* ======================================== */
+
+/* Tablets grandes (1024px - 1200px) */
+@media (max-width: 1200px) {
+  .container {
+    max-width: 960px;
+    padding: 0 20px;
+  }
+}
+
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 720px;
+    padding: 0 20px;
+  }
+  
+  h1, .page-title {
+    font-size: 1.8rem !important;
+  }
+  
+  h2 {
+    font-size: 1.4rem !important;
+  }
+  
+  h3 {
+    font-size: 1.2rem !important;
+  }
+}
+
+/* Móviles grandes (576px - 768px) */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .container {
+    max-width: 540px;
+    padding: 0 15px;
+  }
+  
+  h1, .page-title {
+    font-size: 1.5rem !important;
+  }
+  
+  h2 {
+    font-size: 1.2rem !important;
+  }
+  
+  h3 {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* Móviles pequeños (menos de 576px) */
+@media (max-width: 576px) {
+  body {
+    font-size: 13px;
+  }
+  
+  .container {
+    padding: 0 10px;
+  }
+  
+  h1, .page-title {
+    font-size: 1.3rem !important;
+  }
+  
+  h2 {
+    font-size: 1rem !important;
+  }
+  
+  h3 {
+    font-size: 1rem !important;
+  }
+}
+
+/* Móviles muy pequeños (menos de 375px) */
+@media (max-width: 375px) {
+  body {
+    font-size: 12px;
+  }
+  
+  h1, .page-title {
+    font-size: 1.2rem !important;
+  }
+}
+
+/* Utilidades responsivas */
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .hide-on-desktop {
+    display: none !important;
+  }
+}
+
+/* Ajustes para touch en móviles */
+@media (max-width: 768px) {
+  button, 
+  .btn,
+  .nav-btn,
+  .equipo-card,
+  .producto-card {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  button:active,
+  .btn:active {
+    transform: scale(0.98);
+  }
 }

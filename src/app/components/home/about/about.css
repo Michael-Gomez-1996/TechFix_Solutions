@@ -16,11 +16,12 @@
   background-color: #004a99;
   color: white;
 }
+
 .column-blue p {
-  font-size: 1.1rem; /* Aumentado de los ~14px estándar a unos ~18px */
-  line-height: 1.6;  /* Más espacio entre líneas para que no se vea amontonado */
-  margin-bottom: 30px; /* Espacio antes del siguiente título (Misión) */
-  color: rgba(255, 255, 255, 0.95); /* Un blanco casi puro para mejor contraste */
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .section-header {
@@ -52,7 +53,7 @@
   margin-bottom: 20px; 
 }
 
-/* Cuadrícula de Valores 2x2 (Diseño Limpio) */
+/* Cuadrícula de Valores 2x2 */
 .values-section-central {
   margin-top: 40px;
   text-align: center;
@@ -60,11 +61,11 @@
 
 .values-grid-central {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Mantiene el 2x2 */
-  gap: 30px; 
-  margin: 30px auto; /* El 'auto' en los laterales es la clave para centrarlo */
-  max-width: 400px;  /* Aumenté esto para que las imágenes grandes tengan espacio */
-  justify-items: center; /* Centra el contenido dentro de cada celda de la rejilla */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin: 30px auto;
+  max-width: 400px;
+  justify-items: center;
   align-items: center;
 }
 
@@ -81,7 +82,6 @@
   height: 200px;
   object-fit: contain;
   transition: transform 0.3s ease;
-  /* Sombra suave para dar profundidad a la imagen */
   filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1));
 }
 
@@ -89,7 +89,7 @@
   transform: translateY(-5px) scale(1.1);
 }
 
-/* Botón de contacto centrado */
+/* Botón de contacto */
 .btn-contact {
   background-color: #004a99;
   color: white;
@@ -193,3 +193,255 @@
 /* --- ESPACIADORES --- */
 .mt-lg { margin-top: 30px; }
 .mt-xl { margin-top: 50px; }
+
+/* ======================================== */
+/* ========== ABOUT RESPONSIVE ========== */
+/* ======================================== */
+
+/* Tablets (1024px) */
+@media (max-width: 1024px) {
+  .column {
+    padding: 30px 20px;
+  }
+  
+  .column-blue p {
+    font-size: 0.95rem;
+  }
+  
+  .values-grid-central {
+    gap: 20px;
+  }
+  
+  .value-box-item img {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .btn-contact {
+    padding: 20px 50px;
+    font-size: 24px;
+  }
+  
+  .team-grid {
+    gap: 20px 15px;
+  }
+  
+  .carousel-item {
+    height: 300px;
+  }
+  
+  .header-badge {
+    width: 90px;
+  }
+}
+
+/* Tablets pequeñas (900px) */
+@media (max-width: 900px) {
+  .about-page-container {
+    flex-wrap: wrap;
+  }
+  
+  .column {
+    flex: 1 1 100%;
+  }
+  
+  .column-blue {
+    order: 1;
+  }
+  
+  .column-white-center {
+    order: 2;
+  }
+  
+  .column-white-right {
+    order: 3;
+    border-left: none;
+    border-top: 1px solid #eee;
+  }
+  
+  .section-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .values-grid-central {
+    max-width: 350px;
+  }
+}
+
+/* Móviles grandes (768px) */
+@media (max-width: 768px) {
+  .column {
+    padding: 25px 20px;
+  }
+  
+  .column-blue p {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  
+  .values-section-central {
+    margin-top: 25px;
+  }
+  
+  .values-grid-central {
+    gap: 15px;
+    max-width: 300px;
+  }
+  
+  .value-box-item img {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .btn-contact {
+    padding: 15px 40px;
+    font-size: 20px;
+    min-width: 180px;
+  }
+  
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .member img {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+  
+  .carousel-item {
+    height: 250px;
+  }
+  
+  .header-badge {
+    width: 80px;
+  }
+  
+  .mt-xl {
+    margin-top: 30px;
+  }
+}
+
+/* Móviles (576px) */
+@media (max-width: 576px) {
+  .column {
+    padding: 20px 15px;
+  }
+  
+  .column-blue p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+  
+  .section-header h2 {
+    font-size: 1.3rem;
+  }
+  
+  .values-grid-central {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 200px;
+  }
+  
+  .value-box-item img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .btn-contact {
+    padding: 12px 30px;
+    font-size: 16px;
+    min-width: 160px;
+  }
+  
+  .member h3 {
+    font-size: 1rem;
+  }
+  
+  .member p {
+    font-size: 10px;
+  }
+  
+  .carousel-item {
+    height: 200px;
+  }
+  
+  .header-badge {
+    width: 60px;
+  }
+}
+
+/* Móviles pequeños (375px) */
+@media (max-width: 375px) {
+  .column {
+    padding: 15px 12px;
+  }
+  
+  .column-blue p {
+    font-size: 0.8rem;
+  }
+  
+  .section-header h2 {
+    font-size: 1.1rem;
+  }
+  
+  .values-grid-central {
+    gap: 15px;
+  }
+  
+  .value-box-item img {
+    width: 85px;
+    height: 85px;
+  }
+  
+  .btn-contact {
+    padding: 10px 25px;
+    font-size: 14px;
+  }
+  
+  .carousel-item {
+    height: 170px;
+  }
+}
+
+/* Ajustes para pantallas muy grandes (1600px+) */
+@media (min-width: 1600px) {
+  .about-page-container {
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  
+  .column {
+    padding: 60px 50px;
+  }
+  
+  .column-blue p {
+    font-size: 1.2rem;
+  }
+  
+  .values-grid-central {
+    max-width: 500px;
+    gap: 40px;
+  }
+  
+  .value-box-item img {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .btn-contact {
+    padding: 35px 110px;
+    font-size: 35px;
+  }
+  
+  .carousel-item {
+    height: 400px;
+  }
+  
+  .carousel-container {
+    max-width: 700px;
+  }
+}

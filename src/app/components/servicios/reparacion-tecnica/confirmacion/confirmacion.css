@@ -62,12 +62,361 @@
 .btn-inicio { background: white; color: #0056a3; border: 2px solid #0056a3; }
 .btn-descargar:hover, .btn-inicio:hover { transform: translateY(-2px); }
 
-@media (max-width: 1200px) {
-  .detalles-grid { grid-template-columns: 1fr; }
-  .confirmacion-container { padding: 20px; }
-  .stepper { flex-wrap: wrap; }
-  .step-line { display: none; }
-  .success-banner { flex-direction: column; text-align: center; }
-  .acciones-botones { flex-direction: column; }
-  .btn-descargar, .btn-inicio { width: 100%; }
+/* ======================================== */
+/* ========== RESPONSIVE DESIGN ========== */
+/* ======================================== */
+
+/* Pantallas grandes (1200px - 1400px) */
+@media (max-width: 1400px) {
+  .confirmacion-container {
+    padding: 25px 30px;
+  }
+  
+  .detalles-grid {
+    gap: 25px;
+  }
+  
+  .card {
+    padding: 20px;
+  }
+  
+  .success-banner {
+    padding: 30px;
+  }
+}
+
+/* Tablets grandes (1024px) */
+@media (max-width: 1024px) {
+  .confirmacion-container {
+    padding: 20px 25px;
+  }
+  
+  .stepper {
+    padding: 15px 25px;
+  }
+  
+  .step-line {
+    width: 50px;
+  }
+  
+  .step-number {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+  
+  .step-label {
+    font-size: 12px;
+  }
+  
+  .page-title {
+    font-size: 1.6rem;
+  }
+  
+  .success-banner {
+    padding: 25px;
+    gap: 30px;
+  }
+  
+  .banner-icono {
+    font-size: 40px;
+    padding: 15px 25px;
+  }
+  
+  .titulo-exito {
+    font-size: 1.8rem;
+  }
+  
+  .subtitulo-exito {
+    font-size: 1rem;
+  }
+  
+  .card h3 {
+    font-size: 1.1rem;
+  }
+  
+  .servicio-item, .fecha-item {
+    font-size: 1rem;
+  }
+  
+  .total-monto {
+    font-size: 1.8rem;
+  }
+  
+  .info-header span {
+    font-size: 1.5rem;
+  }
+  
+  .info-header h3 {
+    font-size: 1rem;
+  }
+  
+  .info-linea {
+    font-size: 13px;
+  }
+}
+
+/* Tablets (900px) */
+@media (max-width: 900px) {
+  .detalles-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stepper {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .step-line {
+    display: none;
+  }
+  
+  .success-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .banner-icono {
+    align-self: center;
+  }
+}
+
+/* Móviles grandes (768px) */
+@media (max-width: 768px) {
+  .confirmacion-container {
+    padding: 15px;
+  }
+  
+  .stepper {
+    padding: 12px 20px;
+    margin-bottom: 25px;
+  }
+  
+  .step {
+    gap: 8px;
+  }
+  
+  .step-number {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+  }
+  
+  .step-label {
+    font-size: 10px;
+  }
+  
+  .success-banner {
+    padding: 20px;
+    margin-bottom: 25px;
+    gap: 20px;
+  }
+  
+  .banner-icono {
+    font-size: 32px;
+    padding: 12px 20px;
+  }
+  
+  .titulo-exito {
+    font-size: 1.5rem;
+  }
+  
+  .subtitulo-exito {
+    font-size: 0.9rem;
+  }
+  
+  .card {
+    padding: 15px;
+  }
+  
+  .card h3 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+  
+  .servicio-item, .fecha-item {
+    font-size: 0.9rem;
+  }
+  
+  .total-monto {
+    font-size: 1.5rem;
+  }
+  
+  .info-adicional-card {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .info-header {
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+  }
+  
+  .info-header span {
+    font-size: 1.3rem;
+  }
+  
+  .info-header h3 {
+    font-size: 0.9rem;
+  }
+  
+  .info-body {
+    gap: 10px;
+  }
+  
+  .info-linea {
+    font-size: 12px;
+  }
+  
+  .acciones-botones {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .btn-descargar, .btn-inicio {
+    width: 100%;
+    padding: 12px 25px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Móviles (576px) */
+@media (max-width: 576px) {
+  .confirmacion-container {
+    padding: 12px;
+  }
+  
+  .stepper {
+    padding: 10px 15px;
+  }
+  
+  .step-number {
+    width: 25px;
+    height: 25px;
+    font-size: 0.7rem;
+  }
+  
+  .step-label {
+    font-size: 9px;
+  }
+  
+  .success-banner {
+    padding: 15px;
+  }
+  
+  .banner-icono {
+    font-size: 28px;
+    padding: 10px 18px;
+  }
+  
+  .titulo-exito {
+    font-size: 1.3rem;
+  }
+  
+  .subtitulo-exito {
+    font-size: 0.8rem;
+  }
+  
+  .card {
+    padding: 12px;
+  }
+  
+  .card h3 {
+    font-size: 0.9rem;
+  }
+  
+  .servicio-item, .fecha-item {
+    font-size: 0.85rem;
+  }
+  
+  .total-monto {
+    font-size: 1.3rem;
+  }
+  
+  .info-header span {
+    font-size: 1.1rem;
+  }
+  
+  .info-linea {
+    font-size: 11px;
+  }
+  
+  .btn-descargar, .btn-inicio {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Móviles pequeños (375px) */
+@media (max-width: 375px) {
+  .confirmacion-container {
+    padding: 10px;
+  }
+  
+  .titulo-exito {
+    font-size: 1.1rem;
+  }
+  
+  .subtitulo-exito {
+    font-size: 0.75rem;
+  }
+  
+  .servicio-item, .fecha-item {
+    font-size: 0.75rem;
+  }
+  
+  .total-monto {
+    font-size: 1.1rem;
+  }
+  
+  .btn-descargar, .btn-inicio {
+    font-size: 0.8rem;
+  }
+}
+
+/* Pantallas muy grandes (1600px+) */
+@media (min-width: 1600px) {
+  .confirmacion-container {
+    max-width: 1800px;
+    padding: 40px 60px;
+  }
+  
+  .detalles-grid {
+    gap: 40px;
+  }
+  
+  .card {
+    padding: 35px;
+  }
+  
+  .card h3 {
+    font-size: 1.4rem;
+  }
+  
+  .servicio-item, .fecha-item {
+    font-size: 1.3rem;
+  }
+  
+  .total-monto {
+    font-size: 2.2rem;
+  }
+  
+  .titulo-exito {
+    font-size: 2.2rem;
+  }
+  
+  .subtitulo-exito {
+    font-size: 1.3rem;
+  }
+  
+  .banner-icono {
+    font-size: 55px;
+  }
+  
+  .btn-descargar, .btn-inicio {
+    padding: 18px 45px;
+    font-size: 1.1rem;
+  }
 }

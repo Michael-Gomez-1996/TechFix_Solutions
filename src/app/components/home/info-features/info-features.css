@@ -1,5 +1,5 @@
 .features-bar {
-  background-color: #005691; /* El azul de tu logo */
+  background-color: #005691;
   color: white;
   padding: 50px 10%;
 }
@@ -18,7 +18,7 @@
 
 .feature-title {
   font-size: 1.8rem;
-  font-family: 'Times New Roman', Times, serif; /* Estilo similar a tu diseño */
+  font-family: 'Times New Roman', Times, serif;
   margin-bottom: 25px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   padding-bottom: 10px;
@@ -47,7 +47,183 @@
 .feature-image img {
   width: 100%;
   max-width: 280px;
-  background-color: white; /* Fondo blanco para la imagen como en el diseño */
+  background-color: white;
   padding: 10px;
   border-radius: 5px;
+}
+
+/* ======================================== */
+/* ========== INFO FEATURES RESPONSIVE ========== */
+/* ======================================== */
+
+/* Tablets (1024px) */
+@media (max-width: 1024px) {
+  .features-bar {
+    padding: 40px 6%;
+  }
+  
+  .features-container {
+    gap: 30px;
+  }
+  
+  .feature-title {
+    font-size: 1.5rem;
+  }
+  
+  .feature-list li {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+  
+  .step-num {
+    font-size: 1rem;
+  }
+  
+  .feature-image img {
+    max-width: 220px;
+  }
+}
+
+/* Tablets pequeñas (900px) */
+@media (max-width: 900px) {
+  .features-container {
+    gap: 25px;
+  }
+  
+  .feature-title {
+    font-size: 1.3rem;
+  }
+  
+  .feature-list li {
+    font-size: 1rem;
+  }
+  
+  .feature-image img {
+    max-width: 200px;
+  }
+}
+
+/* Móviles grandes (768px) */
+@media (max-width: 768px) {
+  .features-bar {
+    padding: 35px 5%;
+  }
+  
+  .features-container {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    text-align: center;
+  }
+  
+  .feature-col {
+    align-items: center;
+  }
+  
+  .feature-title {
+    font-size: 1.3rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    display: inline-block;
+    padding-bottom: 8px;
+  }
+  
+  .feature-list li {
+    justify-content: center;
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+  
+  .step-num {
+    margin-right: 10px;
+  }
+  
+  .feature-image img {
+    max-width: 250px;
+    margin: 0 auto;
+  }
+}
+
+/* Móviles (576px) */
+@media (max-width: 576px) {
+  .features-bar {
+    padding: 30px 4%;
+  }
+  
+  .features-container {
+    gap: 25px;
+  }
+  
+  .feature-title {
+    font-size: 1.1rem;
+  }
+  
+  .feature-list li {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+  
+  .step-num {
+    font-size: 0.9rem;
+    margin-right: 8px;
+  }
+  
+  .feature-image img {
+    max-width: 200px;
+  }
+}
+
+/* Móviles pequeños (375px) */
+@media (max-width: 375px) {
+  .features-bar {
+    padding: 25px 3%;
+  }
+  
+  .features-container {
+    gap: 20px;
+  }
+  
+  .feature-title {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+  
+  .feature-list li {
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+  }
+  
+  .step-num {
+    font-size: 0.8rem;
+    margin-right: 6px;
+  }
+  
+  .feature-image img {
+    max-width: 180px;
+    padding: 8px;
+  }
+}
+
+/* Ajustes para pantallas muy grandes (1600px+) */
+@media (min-width: 1600px) {
+  .features-bar {
+    padding: 70px 15%;
+  }
+  
+  .features-container {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .feature-title {
+    font-size: 2rem;
+  }
+  
+  .feature-list li {
+    font-size: 1.5rem;
+  }
+  
+  .feature-image img {
+    max-width: 320px;
+  }
 }
