@@ -1,5 +1,5 @@
 <div class="venta-container">
-
+  
   <div class="venta-header">
     <img src="logo-techfix.jpg" alt="TechFix" class="main-logo" routerLink="/" style="cursor: pointer;">
     <div class="carrito-indicador" (click)="irAlCarrito()">
@@ -10,19 +10,23 @@
 
   <h1 class="page-title">🛒 VENTA DE REPUESTOS TECNOLÓGICOS</h1>
 
+  <!-- Tabs de categorías -->
   <div class="categorias-tabs">
-    <button *ngFor="let categoria of categorias" class="tab-btn" [class.active]="categoria === 'Procesadores'"
-      (click)="scrollToCategoria(categoria)">{{ categoria }}</button>
+    <button *ngFor="let categoria of categorias" 
+            class="tab-btn" 
+            [class.active]="categoriaSeleccionada === categoria"
+            (click)="seleccionarCategoria(categoria)">
+      {{ categoria }}
+    </button>
   </div>
 
-  <div *ngFor="let categoria of categorias" class="categoria-section">
-    <h2>{{ categoria }}</h2>
+  <!-- Mostrar SOLO los productos de la categoría seleccionada -->
+  <div class="categoria-section">
+    <h2>{{ categoriaSeleccionada }}</h2>
     <div class="productos-grid">
-      <div class="producto-card" *ngFor="let producto of getProductosPorCategoria(categoria)">
+      <div class="producto-card" *ngFor="let producto of getProductosPorCategoria(categoriaSeleccionada)">
         <div class="producto-imagen">
-          <!-- Imagen real del producto -->
-          <img [src]="producto.imagen" [alt]="producto.nombre" class="producto-img"
-            (error)="producto.imagen = 'producto-default.jpg'">
+          <img [src]="producto.imagen" [alt]="producto.nombre" class="producto-img" (error)="producto.imagen = 'producto-default.jpg'">
         </div>
         <div class="producto-info">
           <div class="producto-nombre">{{ producto.nombre }}</div>
@@ -30,8 +34,7 @@
           <div class="producto-stock" [class.stock-bajo]="producto.stock < 5">Stock: {{ producto.stock }} unidades</div>
           <div class="producto-precio">{{ formatearPrecio(producto.precio) }}</div>
           <div class="producto-accion">
-            <button class="btn-agregar" (click)="agregarAlCarrito(producto)"
-              [disabled]="producto.cantidad >= producto.stock">
+            <button class="btn-agregar" (click)="agregarAlCarrito(producto)" [disabled]="producto.cantidad >= producto.stock">
               {{ obtenerCantidadEnCarrito(producto.id) > 0 ? 'Agregar otro +' : 'Agregar al carrito' }}
             </button>
           </div>
