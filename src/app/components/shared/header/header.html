@@ -7,27 +7,31 @@
     <!-- Botón Servicios con dropdown -->
     <div class="dropdown">
       <button class="nav-btn dropdown-btn" (click)="toggleMenuServicios()">
-        Servicios 
+        Servicios
       </button>
       <div class="dropdown-menu" *ngIf="mostrarMenuServicios" (mouseleave)="cerrarMenu()">
         <a *ngFor="let servicio of servicios" 
            [routerLink]="servicio.ruta" 
            class="dropdown-item"
            (click)="cerrarMenu()">
-          <span class="dropdown-icono">{{ servicio.icono }}</span>
           {{ servicio.nombre }}
         </a>
       </div>
     </div>
 
-    <!-- Tienda ahora lleva a Venta de Repuestos -->
     <button class="nav-btn" routerLink="/servicios/venta-repuestos">Tienda</button>
-    
     <button class="nav-btn" routerLink="/nosotros">Nosotros</button>
   </nav>
 
   <div class="user-area">
-    <span class="user-name">Hola, Invitado</span>
-    <button class="login-btn" routerLink="/login">Login</button>
+    <!-- Mostrar diferente si está logueado o no -->
+    <div *ngIf="estaLogueado; else invitado">
+      <span class="user-name">Hola, {{ usuario }}</span>
+      <button class="logout-btn" (click)="cerrarSesion()">Cerrar sesión</button>
+    </div>
+    <ng-template #invitado>
+      <span class="user-name">Hola, Invitado</span>
+      <button class="login-btn" routerLink="/login">Login</button>
+    </ng-template>
   </div>
 </header>

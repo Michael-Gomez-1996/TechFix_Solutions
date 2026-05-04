@@ -49,13 +49,14 @@
 .user-area {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;  /* Aumentado para separar nombre y botón */
 }
 
 .user-name {
   color: #005691;
   font-weight: 600;
   font-size: 25px;
+  white-space: nowrap; /* Evita que el nombre se rompa */
 }
 
 .login-btn {
@@ -158,6 +159,10 @@
     padding: 10px 25px;
     font-size: 18px;
   }
+  
+  .user-area {
+    gap: 15px;
+  }
 }
 
 /* Tablets (1024px) */
@@ -186,6 +191,10 @@
   
   .logo-img {
     height: 80px;
+  }
+  
+  .user-area {
+    gap: 15px;
   }
 }
 
@@ -230,6 +239,10 @@
     padding: 8px 20px;
     font-size: 14px;
   }
+  
+  .user-area {
+    gap: 12px;
+  }
 }
 
 /* Móviles (768px) */
@@ -272,6 +285,10 @@
   .dropdown-item {
     padding: 10px 15px;
     font-size: 14px;
+  }
+  
+  .user-area {
+    gap: 10px;
   }
 }
 
@@ -331,5 +348,54 @@
   .dropdown-item {
     padding: 8px 12px;
     font-size: 12px;
+  }
+  
+  .user-area {
+    gap: 6px;
+  }
+}
+
+/* ======================================== */
+/* ========== BOTÓN CERRAR SESIÓN ========== */
+/* ======================================== */
+
+.logout-btn {
+  background-color: transparent;
+  color: #dc3545;
+  border: 2px solid #dc3545;
+  padding: 12px 15px;
+  border-radius: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #dc3545;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Versión responsiva del botón cerrar sesión */
+@media (max-width: 1024px) {
+  .logout-btn {
+    padding: 8px 20px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logout-btn {
+    padding: 6px 15px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .logout-btn {
+    padding: 5px 12px;
+    font-size: 11px;
   }
 }

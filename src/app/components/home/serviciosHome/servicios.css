@@ -222,3 +222,31 @@
     font-size: 1rem;
   }
 }
+
+/* ======================================== */
+/* ========== MEJORAS DE CURSOR ========== */
+/* ======================================== */
+
+/* Cambiar cursor a pointer (mano) en toda la tarjeta */
+.service-card {
+  cursor: pointer;
+  user-select: none; /* Evita que se seleccione el texto */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE/Edge */
+}
+
+/* Evita que se seleccione texto dentro de la tarjeta */
+.service-card * {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Opcional: si quieres que el texto del botón o enlaces específicos mantengan selección */
+.service-card a,
+.service-card button {
+  user-select: auto;
+  -webkit-user-select: auto;
+}

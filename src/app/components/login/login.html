@@ -1,1 +1,162 @@
-<p>login works!</p>
+<div class="login-container">
+  
+  <!-- Header con logo -->
+  <div class="login-header">
+    <img src="logo-techfix.jpg" alt="TechFix Solutions" class="logo" routerLink="/" style="cursor: pointer;">
+  </div>
+
+  <div class="login-card">
+    
+    <!-- Título principal -->
+    <h1 class="main-title">Ingresa Tu cuenta</h1>
+
+    <!-- Mostrar Login o Registro según estado -->
+    <div *ngIf="!mostrarRegistro">
+      
+      <!-- Sección Login -->
+      <div class="form-section">
+        <h2 class="section-title">Ingreso Rápido</h2>
+        
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          
+          <!-- Campo Email -->
+          <div class="campo">
+            <div class="campo-icono"></div>
+            <input 
+              type="email" 
+              class="campo-input" 
+              placeholder="Correo Electrónico" 
+              formControlName="email"
+              [class.error]="loginEmail?.invalid && loginEmail?.touched">
+            <div class="campo-error" *ngIf="loginEmail?.invalid && loginEmail?.touched">
+              <span *ngIf="loginEmail?.errors?.['required']">El correo es requerido</span>
+              <span *ngIf="loginEmail?.errors?.['email']">Correo inválido</span>
+            </div>
+          </div>
+
+          <!-- Campo Contraseña -->
+          <div class="campo">
+            <div class="campo-icono"></div>
+            <input 
+              type="password" 
+              class="campo-input" 
+              placeholder="Contraseña" 
+              formControlName="password"
+              [class.error]="loginPassword?.invalid && loginPassword?.touched">
+            <div class="campo-icono-derecho"></div>
+            <div class="campo-error" *ngIf="loginPassword?.invalid && loginPassword?.touched">
+              <span *ngIf="loginPassword?.errors?.['required']">La contraseña es requerida</span>
+              <span *ngIf="loginPassword?.errors?.['minlength']">Mínimo 6 caracteres</span>
+            </div>
+          </div>
+
+          <!-- Enlace olvidó contraseña -->
+          <div class="forgot-password">
+            <a href="#">¿Olvidaste tu contraseña?</a>
+          </div>
+
+          <!-- Botón Ingresar -->
+          <button type="submit" class="btn-ingresar" [disabled]="loginForm.invalid">
+            Ingresar
+          </button>
+        </form>
+      </div>
+
+      <!-- Divisor social -->
+      <div class="divider">
+        <span>O inicia sesión con</span>
+      </div>
+
+      <!-- Social Login -->
+      <div class="social-login">
+        <button class="social-btn" (click)="loginConGoogle()">
+          <span class="social-icono">G</span>
+        </button>
+        <button class="social-btn" (click)="loginConFacebook()">
+          <span class="social-icono">f</span>
+        </button>
+        <button class="social-btn" (click)="loginConApple()">
+          <span class="social-icono"></span>
+        </button>
+      </div>
+
+      <!-- Link a registro -->
+      <div class="register-link">
+        <p>¿No tienes cuenta? 
+          <a href="#" (click)="toggleRegistro(); $event.preventDefault()">Regístrate gratis</a>
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Sección Registro -->
+    <div *ngIf="mostrarRegistro">
+      
+      <div class="form-section">
+        <h2 class="section-title">Crear cuenta nueva</h2>
+        
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+          
+          <!-- Campo Usuario -->
+          <div class="campo">
+            <div class="campo-icono"></div>
+            <input 
+              type="text" 
+              class="campo-input" 
+              placeholder="Usuario" 
+              formControlName="username"
+              [class.error]="registerUsername?.invalid && registerUsername?.touched">
+            <div class="campo-error" *ngIf="registerUsername?.invalid && registerUsername?.touched">
+              <span *ngIf="registerUsername?.errors?.['required']">El usuario es requerido</span>
+              <span *ngIf="registerUsername?.errors?.['minlength']">Mínimo 3 caracteres</span>
+            </div>
+          </div>
+
+          <!-- Campo Email -->
+          <div class="campo">
+            <div class="campo-icono"></div>
+            <input 
+              type="email" 
+              class="campo-input" 
+              placeholder="Correo Electrónico" 
+              formControlName="email"
+              [class.error]="registerEmail?.invalid && registerEmail?.touched">
+            <div class="campo-error" *ngIf="registerEmail?.invalid && registerEmail?.touched">
+              <span *ngIf="registerEmail?.errors?.['required']">El correo es requerido</span>
+              <span *ngIf="registerEmail?.errors?.['email']">Correo inválido</span>
+            </div>
+          </div>
+
+          <!-- Campo Contraseña -->
+          <div class="campo">
+            <div class="campo-icono"></div>
+            <input 
+              type="password" 
+              class="campo-input" 
+              placeholder="Crea contraseña" 
+              formControlName="password"
+              [class.error]="registerPassword?.invalid && registerPassword?.touched">
+            <div class="campo-error" *ngIf="registerPassword?.invalid && registerPassword?.touched">
+              <span *ngIf="registerPassword?.errors?.['required']">La contraseña es requerida</span>
+              <span *ngIf="registerPassword?.errors?.['minlength']">Mínimo 6 caracteres</span>
+            </div>
+          </div>
+
+          <!-- Botón Registrarse -->
+          <button type="submit" class="btn-ingresar" [disabled]="registerForm.invalid">
+            Registrarse
+          </button>
+        </form>
+      </div>
+
+      <!-- Link a login -->
+      <div class="register-link">
+        <p>¿Ya tienes cuenta? 
+          <a href="#" (click)="toggleRegistro(); $event.preventDefault()">Iniciar sesión</a>
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</div>
