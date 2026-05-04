@@ -1,0 +1,141 @@
+<div class="datos-container">
+  
+  <div class="stepper">
+    <div class="step completed">
+      <div class="step-number">✓</div>
+      <div class="step-label">Carrito</div>
+    </div>
+    <div class="step-line completed-line"></div>
+    <div class="step active">
+      <div class="step-number">2</div>
+      <div class="step-label">Datos</div>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-label">Pago</div>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-number">4</div>
+      <div class="step-label">Confirmación</div>
+    </div>
+  </div>
+
+  <h1 class="page-title">📝 DATOS DE ENVÍO</h1>
+
+  <form [formGroup]="datosForm" (ngSubmit)="onSubmit()">
+    <div class="three-columns">
+      
+      <div class="column datos-personales">
+        <h3>🛡️ Datos Personales</h3>
+        
+        <div class="campo">
+          <div class="campo-icono">👤</div>
+          <input type="text" class="campo-input" placeholder="Nombre Completo" formControlName="nombre"
+            [class.error]="nombre?.invalid && nombre?.touched">
+          <div class="campo-error" *ngIf="nombre?.invalid && nombre?.touched">
+            <span *ngIf="nombre?.errors?.['required']">El nombre es requerido</span>
+            <span *ngIf="nombre?.errors?.['minlength']">Mínimo 3 caracteres</span>
+          </div>
+        </div>
+
+        <div class="campo">
+          <div class="campo-icono">✉️</div>
+          <input type="email" class="campo-input" placeholder="Correo Electrónico" formControlName="email"
+            [class.error]="email?.invalid && email?.touched">
+          <div class="campo-error" *ngIf="email?.invalid && email?.touched">
+            <span *ngIf="email?.errors?.['required']">El correo es requerido</span>
+            <span *ngIf="email?.errors?.['email']">Correo inválido</span>
+          </div>
+        </div>
+
+        <div class="campo">
+          <div class="campo-icono">📱</div>
+          <input type="tel" class="campo-input" placeholder="Teléfono (10 dígitos)" formControlName="telefono"
+            [class.error]="telefono?.invalid && telefono?.touched">
+          <div class="campo-error" *ngIf="telefono?.invalid && telefono?.touched">
+            <span *ngIf="telefono?.errors?.['required']">El teléfono es requerido</span>
+            <span *ngIf="telefono?.errors?.['pattern']">Ingresa 10 dígitos</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="column datos-envio">
+        <h3>📦 Datos de Envío</h3>
+        
+        <div class="campo">
+          <div class="campo-icono">📍</div>
+          <input type="text" class="campo-input" placeholder="Dirección" formControlName="direccion"
+            [class.error]="direccion?.invalid && direccion?.touched">
+          <div class="campo-error" *ngIf="direccion?.invalid && direccion?.touched">
+            <span *ngIf="direccion?.errors?.['required']">La dirección es requerida</span>
+          </div>
+        </div>
+
+        <div class="fila-doble">
+          <div class="campo mitad">
+            <div class="campo-icono">🏙️</div>
+            <input type="text" class="campo-input" placeholder="Ciudad" formControlName="ciudad"
+              [class.error]="ciudad?.invalid && ciudad?.touched">
+          </div>
+          <div class="campo mitad">
+            <div class="campo-icono">📮</div>
+            <input type="text" class="campo-input" placeholder="Código Postal" formControlName="codigoPostal"
+              [class.error]="codigoPostal?.invalid && codigoPostal?.touched">
+          </div>
+        </div>
+
+        <div class="textarea-container">
+          <div class="textarea-icono">📝</div>
+          <textarea class="textarea-descripcion" placeholder="Notas adicionales sobre el envío..."
+            formControlName="notas" rows="3"></textarea>
+        </div>
+
+        <div class="fecha-hora-container">
+          <label class="fecha-hora-label">📅 Fecha preferida de entrega</label>
+          <div class="fecha-hora-botones">
+            <input type="date" class="fecha-input" formControlName="fecha" [class.error]="fecha?.invalid && fecha?.touched">
+            <input type="time" class="hora-input" formControlName="hora" [class.error]="hora?.invalid && hora?.touched">
+          </div>
+        </div>
+      </div>
+
+      <div class="column resumen-compra">
+        <div class="resumen-card">
+          <h3>💰 Resumen de compra</h3>
+          <div class="total-monto">{{ formatearPrecio(resumenData.total) }}</div>
+
+          <div class="info-fila">
+            <div class="info-icono">🛒</div>
+            <div class="info-contenido">
+              <div class="info-titulo">Productos</div>
+              <div class="info-valor">{{ resumenData.cantidadProductos }} unidades</div>
+            </div>
+          </div>
+
+          <div class="info-fila">
+            <div class="info-icono">📦</div>
+            <div class="info-contenido">
+              <div class="info-titulo">Envío</div>
+              <div class="info-valor">Gratis</div>
+            </div>
+          </div>
+
+          <div class="info-fila">
+            <div class="info-icono">🛡️</div>
+            <div class="info-contenido">
+              <div class="info-titulo">Garantía</div>
+              <div class="info-valor">6 meses</div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-continuar" [disabled]="datosForm.invalid">
+            CONTINUAR A PAGO →
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>

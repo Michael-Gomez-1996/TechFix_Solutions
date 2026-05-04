@@ -1,0 +1,168 @@
+<div class="datos-container">
+  
+  <div class="stepper">
+    <div class="step completed">
+      <div class="step-number">✓</div>
+      <div class="step-label">Selección</div>
+    </div>
+    <div class="step-line completed-line"></div>
+    <div class="step active">
+      <div class="step-number">2</div>
+      <div class="step-label">Datos</div>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-label">Pago</div>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-number">4</div>
+      <div class="step-label">Confirmación</div>
+    </div>
+  </div>
+
+  <h1 class="page-title"> INGRESA TUS DATOS</h1>
+
+  <form [formGroup]="datosForm" (ngSubmit)="onSubmit()">
+    <div class="three-columns">
+      
+      <div class="column datos-personales">
+        <h3>
+          <span class="icono-titulo"></span> 
+          Datos Personales
+        </h3>
+        
+        <div class="campo">
+          <div class="campo-icono"></div>
+          <input 
+            type="text" 
+            class="campo-input" 
+            placeholder="Nombre Completo" 
+            formControlName="nombre"
+            [class.error]="nombre?.invalid && nombre?.touched">
+          <div class="campo-error" *ngIf="nombre?.invalid && nombre?.touched">
+            <span *ngIf="nombre?.errors?.['required']">El nombre es requerido</span>
+            <span *ngIf="nombre?.errors?.['minlength']">Mínimo 3 caracteres</span>
+          </div>
+        </div>
+
+        <div class="campo">
+          <div class="campo-icono"></div>
+          <input 
+            type="email" 
+            class="campo-input" 
+            placeholder="Correo Electrónico" 
+            formControlName="email"
+            [class.error]="email?.invalid && email?.touched">
+          <div class="campo-error" *ngIf="email?.invalid && email?.touched">
+            <span *ngIf="email?.errors?.['required']">El correo es requerido</span>
+            <span *ngIf="email?.errors?.['email']">Correo inválido</span>
+          </div>
+        </div>
+
+        <div class="campo">
+          <div class="campo-icono"></div>
+          <input 
+            type="tel" 
+            class="campo-input" 
+            placeholder="Teléfono (10 dígitos)" 
+            formControlName="telefono"
+            [class.error]="telefono?.invalid && telefono?.touched">
+          <div class="campo-error" *ngIf="telefono?.invalid && telefono?.touched">
+            <span *ngIf="telefono?.errors?.['required']">El teléfono es requerido</span>
+            <span *ngIf="telefono?.errors?.['pattern']">Ingresa 10 dígitos</span>
+          </div>
+        </div>
+
+        <div class="campo">
+          <div class="campo-icono"></div>
+          <input 
+            type="text" 
+            class="campo-input" 
+            placeholder="Dirección" 
+            formControlName="direccion"
+            [class.error]="direccion?.invalid && direccion?.touched">
+          <div class="campo-error" *ngIf="direccion?.invalid && direccion?.touched">
+            <span *ngIf="direccion?.errors?.['required']">La dirección es requerida</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="column datos-servicio">
+        <h3>
+          <span class="icono-titulo"></span> 
+          Datos del Servicio
+        </h3>
+        
+        <div class="textarea-container">
+          <div class="textarea-icono"></div>
+          <textarea 
+            class="textarea-descripcion" 
+            placeholder="Describe tu solicitud o requerimientos especiales..."
+            formControlName="descripcion"
+            rows="5"></textarea>
+        </div>
+
+        <div class="fecha-hora-container">
+          <label class="fecha-hora-label">
+            <span class="label-icono"></span>
+            Fecha y hora del servicio
+          </label>
+          
+          <div class="fecha-hora-botones">
+            <div class="boton-fecha">
+              <input type="date" class="fecha-input" formControlName="fecha" [class.error]="fecha?.invalid && fecha?.touched">
+            </div>
+            <div class="boton-hora">
+              <input type="time" class="hora-input" formControlName="hora" [class.error]="hora?.invalid && hora?.touched">
+            </div>
+          </div>
+          <div class="campo-error" *ngIf="(fecha?.invalid || hora?.invalid) && (fecha?.touched || hora?.touched)">
+            <span *ngIf="fecha?.errors?.['required']">La fecha es requerida</span>
+            <span *ngIf="hora?.errors?.['required']">La hora es requerida</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="column resumen-servicio">
+        <div class="resumen-card">
+          <h3> Resumen del Servicio</h3>
+          
+          <div class="total-monto">
+            {{ formatearPrecio(resumenData.total) }}
+          </div>
+
+          <div class="info-fila">
+            <div class="info-icono">🛡️</div>
+            <div class="info-contenido">
+              <div class="info-titulo">Servicio Seleccionado</div>
+              <div class="info-valor">{{ resumenData.equipo }}</div>
+            </div>
+          </div>
+
+          <div class="info-fila">
+            <div class="info-icono">🛡️</div>
+            <div class="info-contenido">
+              <div class="info-titulo">Opciones Seleccionadas</div>
+              <div class="info-valor">{{ resumenData.opcionesSeleccionadas }} elementos</div>
+            </div>
+          </div>
+
+          <div class="info-fila">
+            <div class="info-icono">🛡️</div>
+            <div class="info-contenido">
+              <div class="info-titulo">Costo Estimado</div>
+              <div class="info-valor">{{ formatearPrecio(resumenData.total) }}</div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-continuar" [disabled]="datosForm.invalid">
+            CONTINUAR A PAGO →
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>

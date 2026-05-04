@@ -1,0 +1,151 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 50px;
+  background-color: white;
+  border-bottom: 3px solid #005691;
+  justify-content: flex-start; /* Alinea todo al inicio */
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  border: 2px solid #005691;
+  padding: 5px;
+  margin-right: auto; /* <--- ESTO EMPUJA AL LOGO A LA IZQUIERDA Y DEJA EL RESTO AL CENTRO/DERECHA */
+}
+
+.logo-img {
+  height: 100px; /* Ajusta esta altura según cómo se vea tu logo */
+  width: auto;
+  display: block;
+}
+
+.menu {
+  display: flex;
+  gap: 45px;
+  margin-right: auto; /* <--- ESTO JUNTO CON EL ANTERIOR CENTRA EL MENÚ EN EL ESPACIO RESTANTE */
+}
+
+.nav-btn {
+  background-color: #005691;
+  color: white;
+  border: none;
+  padding: 25px 80px;
+  border-radius: 10px; /* Bordes redondeados pero profesionales */
+  font-size: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-btn:hover {
+  background-color: #003d66;
+  transform: translateY(-2px); /* Un pequeño salto al pasar el mouse lo hace más interactivo */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.user-area {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-name {
+  color: #005691;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.login-btn {
+  background-color: transparent;
+  color: #005691;
+  border: 2px solid #005691;
+  padding: 12px 30px;
+  border-radius: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #005691;
+  color: white;
+}
+
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  min-width: 220px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  z-index: 1000;
+  margin-top: 10px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f7ff;
+  color: #0056a3;
+}
+
+.dropdown-icono {
+  font-size: 18px;
+}
+
+/* Animación del dropdown */
+.dropdown-menu {
+  animation: fadeInDown 0.2s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    position: fixed;
+    top: auto;
+    left: 20px;
+    right: 20px;
+    width: auto;
+  }
+}

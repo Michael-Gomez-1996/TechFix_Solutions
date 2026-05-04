@@ -1,0 +1,83 @@
+<div class="pago-container">
+  
+  <div class="stepper">
+    <div class="step completed"><div class="step-number">✓</div><div class="step-label">Selección</div></div>
+    <div class="step-line completed-line"></div>
+    <div class="step completed"><div class="step-number">✓</div><div class="step-label">Datos</div></div>
+    <div class="step-line completed-line"></div>
+    <div class="step active"><div class="step-number">💳</div><div class="step-label">Pago</div></div>
+    <div class="step-line"></div>
+    <div class="step"><div class="step-number">4</div><div class="step-label">Confirmación</div></div>
+  </div>
+
+  <h1 class="page-title">💳 MÉTODO DE PAGO</h1>
+
+  <form [formGroup]="pagoForm" (ngSubmit)="onSubmit()">
+    <div class="three-columns">
+      
+      <div class="column metodos-pago">
+        <h3>💳 Métodos de pago</h3>
+        
+        <div class="metodo-item" [class.selected]="metodoPagoSeleccionado === 'tarjeta'" (click)="seleccionarMetodoPago('tarjeta')">
+          <div class="metodo-radio"><div class="radio-custom" [class.radio-checked]="metodoPagoSeleccionado === 'tarjeta'"></div></div>
+          <div class="metodo-icono">💳</div>
+          <div class="metodo-info"><div class="metodo-nombre">Tarjeta de crédito / débito</div><div class="metodo-descripcion">Visa, Mastercard, American Express</div></div>
+        </div>
+
+        <div class="metodo-item" [class.selected]="metodoPagoSeleccionado === 'transferencia'" (click)="seleccionarMetodoPago('transferencia')">
+          <div class="metodo-radio"><div class="radio-custom" [class.radio-checked]="metodoPagoSeleccionado === 'transferencia'"></div></div>
+          <div class="metodo-icono">🏦</div>
+          <div class="metodo-info"><div class="metodo-nombre">Transferencia bancaria</div><div class="metodo-descripcion">Bancolombia, Davivienda, Nequi</div></div>
+        </div>
+
+        <div class="metodo-item" [class.selected]="metodoPagoSeleccionado === 'contraentrega'" (click)="seleccionarMetodoPago('contraentrega')">
+          <div class="metodo-radio"><div class="radio-custom" [class.radio-checked]="metodoPagoSeleccionado === 'contraentrega'"></div></div>
+          <div class="metodo-icono">📦</div>
+          <div class="metodo-info"><div class="metodo-nombre">Contraentrega</div><div class="metodo-descripcion">Pago en efectivo al recibir el servicio</div></div>
+        </div>
+      </div>
+
+      <div class="column datos-pago">
+        <div *ngIf="metodoPagoSeleccionado === 'tarjeta'" class="formulario-tarjeta">
+          <h3>💳 Datos de la Tarjeta</h3>
+          <div class="campo"><div class="campo-icono">💳</div><input type="text" class="campo-input" placeholder="Número de tarjeta" formControlName="numeroTarjeta" (input)="formatearNumeroTarjeta($event)"></div>
+          <div class="campo"><div class="campo-icono">👤</div><input type="text" class="campo-input" placeholder="Nombre en la tarjeta" formControlName="nombreTarjeta"></div>
+          <div class="fila-doble">
+            <div class="campo mitad"><div class="campo-icono">📅</div><input type="text" class="campo-input" placeholder="MM/AA" formControlName="fechaExpiracion"></div>
+            <div class="campo mitad"><div class="campo-icono">🔒</div><input type="text" class="campo-input" placeholder="CVV" formControlName="cvv"></div>
+          </div>
+        </div>
+
+        <div *ngIf="metodoPagoSeleccionado === 'transferencia'" class="formulario-transferencia">
+          <h3>🏦 Datos de Transferencia</h3>
+          <div class="info-transferencia">
+            <p>📋 Bancolombia: <strong>123-456789-01</strong></p>
+            <p>📋 Davivienda: <strong>987654321</strong></p>
+            <p>📋 Nequi: <strong>300 1234567</strong></p>
+          </div>
+        </div>
+
+        <div *ngIf="metodoPagoSeleccionado === 'contraentrega'" class="formulario-contraentrega">
+          <h3>📦 Datos de Entrega</h3>
+          <div class="campo"><div class="campo-icono">📍</div><input type="text" class="campo-input" placeholder="Confirmar dirección" formControlName="direccionConfirmacion"></div>
+        </div>
+
+        <button type="submit" class="btn-confirmar-pago">CONFIRMAR PAGO</button>
+      </div>
+
+      <div class="column resumen-pedido">
+        <div class="resumen-card">
+          <h3>💰 Resumen del pedido</h3>
+          <div class="detalle-item"><span>Subtotal</span><span>{{ formatearPrecio(subtotal) }}</span></div>
+          <div class="detalle-item"><span>IVA (19%)</span><span>{{ formatearPrecio(iva) }}</span></div>
+          <div class="total-item"><span>TOTAL</span><span class="total-monto">{{ formatearPrecio(total) }}</span></div>
+          <div class="info-adicional">
+            <div class="info-fila"><div class="info-icono">🛡️</div><div class="info-contenido"><div class="info-titulo">Servicio Seleccionado</div><div class="info-valor">Reparación Técnica</div></div></div>
+            <div class="info-fila"><div class="info-icono">🛡️</div><div class="info-contenido"><div class="info-titulo">Equipo</div><div class="info-valor">{{ resumenData.equipo }}</div></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>

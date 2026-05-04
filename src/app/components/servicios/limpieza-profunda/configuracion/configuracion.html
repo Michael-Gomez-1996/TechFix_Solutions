@@ -1,0 +1,203 @@
+<div class="config-container">
+  <!-- Stepper -->
+  <div class="stepper">
+    <div class="step active">
+      <div class="step-number">1</div>
+      <div class="step-label">Selección</div>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-label">Datos</div>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-label">Pago</div>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-number">4</div>
+      <div class="step-label">Confirmación</div>
+    </div>
+  </div>
+
+  <h1 class="page-title">🔧 CONFIGURAR MI LIMPIEZA PROFUNDA</h1>
+
+  <div class="three-columns">
+
+    <!-- COLUMNA 1: TIPO DE EQUIPO + OPCIONES -->
+    <div class="column">
+      <h3>📦 Tipo de equipo</h3>
+
+      <!-- Tarjetas horizontales -->
+      <div class="equipos-horizontal">
+        <div class="equipo-card" [class.selected]="tipoEquipoSeleccionado === 'torre'"
+          (click)="seleccionarEquipo('torre')">
+          <div class="equipo-radio">
+            <div class="radio-custom" [class.radio-checked]="tipoEquipoSeleccionado === 'torre'"></div>
+          </div>
+          <div class="equipo-emoji">🖥️</div>
+          <div class="equipo-detalle">
+            <div class="equipo-nombre">Torre / Desktop</div>
+            <div class="equipo-precio-base">{{ formatearPrecio(250000) }}</div>
+            <div class="equipo-desc">PC de escritorio</div>
+          </div>
+        </div>
+
+        <div class="equipo-card" [class.selected]="tipoEquipoSeleccionado === 'portatil'"
+          (click)="seleccionarEquipo('portatil')">
+          <div class="equipo-radio">
+            <div class="radio-custom" [class.radio-checked]="tipoEquipoSeleccionado === 'portatil'"></div>
+          </div>
+          <div class="equipo-emoji">💻</div>
+          <div class="equipo-detalle">
+            <div class="equipo-nombre">Portátil / Laptop</div>
+            <div class="equipo-precio-base">{{ formatearPrecio(200000) }}</div>
+            <div class="equipo-desc">Computador portátil</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OPCIONES DESPLEGABLES CON SELECT PARA TORRE -->
+      <div class="opciones-desplegables" *ngIf="tipoEquipoSeleccionado === 'torre'">
+        <h4>⚙️ Personalización para Torre</h4>
+
+        <div class="opcion-grupo" *ngFor="let opcion of opcionesTorre">
+          <label class="opcion-label">
+            <span class="opcion-nombre">{{ opcion.nombre }}</span>
+            <select class="opcion-select" [(ngModel)]="opcion.seleccion">
+              <option *ngFor="let opt of opcion.opciones" [value]="opt.valor">
+                {{ opt.valor }}
+                <ng-container *ngIf="opt.precio !== 0">
+                  ({{ opt.precio > 0 ? '+' : '' }}{{ formatearPrecio(opt.precio) }})
+                </ng-container>
+              </option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <!-- OPCIONES DESPLEGABLES CON SELECT PARA PORTÁTIL -->
+      <div class="opciones-desplegables" *ngIf="tipoEquipoSeleccionado === 'portatil'">
+        <h4>⚙️ Personalización para Portátil</h4>
+
+        <div class="opcion-grupo" *ngFor="let opcion of opcionesPortatil">
+          <label class="opcion-label">
+            <span class="opcion-nombre">{{ opcion.nombre }}</span>
+            <select class="opcion-select" [(ngModel)]="opcion.seleccion">
+              <option *ngFor="let opt of opcion.opciones" [value]="opt.valor">
+                {{ opt.valor }}
+                <ng-container *ngIf="opt.precio !== 0">
+                  ({{ opt.precio > 0 ? '+' : '' }}{{ formatearPrecio(opt.precio) }})
+                </ng-container>
+              </option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUMNA 2: CONFIGURACIÓN GENERAL -->
+    <div class="column">
+
+      <!-- Nivel de suciedad -->
+      <div class="suciedad-section">
+        <h3> Nivel de suciedad</h3>
+        <div class="suciedad-labels">
+          <span> Bajo</span>
+          <span> Medio (+$25k)</span>
+          <span> Alto (+$50k)</span>
+        </div>
+        <input type="range" class="suciedad-slider" min="0" max="100" step="50" [(ngModel)]="nivelSuciedad">
+        <div class="nivel-actual">
+          Nivel seleccionado: <strong class="nivel-{{ textoNivelSuciedad.toLowerCase() }}">{{ textoNivelSuciedad
+            }}</strong>
+        </div>
+      </div>
+
+      <!-- Servicios adicionales -->
+      <div class="servicios-section">
+        <h3> Servicios adicionales</h3>
+
+        <div class="servicio-item" *ngFor="let servicio of serviciosAdicionales">
+          <label class="servicio-checkbox">
+            <input type="checkbox" [(ngModel)]="servicio.seleccionado">
+            <span class="checkbox-custom"></span>
+          </label>
+          <div class="servicio-info">
+            <div class="servicio-nombre">{{ servicio.icono }} {{ servicio.nombre }}</div>
+            <div class="servicio-descripcion">{{ servicio.descripcion }}</div>
+          </div>
+          <div class="servicio-precio-tag">{{ formatearPrecio(servicio.precio) }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUMNA 3: RESUMEN -->
+    <div class="column resumen-column">
+      <div class="resumen-sticky">
+        <h3> Resumen del servicio</h3>
+
+        <div class="total-grande">
+          {{ formatearPrecio(totalGeneral) }}
+        </div>
+
+        <div class="detalle-lista">
+          <div class="detalle-item">
+            <span>Base equipo:</span>
+            <span>{{ formatearPrecio(preciosBase[tipoEquipoSeleccionado]) }}</span>
+          </div>
+
+          <!-- Items de personalización -->
+          <div class="detalle-subseccion" *ngIf="costoPersonalizacion !== 0">
+            <div class="subseccion-titulo"> Personalización:</div>
+            <div class="detalle-item"
+              *ngFor="let opcion of (tipoEquipoSeleccionado === 'torre' ? opcionesTorre : opcionesPortatil)">
+              <span>• {{ opcion.nombre }}:</span>
+              <span>{{ opcion.seleccion }}</span>
+              <span class="precio-item">
+                <ng-container
+                  *ngIf="(tipoEquipoSeleccionado === 'torre' ? getPrecioOpcionTorre(opcion.nombre) : getPrecioOpcionPortatil(opcion.nombre)) !== 0">
+                  {{ (tipoEquipoSeleccionado === 'torre' ? getPrecioOpcionTorre(opcion.nombre) :
+                  getPrecioOpcionPortatil(opcion.nombre)) > 0 ? '+' : '' }}
+                  {{ formatearPrecio(tipoEquipoSeleccionado === 'torre' ? getPrecioOpcionTorre(opcion.nombre) :
+                  getPrecioOpcionPortatil(opcion.nombre)) }}
+                </ng-container>
+                <ng-container
+                  *ngIf="(tipoEquipoSeleccionado === 'torre' ? getPrecioOpcionTorre(opcion.nombre) : getPrecioOpcionPortatil(opcion.nombre)) === 0">
+                  Incluido
+                </ng-container>
+              </span>
+            </div>
+          </div>
+
+          <div class="detalle-item" *ngIf="recargoSuciedad > 0">
+            <span>🧹 Nivel {{ textoNivelSuciedad }}:</span>
+            <span>+ {{ formatearPrecio(recargoSuciedad) }}</span>
+          </div>
+
+          <div class="detalle-subseccion" *ngIf="subtotalServicios > 0">
+            <div class="subseccion-titulo"> Servicios adicionales:</div>
+            <div class="detalle-item" *ngFor="let servicio of serviciosAdicionales">
+              <div *ngIf="servicio.seleccionado">
+                <span>• {{ servicio.nombre }}:</span>
+                <span>{{ formatearPrecio(servicio.precio) }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="total-linea">
+          <span>TOTAL</span>
+          <span class="total-final">{{ formatearPrecio(totalGeneral) }}</span>
+        </div>
+
+        <button class="btn-continuar" (click)="continuarADatos()">
+           CONTINUAR A DATOS
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

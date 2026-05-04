@@ -1,0 +1,10 @@
+<!-- app.html -->
+
+<app-header></app-header>
+
+<main [@fadeAnimation]="getRouteAnimationData()">
+  <!-- Aquí se cargará todo el contenido dinámico -->
+  <router-outlet></router-outlet>
+</main>
+
+<app-footer></app-footer>

@@ -1,0 +1,2870 @@
+"==========================================" 
+"=== TECHFIX SOLUTIONS - PROYECTO COMPLETO ===" 
+"==========================================" 
+"" 
+"==========================================" 
+"=== APP PRINCIPAL ===" 
+"==========================================" 
+"" 
+import { Component } from '@angular/core';
+import { RouterOutlet, ChildrenOutletContexts } from '@angular/router'; // <--- Importar Contexts
+import { Header } from './components/shared/header/header';
+import { Footer } from './components/shared/footer/footer';
+import { fadeAnimation } from './animations'; // <--- Importar nuestra animación
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, Header, Footer],
+  animations: [fadeAnimation], // <--- Registrar la animación
+  templateUrl: './app.html',
+  styleUrl: './app.css'
+})
+export class AppComponent {
+  // Esta lógica ayuda a Angular a saber cuándo cambió la página
+  constructor(private contexts: ChildrenOutletContexts) {}
+
+  getRouteAnimationData() {
+  try {
+    const animation = this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
+    return animation || null; // Si no hay animación, devuelve null en lugar de romper la app
+  } catch (e) {
+    return null;
+  }
+}
+}"" 
+import { Routes } from '@angular/router';
+import { Home } from './components/home/home';
+import { Login } from './components/login/login';
+import { Catalogo } from './components/catalogo/catalogo';
+import { About } from './components/home/about/about';
+
+// Limpieza Profunda
+import { LimpiezaProfunda } from './components/servicios/limpieza-profunda/limpieza-profunda';
+import { Configuracion } from './components/servicios/limpieza-profunda/configuracion/configuracion';
+import { DatosLimpieza } from './components/servicios/limpieza-profunda/configuracion/datos/datos';
+import { PagoLimpieza } from './components/servicios/limpieza-profunda/configuracion/pago/pago';
+import { ConfirmacionLimpieza } from './components/servicios/limpieza-profunda/configuracion/confirmacion/confirmacion';
+
+// Reparación Técnica
+import { ReparacionTecnica } from './components/servicios/reparacion-tecnica/reparacion-tecnica';
+import { ConfiguracionReparacion } from './components/servicios/reparacion-tecnica/configuracion/configuracion';
+import { DatosReparacion } from './components/servicios/reparacion-tecnica/datos/datos';
+import { PagoReparacion } from './components/servicios/reparacion-tecnica/pago/pago';
+import { ConfirmacionReparacion } from './components/servicios/reparacion-tecnica/confirmacion/confirmacion';
+
+// Ensamble de PC
+import { EnsamblePc } from './components/servicios/ensamble-pc/ensamble-pc';
+import { ConfiguracionEnsamble } from './components/servicios/ensamble-pc/configuracion/configuracion';
+import { DatosEnsamble } from './components/servicios/ensamble-pc/datos/datos';
+import { PagoEnsamble } from './components/servicios/ensamble-pc/pago/pago';
+import { ConfirmacionEnsamble } from './components/servicios/ensamble-pc/confirmacion/confirmacion';
+
+// Venta de Repuestos
+import { VentaRepuestos } from './components/servicios/venta-repuestos/venta-repuestos';
+import { Carrito } from './components/servicios/venta-repuestos/carrito/carrito';
+import { DatosVentaRepuestos } from './components/servicios/venta-repuestos/datos/datos';
+import { PagoVentaRepuestos } from './components/servicios/venta-repuestos/pago/pago';
+import { ConfirmacionVentaRepuestos } from './components/servicios/venta-repuestos/confirmacion/confirmacion';
+
+
+export const routes: Routes = [
+  { path: '', component: Home, data: { animation: 'HomePage' } },
+  { path: 'login', component: Login, data: { animation: 'LoginPage' } },
+  { path: 'catalogo', component: Catalogo, data: { animation: 'CatalogoPage' } },
+  { path: 'nosotros', component: About, data: { animation: 'AboutPage' } },
+  
+  /* ========== LIMPIEZA PROFUNDA ========== */
+  { path: 'servicios/limpieza-profunda', component: LimpiezaProfunda, data: { animation: 'LimpiezaPage' } },
+  { path: 'servicios/limpieza-profunda/configuracion', component: Configuracion, data: { animation: 'ConfigLimpiezaPage' } },
+  { path: 'servicios/limpieza-profunda/datos', component: DatosLimpieza, data: { animation: 'DatosLimpiezaPage' } },
+  { path: 'servicios/limpieza-profunda/pago', component: PagoLimpieza, data: { animation: 'PagoLimpiezaPage' } },
+  { path: 'servicios/limpieza-profunda/confirmacion', component: ConfirmacionLimpieza, data: { animation: 'ConfirmacionLimpiezaPage' } },
+  
+  /* ========== REPARACIÓN TÉCNICA ========== */
+  { path: 'servicios/reparacion-tecnica', component: ReparacionTecnica, data: { animation: 'ReparacionPage' } },
+  { path: 'servicios/reparacion-tecnica/configuracion', component: ConfiguracionReparacion, data: { animation: 'ConfigReparacionPage' } },
+  { path: 'servicios/reparacion-tecnica/datos', component: DatosReparacion, data: { animation: 'DatosReparacionPage' } },
+  { path: 'servicios/reparacion-tecnica/pago', component: PagoReparacion, data: { animation: 'PagoReparacionPage' } },
+  { path: 'servicios/reparacion-tecnica/confirmacion', component: ConfirmacionReparacion, data: { animation: 'ConfirmacionReparacionPage' } },
+  
+  /* ========== ENSAMBLE DE PC ========== */
+  { path: 'servicios/ensamble-pc', component: EnsamblePc, data: { animation: 'EnsamblePage' } },
+  { path: 'servicios/ensamble-pc/configuracion', component: ConfiguracionEnsamble, data: { animation: 'ConfigEnsamblePage' } },
+  { path: 'servicios/ensamble-pc/datos', component: DatosEnsamble, data: { animation: 'DatosEnsamblePage' } },
+  { path: 'servicios/ensamble-pc/pago', component: PagoEnsamble, data: { animation: 'PagoEnsamblePage' } },
+  { path: 'servicios/ensamble-pc/confirmacion', component: ConfirmacionEnsamble, data: { animation: 'ConfirmacionEnsamblePage' } },
+  
+  /* ========== VENTA DE REPUESTOS ========== */
+  { path: 'servicios/venta-repuestos', component: VentaRepuestos, data: { animation: 'VentaPage' } },
+  { path: 'servicios/venta-repuestos/carrito', component: Carrito, data: { animation: 'CarritoPage' } },
+  { path: 'servicios/venta-repuestos/datos', component: DatosVentaRepuestos, data: { animation: 'DatosVentaPage' } },
+  { path: 'servicios/venta-repuestos/pago', component: PagoVentaRepuestos, data: { animation: 'PagoVentaPage' } },
+  { path: 'servicios/venta-repuestos/confirmacion', component: ConfirmacionVentaRepuestos, data: { animation: 'ConfirmacionVentaPage' } },
+  
+  /* ========== COMODÍN ========== */
+  { path: '**', redirectTo: '' }
+];"" 
+// src/app/app.animations.ts
+import { trigger, transition, style, query, animate } from '@angular/animations';
+
+export const fadeAnimation = trigger('fadeAnimation', [
+  transition('* => *', [
+    query(':enter', [style({ opacity: 0, position: 'absolute', width: '100%' })], { optional: true }),
+    query(':leave', [
+      style({ opacity: 1 }),
+      animate('0.3s ease-in', style({ opacity: 0, position: 'absolute', width: '100%' }))
+    ], { optional: true }),
+    query(':enter', [
+      style({ opacity: 0 }),
+      animate('0.3s ease-out', style({ opacity: 1 }))
+    ], { optional: true }),
+  ])
+]);"" 
+"==========================================" 
+"=== COMPONENTES HOME ===" 
+"==========================================" 
+"" 
+import { Component } from '@angular/core';
+// Importamos solo los componentes que se usan DENTRO de home.html
+import { Hero } from './hero/hero';
+import { Servicios } from './serviciosHome/servicios';
+import { InfoFeatures } from './info-features/info-features';
+
+@Component({
+  selector: 'app-home',
+  standalone: true,
+  // Quitamos Header y Footer de la lista de imports
+  imports: [Hero, Servicios, InfoFeatures], 
+  templateUrl: './home.html',
+  styleUrl: './home.css',
+})
+export class Home {}
+"" 
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-hero',
+  standalone: true,
+  imports: [],
+  templateUrl: './hero.html',
+  styleUrl: './hero.css',
+})
+export class Hero {}"" 
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-about',
+  standalone: true,
+  imports: [],
+  templateUrl: './about.html',
+  styleUrl: './about.css',
+})
+export class About {}
+"" 
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-info-features',
+  standalone: true,
+  imports: [],
+  templateUrl: './info-features.html',
+  styleUrl: './info-features.css',
+})
+export class InfoFeatures {}"" 
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router'; // 1. Importar esto
+
+@Component({
+  selector: 'app-servicios',
+  standalone: true,
+  imports: [RouterLink], // 2. Agregarlo aquí para que funcione el HTML
+  templateUrl: './servicios.html',
+  styleUrl: './servicios.css',
+})
+export class Servicios {}"" 
+"==========================================" 
+"=== SHARED (HEADER Y FOOTER) ===" 
+"==========================================" 
+"" 
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router'; // <--- Importante
+
+@Component({
+  selector: 'app-header',
+  standalone: true,
+  imports: [RouterLink], // <--- Agregamos RouterLink aquí
+  templateUrl: './header.html',
+  styleUrl: './header.css',
+})
+export class Header {}"" 
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-footer',
+  standalone: true,
+  imports: [],
+  templateUrl: './footer.html',
+  styleUrl: './footer.css',
+})
+export class Footer {}"" 
+"==========================================" 
+"=== LIMPIEZA PROFUNDA ===" 
+"==========================================" 
+"" 
+"--- PRINCIPAL ---" 
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-limpieza-profunda',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './limpieza-profunda.html',
+  styleUrl: './limpieza-profunda.css',
+})
+export class LimpiezaProfunda {
+  tiempoTotalMinutos: number = 30;
+
+  constructor(private router: Router) {}
+
+  actualizarTiempo(evento: any) {
+    const incremento = 30;
+    if (evento.target.checked) {
+      this.tiempoTotalMinutos += incremento;
+    } else {
+      this.tiempoTotalMinutos -= incremento;
+    }
+  }
+
+  calcularHoras(): string {
+    if (this.tiempoTotalMinutos <= 0) {
+      return '0';
+    }
+    const horas = this.tiempoTotalMinutos / 60;
+    return horas % 1 === 0 ? horas.toString() : horas.toFixed(1);
+  }
+
+  procesarOpciones() {
+    this.router.navigate(['/servicios/limpieza-profunda/configuracion']);
+  }
+}"" 
+"--- CONFIGURACION ---" 
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+export interface ServicioAdicional {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  icono: string;
+  precio: number;
+  seleccionado: boolean;
+}
+
+interface OpcionTorre {
+  nombre: string;
+  opciones: { valor: string; precio: number }[];
+  seleccion: string;
+}
+
+interface OpcionPortatil {
+  nombre: string;
+  opciones: { valor: string; precio: number }[];
+  seleccion: string;
+}
+
+@Component({
+  selector: 'app-configuracion-limpieza',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './configuracion.html',
+  styleUrl: './configuracion.css'
+})
+export class Configuracion {
+  
+  constructor(private router: Router) {}
+
+  tipoEquipoSeleccionado: 'torre' | 'portatil' = 'torre';
+  
+  preciosBase = {
+    torre: 250000,
+    portatil: 200000
+  };
+  
+  nivelSuciedad: number = 0;
+  
+  opcionesTorre: OpcionTorre[] = [
+    {
+      nombre: 'Tipo de Gabinete',
+      opciones: [
+        { valor: 'ATX Estándar', precio: 0 },
+        { valor: 'Micro-ATX (Compacto)', precio: -20000 },
+        { valor: 'Mini-ITX (Ultra compacto)', precio: -30000 },
+        { valor: 'Gabinete Gamer (RGB + Ventana)', precio: 50000 }
+      ],
+      seleccion: 'ATX Estándar'
+    },
+    {
+      nombre: 'Fuente de Poder',
+      opciones: [
+        { valor: '500W 80 Plus', precio: 0 },
+        { valor: '650W 80 Plus Bronze', precio: 45000 },
+        { valor: '750W 80 Plus Gold', precio: 85000 },
+        { valor: '850W 80 Plus Platinum', precio: 150000 }
+      ],
+      seleccion: '500W 80 Plus'
+    },
+    {
+      nombre: 'Refrigeración',
+      opciones: [
+        { valor: 'Aire estándar (Stock)', precio: 0 },
+        { valor: 'Cooler básico (Aftermarket)', precio: 35000 },
+        { valor: 'Refrigeración líquida 120mm', precio: 120000 },
+        { valor: 'Refrigeración líquida 240mm', precio: 180000 },
+        { valor: 'Refrigeración líquida 360mm', precio: 250000 }
+      ],
+      seleccion: 'Aire estándar (Stock)'
+    },
+    {
+      nombre: 'Iluminación RGB',
+      opciones: [
+        { valor: 'Sin RGB', precio: 0 },
+        { valor: 'RGB Básico (1 tira)', precio: 25000 },
+        { valor: 'ARGB Completo (4 ventiladores)', precio: 80000 },
+        { valor: 'ARGB Premium (todo el gabinete)', precio: 150000 }
+      ],
+      seleccion: 'Sin RGB'
+    },
+    {
+      nombre: 'Ventiladores Adicionales',
+      opciones: [
+        { valor: 'Ninguno', precio: 0 },
+        { valor: '+2 Ventiladores 120mm', precio: 40000 },
+        { valor: '+4 Ventiladores 120mm', precio: 75000 },
+        { valor: '+6 Ventiladores 120mm ARGB', precio: 120000 }
+      ],
+      seleccion: 'Ninguno'
+    },
+    {
+      nombre: 'Gestión de Cables',
+      opciones: [
+        { valor: 'Básica (Funcional)', precio: 0 },
+        { valor: 'Profesional (Organizada)', precio: 35000 },
+        { valor: 'Premium (Atada y oculta)', precio: 60000 }
+      ],
+      seleccion: 'Básica (Funcional)'
+    },
+    {
+      nombre: 'Tarjeta Gráfica',
+      opciones: [
+        { valor: 'Sin tarjeta dedicada', precio: 0 },
+        { valor: 'Limpieza y mantenimiento', precio: 30000 },
+        { valor: 'Re-paste de GPU (Alta gama)', precio: 60000 },
+        { valor: 'Actualización de BIOS GPU', precio: 25000 }
+      ],
+      seleccion: 'Sin tarjeta dedicada'
+    },
+    {
+      nombre: 'Discos Duros / SSD',
+      opciones: [
+        { valor: 'Sin servicios adicionales', precio: 0 },
+        { valor: 'Optimización de discos', precio: 20000 },
+        { valor: 'Migración de datos a SSD', precio: 50000 },
+        { valor: 'Instalación de disco nuevo', precio: 35000 }
+      ],
+      seleccion: 'Sin servicios adicionales'
+    },
+    {
+      nombre: 'Memoria RAM',
+      opciones: [
+        { valor: 'Sin servicio RAM', precio: 0 },
+        { valor: 'Diagnóstico de memoria', precio: 15000 },
+        { valor: 'Limpieza de contactos', precio: 20000 },
+        { valor: 'Prueba de estabilidad', precio: 25000 }
+      ],
+      seleccion: 'Sin servicio RAM'
+    },
+    {
+      nombre: 'Placa Madre',
+      opciones: [
+        { valor: 'Sin servicio', precio: 0 },
+        { valor: 'Actualización de BIOS', precio: 30000 },
+        { valor: 'Revisión de capacitores', precio: 25000 },
+        { valor: 'Limpieza profunda PCB', precio: 20000 }
+      ],
+      seleccion: 'Sin servicio'
+    }
+  ];
+
+  opcionesPortatil: OpcionPortatil[] = [
+    {
+      nombre: 'Marca del Equipo',
+      opciones: [
+        { valor: 'HP / Compaq', precio: 0 },
+        { valor: 'Dell', precio: 0 },
+        { valor: 'Lenovo / IBM', precio: 0 },
+        { valor: 'ASUS', precio: 0 },
+        { valor: 'Acer / Gateway', precio: 0 },
+        { valor: 'Apple MacBook', precio: 50000 },
+        { valor: 'MSI / Gamer', precio: 0 }
+      ],
+      seleccion: 'HP / Compaq'
+    },
+    {
+      nombre: 'Tamaño de Pantalla',
+      opciones: [
+        { valor: '13 pulgadas', precio: -20000 },
+        { valor: '14 pulgadas', precio: -10000 },
+        { valor: '15.6 pulgadas', precio: 0 },
+        { valor: '17 pulgadas', precio: 15000 }
+      ],
+      seleccion: '15.6 pulgadas'
+    },
+    {
+      nombre: 'Tipo de Batería',
+      opciones: [
+        { valor: 'Original (Mantenimiento)', precio: 0 },
+        { valor: 'Original (Reemplazo)', precio: 120000 },
+        { valor: 'Genérica (Alta capacidad)', precio: 80000 },
+        { valor: 'Premium (Mayor duración)', precio: 160000 }
+      ],
+      seleccion: 'Original (Mantenimiento)'
+    },
+    {
+      nombre: 'Estado del Teclado',
+      opciones: [
+        { valor: 'Funcional - Solo limpieza', precio: 0 },
+        { valor: 'Limpieza profunda + Desinfección', precio: 25000 },
+        { valor: 'Teclas pegajosas (Limpieza especial)', precio: 45000 },
+        { valor: 'Teclas dañadas (Reparación)', precio: 80000 },
+        { valor: 'Reemplazo completo de teclado', precio: 150000 }
+      ],
+      seleccion: 'Funcional - Solo limpieza'
+    },
+    {
+      nombre: 'Estado de Bisagras',
+      opciones: [
+        { valor: 'Perfecto estado', precio: 0 },
+        { valor: 'Ligeramente flojas (Ajuste)', precio: 20000 },
+        { valor: 'Fljas (Requiere lubricación)', precio: 40000 },
+        { valor: 'Dañadas (Reparación compleja)', precio: 100000 }
+      ],
+      seleccion: 'Perfecto estado'
+    },
+    {
+      nombre: 'Tipo de Carcasa',
+      opciones: [
+        { valor: 'Plástico estándar', precio: 0 },
+        { valor: 'Aluminio / Metal', precio: 0 },
+        { valor: 'Fibra de carbono', precio: 0 },
+        { valor: 'Piel sintética / Textil', precio: 0 }
+      ],
+      seleccion: 'Plástico estándar'
+    },
+    {
+      nombre: 'Puerto de Carga',
+      opciones: [
+        { valor: 'Tipo C (USB-C)', precio: 0 },
+        { valor: 'Barrilete (Cargador tradicional)', precio: 0 },
+        { valor: 'MagSafe (Apple)', precio: 25000 },
+        { valor: 'Puerto dañado (Reparación)', precio: 60000 }
+      ],
+      seleccion: 'Tipo C (USB-C)'
+    },
+    {
+      nombre: 'Servicio de Pantalla',
+      opciones: [
+        { valor: 'Sin servicio de pantalla', precio: 0 },
+        { valor: 'Limpieza anti-huellas', precio: 15000 },
+        { valor: 'Calibración de colores', precio: 30000 },
+        { valor: 'Reparación de píxeles', precio: 50000 }
+      ],
+      seleccion: 'Sin servicio de pantalla'
+    },
+    {
+      nombre: 'Ventilación / Enfriamiento',
+      opciones: [
+        { valor: 'Sin servicio', precio: 0 },
+        { valor: 'Limpieza de ventiladores', precio: 20000 },
+        { valor: 'Lubricación de ventiladores', precio: 15000 },
+        { valor: 'Limpieza de disipador', precio: 25000 }
+      ],
+      seleccion: 'Sin servicio'
+    },
+    {
+      nombre: 'Puertos USB / Conectores',
+      opciones: [
+        { valor: 'Sin servicio', precio: 0 },
+        { valor: 'Limpieza de puertos', precio: 15000 },
+        { valor: 'Reparación de puerto USB', precio: 35000 },
+        { valor: 'Revisión de conectores', precio: 20000 }
+      ],
+      seleccion: 'Sin servicio'
+    }
+  ];
+
+  serviciosAdicionales: ServicioAdicional[] = [
+    { id: 1, nombre: 'Instalación de Software', descripcion: 'Instalación de programas y drivers actualizados', icono: '💿', precio: 45000, seleccionado: false },
+    { id: 2, nombre: 'Respaldo de Información', descripcion: 'Backup completo de tus archivos importantes', icono: '💾', precio: 35000, seleccionado: false },
+    { id: 3, nombre: 'Optimización de Sistema', descripcion: 'Acelera el rendimiento del equipo', icono: '⚡', precio: 40000, seleccionado: false },
+    { id: 4, nombre: 'Antivirus Premium', descripcion: 'Protección completa por 1 año', icono: '🛡️', precio: 60000, seleccionado: false },
+    { id: 5, nombre: 'Limpieza de Pantalla', descripcion: 'Limpieza especializada de pantalla', icono: '🖥️', precio: 25000, seleccionado: false }
+  ];
+  
+  get recargoSuciedad(): number {
+    if (this.nivelSuciedad === 100) return 50000;
+    if (this.nivelSuciedad >= 50) return 25000;
+    return 0;
+  }
+  
+  get textoNivelSuciedad(): string {
+    if (this.nivelSuciedad === 100) return 'Alto';
+    if (this.nivelSuciedad >= 50) return 'Medio';
+    return 'Bajo';
+  }
+  
+  get costoTorreOpciones(): number {
+    if (this.tipoEquipoSeleccionado !== 'torre') return 0;
+    let total = 0;
+    for (const opcion of this.opcionesTorre) {
+      const seleccionada = opcion.opciones.find(o => o.valor === opcion.seleccion);
+      if (seleccionada) total += seleccionada.precio;
+    }
+    return total;
+  }
+  
+  get costoPortatilOpciones(): number {
+    if (this.tipoEquipoSeleccionado !== 'portatil') return 0;
+    let total = 0;
+    for (const opcion of this.opcionesPortatil) {
+      const seleccionada = opcion.opciones.find(o => o.valor === opcion.seleccion);
+      if (seleccionada) total += seleccionada.precio;
+    }
+    return total;
+  }
+  
+  get subtotalServicios(): number {
+    return this.serviciosAdicionales.filter(s => s.seleccionado).reduce((sum, s) => sum + s.precio, 0);
+  }
+  
+  get costoPersonalizacion(): number {
+    return this.tipoEquipoSeleccionado === 'torre' ? this.costoTorreOpciones : this.costoPortatilOpciones;
+  }
+  
+  get totalGeneral(): number {
+    const precioBase = this.preciosBase[this.tipoEquipoSeleccionado];
+    return precioBase + this.subtotalServicios + this.recargoSuciedad + this.costoPersonalizacion;
+  }
+  
+  getPrecioOpcionTorre(nombre: string): number {
+    const opcion = this.opcionesTorre.find(o => o.nombre === nombre);
+    if (opcion) {
+      const seleccionada = opcion.opciones.find(o => o.valor === opcion.seleccion);
+      return seleccionada ? seleccionada.precio : 0;
+    }
+    return 0;
+  }
+  
+  getPrecioOpcionPortatil(nombre: string): number {
+    const opcion = this.opcionesPortatil.find(o => o.nombre === nombre);
+    if (opcion) {
+      const seleccionada = opcion.opciones.find(o => o.valor === opcion.seleccion);
+      return seleccionada ? seleccionada.precio : 0;
+    }
+    return 0;
+  }
+  
+  formatearPrecio(precio: number): string {
+    return new Intl.NumberFormat('es-CO', {
+      style: 'currency',
+      currency: 'COP',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(precio);
+  }
+  
+  seleccionarEquipo(tipo: 'torre' | 'portatil') {
+    this.tipoEquipoSeleccionado = tipo;
+  }
+  
+  getProblemasSeleccionados() {
+    return [];
+  }
+  
+  getServiciosSeleccionados() {
+    return this.serviciosAdicionales.filter(s => s.seleccionado);
+  }
+  
+  continuarADatos() {
+    const datosConfiguracion = {
+      equipo: this.tipoEquipoSeleccionado === 'torre' ? 'Torre / Desktop' : 'Portátil / Laptop',
+      servicios: this.serviciosAdicionales.filter(s => s.seleccionado).map(s => s.nombre),
+      total: this.totalGeneral,
+      recargoSuciedad: this.recargoSuciedad,
+      nivelSuciedad: this.textoNivelSuciedad,
+      opcionesCount: this.tipoEquipoSeleccionado === 'torre' ? this.opcionesTorre.length : this.opcionesPortatil.length
+    };
+    
+    console.log('Navegando a datos con:', datosConfiguracion);
+    this.router.navigate(['/servicios/limpieza-profunda/datos'], { state: datosConfiguracion });
+  }
+}"" 
+"--- DATOS ---" 
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-datos-limpieza',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './datos.html',
+  styleUrl: './datos.css'
+})
+export class DatosLimpieza implements OnInit {
+  
+  datosForm!: FormGroup;
+  
+  resumenData = {
+    equipo: 'Torre / Desktop',
+    total: 0,
+    nivelSuciedad: 'Bajo',
+    servicios: 0,
+    opcionesSeleccionadas: 0
+  };
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    const navigation = window.history.state;
+    console.log('Navigation state en datos:', navigation);
+    
+    if (navigation.total) {
+      this.resumenData.total = navigation.total;
+      this.resumenData.equipo = navigation.equipo || 'Torre / Desktop';
+      this.resumenData.nivelSuciedad = navigation.nivelSuciedad || 'Bajo';
+      this.resumenData.servicios = navigation.servicios?.length || 0;
+      this.resumenData.opcionesSeleccionadas = navigation.opcionesCount || 0;
+    } else {
+      // Datos por defecto en caso de que no haya navegación
+      this.resumenData.total = 250000;
+    }
+
+    this.datosForm = this.fb.group({
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      telefono: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      direccion: ['', [Validators.required, Validators.minLength(5)]],
+      descripcion: ['', [Validators.maxLength(500)]],
+      fecha: ['', Validators.required],
+      hora: ['', Validators.required]
+    });
+  }
+
+  get nombre() { return this.datosForm.get('nombre'); }
+  get email() { return this.datosForm.get('email'); }
+  get telefono() { return this.datosForm.get('telefono'); }
+  get direccion() { return this.datosForm.get('direccion'); }
+  get descripcion() { return this.datosForm.get('descripcion'); }
+  get fecha() { return this.datosForm.get('fecha'); }
+  get hora() { return this.datosForm.get('hora'); }
+
+  formatearPrecio(precio: number): string {
+    return new Intl.NumberFormat('es-CO', {
+      style: 'currency',
+      currency: 'COP',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(precio);
+  }
+
+  onSubmit(): void {
+    if (this.datosForm.valid) {
+      const datosCompletos = {
+        ...this.datosForm.value,
+        total: this.resumenData.total,
+        equipo: this.resumenData.equipo,
+        nivelSuciedad: this.resumenData.nivelSuciedad
+      };
+      
+      console.log('Datos del cliente:', datosCompletos);
+      this.router.navigate(['/servicios/limpieza-profunda/pago'], { state: datosCompletos });
+    } else {
+      alert('⚠️ Por favor, completa todos los campos requeridos correctamente.');
+      this.datosForm.markAllAsTouched();
+    }
+  }
+}"" 
+"--- PAGO ---" 
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-pago-limpieza',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './pago.html',
+  styleUrl: './pago.css'
+})
+export class PagoLimpieza implements OnInit {
+  
+  pagoForm!: FormGroup;
+  metodoPagoSeleccionado: string = 'tarjeta';
+  
+  resumenData = {
+    equipo: 'Torre / Desktop',
+    total: 0,
+    nivelSuciedad: 'Bajo',
+    opcionesSeleccionadas: 0
+  };
+  
+  subtotal: number = 250000;
+  iva: number = 0;
+  total: number = 0;
+  readonly IVA_PORCENTAJE = 0.19;
+
+  constructor(private fb: FormBuilder, private router: Router) {}
+
+  ngOnInit(): void {
+    const navigation = window.history.state;
+    console.log('Navigation state en pago:', navigation);
+    
+    if (navigation.total) {
+      this.subtotal = navigation.total;
+      this.resumenData.total = navigation.total;
+      this.resumenData.equipo = navigation.equipo || 'Torre / Desktop';
+      this.resumenData.nivelSuciedad = navigation.nivelSuciedad || 'Bajo';
+      this.resumenData.opcionesSeleccionadas = navigation.opcionesCount || 0;
+    }
+    
+    this.calcularTotales();
+    
+    this.pagoForm = this.fb.group({
+      metodoPago: ['tarjeta', Validators.required],
+      numeroTarjeta: ['', [Validators.required, Validators.pattern('^[0-9]{16}$')]],
+      nombreTarjeta: ['', [Validators.required, Validators.minLength(3)]],
+      fechaExpiracion: ['', [Validators.required, Validators.pattern('^(0[1-9]|1[0-2])/[0-9]{2}$')]],
+      cvv: ['', [Validators.required, Validators.pattern('^[0-9]{3,4}$')]]
+    });
+    
+    this.pagoForm.get('metodoPago')?.valueChanges.subscribe(value => {
+      this.metodoPagoSeleccionado = value;
+      this.actualizarValidaciones(value);
+    });
+  }
+  
+  actualizarValidaciones(metodo: string): void {
+    const campos = ['numeroTarjeta', 'nombreTarjeta', 'fechaExpiracion', 'cvv'];
+    campos.forEach(campo => {
+      const control = this.pagoForm.get(campo);
+      if (metodo === 'tarjeta') {
+        if (campo === 'numeroTarjeta') {
+          control?.setValidators([Validators.required, Validators.pattern('^[0-9]{16}$')]);
+        } else if (campo === 'cvv') {
+          control?.setValidators([Validators.required, Validators.pattern('^[0-9]{3,4}$')]);
+        } else if (campo === 'fechaExpiracion') {
+          control?.setValidators([Validators.required, Validators.pattern('^(0[1-9]|1[0-2])/[0-9]{2}$')]);
+        } else {
+          control?.setValidators([Validators.required, Validators.minLength(3)]);
+        }
+      } else {
+        control?.clearValidators();
+      }
+      control?.updateValueAndValidity();
+    });
+  }
+  
+  calcularTotales(): void {
+    this.iva = this.subtotal * this.IVA_PORCENTAJE;
+    this.total = this.subtotal + this.iva;
+  }
+  
+  formatearPrecio(precio: number): string {
+    return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(precio);
+  }
+  
+  seleccionarMetodoPago(metodo: string): void {
+    this.metodoPagoSeleccionado = metodo;
+    this.pagoForm.patchValue({ metodoPago: metodo });
+  }
+  
+  formatearNumeroTarjeta(event: any): void {
+    let value = event.target.value.replace(/\s/g, '');
+    if (value.length > 16) value = value.slice(0, 16);
+    let formatted = '';
+    for (let i = 0; i < value.length; i++) {
+      if (i > 0 && i % 4 === 0) formatted += ' ';
+      formatted += value[i];
+    }
+    this.pagoForm.patchValue({ numeroTarjeta: value });
+    event.target.value = formatted;
+  }
+  
+  formatearFecha(event: any): void {
+    let value = event.target.value.replace(/\D/g, '');
+    if (value.length >= 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2, 4);
+    }
+    this.pagoForm.patchValue({ fechaExpiracion: value });
+    event.target.value = value;
+  }
+  
+  formatearCVV(event: any): void {
+    let value = event.target.value.replace(/\D/g, '');
+    if (value.length > 4) value = value.slice(0, 4);
+    this.pagoForm.patchValue({ cvv: value });
+    event.target.value = value;
+  }
+  
+  onSubmit(): void {
+    if (this.pagoForm.valid) {
+      const datosCompletos = { 
+        ...this.pagoForm.value, 
+        subtotal: this.subtotal, 
+        iva: this.iva, 
+        total: this.total, 
+        equipo: this.resumenData.equipo,
+        nivelSuciedad: this.resumenData.nivelSuciedad
+      };
+      console.log('Datos de pago:', datosCompletos);
+      this.router.navigate(['/servicios/limpieza-profunda/confirmacion'], { state: datosCompletos });
+    } else {
+      alert('⚠️ Por favor, completa todos los campos correctamente.');
+      this.pagoForm.markAllAsTouched();
+    }
+  }
+}"" 
+"--- CONFIRMACION ---" 
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-confirmacion-limpieza',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './confirmacion.html',
+  styleUrl: './confirmacion.css'
+})
+export class ConfirmacionLimpieza implements OnInit {
+  
+  datosConfirmacion = {
+    nombre: '', email: '', telefono: '', direccion: '', descripcion: '',
+    fecha: '', hora: '', equipo: 'Torre / Desktop', nivelSuciedad: 'Bajo',
+    subtotal: 0, iva: 0, total: 0, metodoPago: 'tarjeta'
+  };
+  
+  numeroSolicitud: string = '';
+  serviciosRealizados: any[] = [];
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    const navigation = window.history.state;
+    console.log('Navigation state en confirmacion:', navigation);
+    
+    if (navigation.total) {
+      this.datosConfirmacion = {
+        nombre: navigation.nombre || 'Cliente',
+        email: navigation.email || '',
+        telefono: navigation.telefono || '',
+        direccion: navigation.direccion || '',
+        descripcion: navigation.descripcion || '',
+        fecha: navigation.fecha || this.formatearFecha(new Date()),
+        hora: navigation.hora || this.formatearHora(new Date()),
+        equipo: navigation.equipo || 'Torre / Desktop',
+        nivelSuciedad: navigation.nivelSuciedad || 'Bajo',
+        subtotal: navigation.subtotal || navigation.total || 250000,
+        iva: navigation.iva || 47500,
+        total: navigation.total || 297500,
+        metodoPago: navigation.metodoPago || 'tarjeta'
+      };
+      this.serviciosRealizados = navigation.servicios || [];
+    }
+    this.numeroSolicitud = this.generarNumeroSolicitud();
+  }
+  
+  formatearFecha(fecha: Date): string {
+    return `${fecha.getDate().toString().padStart(2, '0')}/${(fecha.getMonth() + 1).toString().padStart(2, '0')}/${fecha.getFullYear()}`;
+  }
+  
+  formatearHora(fecha: Date): string {
+    return `${fecha.getHours().toString().padStart(2, '0')}:${fecha.getMinutes().toString().padStart(2, '0')}`;
+  }
+  
+  generarNumeroSolicitud(): string {
+    const fecha = new Date();
+    return `TF-L-${fecha.getFullYear()}${(fecha.getMonth() + 1).toString().padStart(2, '0')}${fecha.getDate().toString().padStart(2, '0')}-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`;
+  }
+  
+  formatearPrecio(precio: number): string {
+    return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(precio);
+  }
+  
+  getMetodoPagoTexto(): string {
+    switch (this.datosConfirmacion.metodoPago) {
+      case 'tarjeta': return 'Tarjeta de Crédito/Débito';
+      case 'efectivo': return 'Efectivo';
+      case 'transferencia': return 'Transferencia Bancaria';
+      default: return 'No especificado';
+    }
+  }
+  
+  volverAlInicio(): void { 
+    this.router.navigate(['/']); 
+  }
+  
+  descargarComprobante(): void {
+    const comprobante = `====================================
+TECHFIX SOLUTIONS - LIMPIEZA PROFUNDA
+====================================
+N° Solicitud: ${this.numeroSolicitud}
+Fecha: ${this.datosConfirmacion.fecha}
+Hora: ${this.datosConfirmacion.hora}
+------------------------------------
+DATOS DEL CLIENTE
+Nombre: ${this.datosConfirmacion.nombre}
+Email: ${this.datosConfirmacion.email}
+Teléfono: ${this.datosConfirmacion.telefono}
+Dirección: ${this.datosConfirmacion.direccion}
+------------------------------------
+DETALLE DEL SERVICIO
+Tipo: Limpieza Profunda
+Equipo: ${this.datosConfirmacion.equipo}
+Nivel de Suciedad: ${this.datosConfirmacion.nivelSuciedad}
+------------------------------------
+RESUMEN FINANCIERO
+Subtotal: ${this.formatearPrecio(this.datosConfirmacion.subtotal)}
+IVA (19%): ${this.formatearPrecio(this.datosConfirmacion.iva)}
+TOTAL PAGADO: ${this.formatearPrecio(this.datosConfirmacion.total)}
+------------------------------------
+¡Gracias por confiar en TechFix Solutions!`;
+    const blob = new Blob([comprobante], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `comprobante_limpieza_${this.numeroSolicitud}.txt`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+}"" 
+"==========================================" 
+"=== REPARACION TECNICA ===" 
+"==========================================" 
+"" 
+"--- PRINCIPAL ---" 
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
+interface ItemDiagnostico {
+  nombre: string;
+  descripcion: string;
+  checked: boolean;
+  selected: boolean;
+}
+
+interface ItemPieza {
+  nombre: string;
+  descripcion: string;
+  checked: boolean;
+  selected: boolean;
+}
+
+@Component({
+  selector: 'app-reparacion-tecnica',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './reparacion-tecnica.html',
+  styleUrl: './reparacion-tecnica.css'
+})
+export class ReparacionTecnica {
+  
+  tiempoTotalMinutos: number = 0;
+  
+  itemsDiagnostico: ItemDiagnostico[] = [
+    { nombre: 'Diagnóstico del Sistema', descripcion: 'Análisis completo de software y drivers', checked: false, selected: false },
+    { nombre: 'Pruebas de Estrés', descripcion: 'Evaluación de rendimiento bajo carga máxima', checked: false, selected: false },
+    { nombre: 'Análisis de Temperaturas', descripcion: 'Monitoreo de temperaturas de CPU y GPU', checked: false, selected: false },
+    { nombre: 'Diagnóstico de Memoria RAM', descripcion: 'Prueba de estabilidad y errores de memoria', checked: false, selected: false },
+    { nombre: 'Verificación de Discos Duros', descripcion: 'Análisis de sectores dañados y SMART', checked: false, selected: false }
+  ];
+  
+  itemsPiezas: ItemPieza[] = [
+    { nombre: 'Fuente de Poder', descripcion: 'Reemplazo y prueba de voltajes', checked: false, selected: false },
+    { nombre: 'Disco Duro / SSD', descripcion: 'Instalación y migración de datos', checked: false, selected: false },
+    { nombre: 'Memoria RAM', descripcion: 'Instalación y verificación de compatibilidad', checked: false, selected: false },
+    { nombre: 'Tarjeta Gráfica', descripcion: 'Instalación y configuración de drivers', checked: false, selected: false },
+    { nombre: 'Ventiladores / Disipadores', descripcion: 'Reemplazo y optimización de flujo de aire', checked: false, selected: false },
+    { nombre: 'Placa Madre', descripcion: 'Diagnóstico y posible reemplazo', checked: false, selected: false }
+  ];
+
+  constructor(private router: Router) {}
+
+  actualizarTiempoDiagnostico(evento: any, item: ItemDiagnostico) {
+    const incremento = 30;
+    item.checked = evento.target.checked;
+    item.selected = evento.target.checked;
+    if (evento.target.checked) {
+      this.tiempoTotalMinutos += incremento;
+    } else {
+      this.tiempoTotalMinutos -= incremento;
+    }
+  }
+
+  actualizarTiempoPieza(evento: any, item: ItemPieza) {
+    const incremento = 45;
+    item.checked = evento.target.checked;
+    item.selected = evento.target.checked;
+    if (evento.target.checked) {
+      this.tiempoTotalMinutos += incremento;
+    } else {
+      this.tiempoTotalMinutos -= incremento;
+    }
+  }
+
+  calcularHoras(): string {
+    if (this.tiempoTotalMinutos <= 0) return '0';
+    const horas = this.tiempoTotalMinutos / 60;
+    if (horas === 1) return '1 hora';
+    if (horas % 1 === 0) return `${horas} horas`;
+    return `${horas.toFixed(1)} horas`;
+  }
+
+  formatearTiempoParaMostrar(): string {
+    if (this.tiempoTotalMinutos === 0) return '0 horas';
+    if (this.tiempoTotalMinutos === 30) return '30 minutos';
+    if (this.tiempoTotalMinutos === 45) return '45 minutos';
+    if (this.tiempoTotalMinutos < 60) return `${this.tiempoTotalMinutos} minutos`;
+    return this.calcularHoras();
+  }
+
+  configurarOpciones() {
+    const datosSeleccionados = {
+      diagnosticos: this.itemsDiagnostico.filter(i => i.checked).map(i => i.nombre),
+      piezas: this.itemsPiezas.filter(i => i.checked).map(i => i.nombre),
+      tiempoTotal: this.tiempoTotalMinutos
+    };
+    this.router.navigate(['/servicios/reparacion-tecnica/configuracion'], { state: datosSeleccionados });
+  }
+}"" 
+"--- CONFIGURACION ---" 
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+interface TipoProblema {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  icono: string;
+  seleccionado: boolean;
+  precio: number;
+}
+
+interface ServicioAdicional {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  icono: string;
+  precio: number;
+  seleccionado: boolean;
+}
+
+interface OpcionTorre {
+  nombre: string;
+  opciones: { valor: string; precio: number; descripcion?: string }[];
+  seleccion: string;
+}
+
+interface OpcionPortatil {
+  nombre: string;
+  opciones: { valor: string; precio: number; descripcion?: string }[];
+  seleccion: string;
+}
+
+@Component({
+  selector: 'app-configuracion-reparacion',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './configuracion.html',
+  styleUrl: './configuracion.css'
+})
+export class ConfiguracionReparacion implements OnInit {
+  
+  tipoEquipoSeleccionado: 'torre' | 'portatil' = 'torre';
+  
+  preciosBase = {
+    torre: 350000,
+    portatil: 300000
+  };
+  
+  // Opciones de personalización para TORRE
+  opcionesTorre: OpcionTorre[] = [
+    {
+      nombre: 'Marca / Fabricante',
+      opciones: [
+        { valor: 'HP', precio: 0, descripcion: 'Hewlett Packard' },
+        { valor: 'Dell', precio: 0, descripcion: 'Dell Technologies' },
+        { valor: 'Lenovo', precio: 0, descripcion: 'Lenovo Group' },
+        { valor: 'ASUS', precio: 0, descripcion: 'ASUSTeK Computer' },
+        { valor: 'MSI', precio: 0, descripcion: 'Micro-Star International' },
+        { valor: 'Gigabyte', precio: 0, descripcion: 'Gigabyte Technology' },
+        { valor: 'Armada personalizada', precio: 50000, descripcion: 'Ensamble personalizado' }
+      ],
+      seleccion: 'HP'
+    },
+    {
+      nombre: 'Procesador',
+      opciones: [
+        { valor: 'Intel Core i3', precio: 0, descripcion: 'Gama de entrada' },
+        { valor: 'Intel Core i5', precio: 50000, descripcion: 'Gama media' },
+        { valor: 'Intel Core i7', precio: 100000, descripcion: 'Alto rendimiento' },
+        { valor: 'Intel Core i9', precio: 180000, descripcion: 'Extremo' },
+        { valor: 'AMD Ryzen 5', precio: 45000, descripcion: 'Gama media AMD' },
+        { valor: 'AMD Ryzen 7', precio: 95000, descripcion: 'Alto rendimiento AMD' },
+        { valor: 'AMD Ryzen 9', precio: 170000, descripcion: 'Extremo AMD' }
+      ],
+      seleccion: 'Intel Core i5'
+    },
+    {
+      nombre: 'Memoria RAM',
+      opciones: [
+        { valor: '8GB DDR4', precio: 0, descripcion: 'Básico' },
+        { valor: '16GB DDR4', precio: 60000, descripcion: 'Recomendado' },
+        { valor: '32GB DDR4', precio: 120000, descripcion: 'Alto rendimiento' },
+        { valor: '64GB DDR4', precio: 220000, descripcion: 'Extremo' },
+        { valor: '16GB DDR5', precio: 100000, descripcion: 'Nueva generación' },
+        { valor: '32GB DDR5', precio: 180000, descripcion: 'Alta velocidad' }
+      ],
+      seleccion: '16GB DDR4'
+    },
+    {
+      nombre: 'Almacenamiento',
+      opciones: [
+        { valor: '256GB SSD', precio: 0, descripcion: 'Básico' },
+        { valor: '512GB SSD', precio: 45000, descripcion: 'Recomendado' },
+        { valor: '1TB SSD', precio: 90000, descripcion: 'Alta capacidad' },
+        { valor: '2TB SSD', precio: 170000, descripcion: 'Extremo' },
+        { valor: '1TB HDD + 256GB SSD', precio: 55000, descripcion: 'Híbrido' },
+        { valor: '2TB HDD + 512GB SSD', precio: 100000, descripcion: 'Máxima capacidad' }
+      ],
+      seleccion: '512GB SSD'
+    },
+    {
+      nombre: 'Tarjeta Gráfica',
+      opciones: [
+        { valor: 'Integrada', precio: 0, descripcion: 'Uso básico' },
+        { valor: 'NVIDIA GTX 1650', precio: 150000, descripcion: 'Gaming básico' },
+        { valor: 'NVIDIA RTX 3060', precio: 350000, descripcion: 'Gaming medio' },
+        { valor: 'NVIDIA RTX 4070', precio: 600000, descripcion: 'Gaming alto' },
+        { valor: 'AMD RX 6600', precio: 280000, descripcion: 'Gaming medio AMD' },
+        { valor: 'AMD RX 7800 XT', precio: 550000, descripcion: 'Gaming alto AMD' }
+      ],
+      seleccion: 'NVIDIA RTX 3060'
+    },
+    {
+      nombre: 'Fuente de Poder',
+      opciones: [
+        { valor: '500W 80 Plus', precio: 0, descripcion: 'Básico' },
+        { valor: '650W 80 Plus Bronze', precio: 80000, descripcion: 'Recomendado' },
+        { valor: '750W 80 Plus Gold', precio: 130000, descripcion: 'Premium' },
+        { valor: '850W 80 Plus Platinum', precio: 200000, descripcion: 'Extremo' },
+        { valor: '1000W 80 Plus Gold', precio: 280000, descripcion: 'Workstation' }
+      ],
+      seleccion: '650W 80 Plus Bronze'
+    },
+    {
+      nombre: 'Sistema Operativo',
+      opciones: [
+        { valor: 'Sin SO', precio: 0, descripcion: 'El cliente instala' },
+        { valor: 'Windows 11 Home', precio: 120000, descripcion: 'Licencia original' },
+        { valor: 'Windows 11 Pro', precio: 180000, descripcion: 'Para empresas' },
+        { valor: 'Ubuntu Linux', precio: 0, descripcion: 'Open source' },
+        { valor: 'Dual Boot (Windows + Linux)', precio: 60000, descripcion: 'Dos sistemas' }
+      ],
+      seleccion: 'Windows 11 Home'
+    }
+  ];
+
+  opcionesPortatil: OpcionPortatil[] = [
+    {
+      nombre: 'Marca',
+      opciones: [
+        { valor: 'HP', precio: 0, descripcion: 'Hewlett Packard' },
+        { valor: 'Dell', precio: 0, descripcion: 'Dell Technologies' },
+        { valor: 'Lenovo', precio: 0, descripcion: 'Lenovo Group' },
+        { valor: 'ASUS', precio: 0, descripcion: 'ASUSTeK Computer' },
+        { valor: 'Acer', precio: 0, descripcion: 'Acer Inc.' },
+        { valor: 'Apple MacBook', precio: 80000, descripcion: 'Apple Inc.' },
+        { valor: 'MSI', precio: 0, descripcion: 'Gaming laptops' }
+      ],
+      seleccion: 'HP'
+    },
+    {
+      nombre: 'Procesador',
+      opciones: [
+        { valor: 'Intel Core i3', precio: 0, descripcion: 'Básico' },
+        { valor: 'Intel Core i5', precio: 60000, descripcion: 'Recomendado' },
+        { valor: 'Intel Core i7', precio: 130000, descripcion: 'Alto rendimiento' },
+        { valor: 'Intel Core i9', precio: 220000, descripcion: 'Extremo' },
+        { valor: 'AMD Ryzen 5', precio: 55000, descripcion: 'Rendimiento AMD' },
+        { valor: 'AMD Ryzen 7', precio: 120000, descripcion: 'Alto AMD' }
+      ],
+      seleccion: 'Intel Core i5'
+    },
+    {
+      nombre: 'Memoria RAM',
+      opciones: [
+        { valor: '8GB', precio: 0, descripcion: 'Básico' },
+        { valor: '12GB', precio: 40000, descripcion: 'Intermedio' },
+        { valor: '16GB', precio: 70000, descripcion: 'Recomendado' },
+        { valor: '32GB', precio: 140000, descripcion: 'Alto rendimiento' }
+      ],
+      seleccion: '16GB'
+    },
+    {
+      nombre: 'Almacenamiento',
+      opciones: [
+        { valor: '256GB SSD', precio: 0, descripcion: 'Básico' },
+        { valor: '512GB SSD', precio: 50000, descripcion: 'Recomendado' },
+        { valor: '1TB SSD', precio: 100000, descripcion: 'Alta capacidad' },
+        { valor: '2TB SSD', precio: 190000, descripcion: 'Extremo' }
+      ],
+      seleccion: '512GB SSD'
+    },
+    {
+      nombre: 'Tamaño de Pantalla',
+      opciones: [
+        { valor: '13.3 pulgadas', precio: -30000, descripcion: 'Ultraportátil' },
+        { valor: '14 pulgadas', precio: -15000, descripcion: 'Compacto' },
+        { valor: '15.6 pulgadas', precio: 0, descripcion: 'Estándar' },
+        { valor: '16 pulgadas', precio: 20000, descripcion: 'Grande' },
+        { valor: '17.3 pulgadas', precio: 40000, descripcion: 'Gaming/Workstation' }
+      ],
+      seleccion: '15.6 pulgadas'
+    },
+    {
+      nombre: 'Resolución de Pantalla',
+      opciones: [
+        { valor: 'HD (1366x768)', precio: 0, descripcion: 'Básico' },
+        { valor: 'Full HD (1920x1080)', precio: 50000, descripcion: 'Recomendado' },
+        { valor: '2K (2560x1440)', precio: 120000, descripcion: 'Alta definición' },
+        { valor: '4K (3840x2160)', precio: 220000, descripcion: 'Ultra HD' }
+      ],
+      seleccion: 'Full HD (1920x1080)'
+    },
+    {
+      nombre: 'Garantía Extendida',
+      opciones: [
+        { valor: '3 meses', precio: 0, descripcion: 'Estándar' },
+        { valor: '6 meses', precio: 50000, descripcion: 'Media' },
+        { valor: '12 meses', precio: 90000, descripcion: 'Recomendado' },
+        { valor: '24 meses', precio: 160000, descripcion: 'Protección total' }
+      ],
+      seleccion: '3 meses'
+    }
+  ];
+
+  tiposProblema: TipoProblema[] = [
+    { id: 1, nombre: 'No enciende', descripcion: 'El equipo no responde al presionar el botón de encendido', icono: '🔌', seleccionado: false, precio: 50000 },
+    { id: 2, nombre: 'Pantalla azul / Reinicios', descripcion: 'BSOD, reinicios constantes o congelamientos', icono: '💙', seleccionado: false, precio: 45000 },
+    { id: 3, nombre: 'Sobrecalentamiento', descripcion: 'Apagados por temperatura, ventiladores ruidosos', icono: '🌡️', seleccionado: false, precio: 40000 },
+    { id: 4, nombre: 'Sin conexión a internet', descripcion: 'Problemas de red, WiFi o Ethernet', icono: '🌐', seleccionado: false, precio: 35000 },
+    { id: 5, nombre: 'Rendimiento lento', descripcion: 'Equipo lento, tarda en abrir programas', icono: '🐌', seleccionado: false, precio: 40000 },
+    { id: 6, nombre: 'Problemas de sonido / video', descripcion: 'Sin audio, video distorsionado o sin imagen', icono: '🎵', seleccionado: false, precio: 45000 }
+  ];
+
+  serviciosAdicionales: ServicioAdicional[] = [
+    { id: 1, nombre: 'Diagnóstico Express', descripcion: 'Resultado en 24 horas', icono: '⏱️', precio: 30000, seleccionado: false },
+    { id: 2, nombre: 'Instalación de software básico', descripcion: 'Office, navegadores, antivirus', icono: '📥', precio: 45000, seleccionado: false },
+    { id: 3, nombre: 'Recogida a domicilio', descripcion: 'Recogida y entrega sin costo adicional', icono: '🏠', precio: 0, seleccionado: false },
+    { id: 4, nombre: 'Backup de datos', descripcion: 'Respaldo de información importante', icono: '💾', precio: 55000, seleccionado: false },
+    { id: 5, nombre: 'Garantía extendida', descripcion: '3 meses de garantía adicional', icono: '🛡️', precio: 60000, seleccionado: false },
+    { id: 6, nombre: 'Mantenimiento preventivo', descripcion: 'Limpieza y optimización completa', icono: '🧹', precio: 70000, seleccionado: false }
+  ];
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {}
+
+  get costoProblemas(): number {
+    return this.tiposProblema.filter(p => p.seleccionado).reduce((sum, p) => sum + p.precio, 0);
+  }
+
+  get costoServicios(): number {
+    return this.serviciosAdicionales.filter(s => s.seleccionado).reduce((sum, s) => sum + s.precio, 0);
+  }
+
+  get costoTorreOpciones(): number {
+    if (this.tipoEquipoSeleccionado !== 'torre') return 0;
+    let total = 0;
+    for (const opcion of this.opcionesTorre) {
+      const seleccionada = opcion.opciones.find(o => o.valor === opcion.seleccion);
+      if (seleccionada) total += seleccionada.precio;
+    }
+    return total;
+  }
+
+  get costoPortatilOpciones(): number {
+    if (this.tipoEquipoSeleccionado !== 'portatil') return 0;
+    let total = 0;
+    for (const opcion of this.opcionesPortatil) {
+      const seleccionada = opcion.opciones.find(o => o.valor === opcion.seleccion);
+      if (seleccionada) total += seleccionada.precio;
+    }
+    return total;
+  }
+
+  get costoPersonalizacion(): number {
+    return this.tipoEquipoSeleccionado === 'torre' ? this.costoTorreOpciones : this.costoPortatilOpciones;
+  }
+
+  get totalGeneral(): number {
+    const precioBase = this.preciosBase[this.tipoEquipoSeleccionado];
+    return precioBase + this.costoProblemas + this.costoServicios + this.costoPersonalizacion;
+  }
+
+  seleccionarEquipo(tipo: 'torre' | 'portatil') {
+    this.tipoEquipoSeleccionado = tipo;
+  }
+
+  getProblemasSeleccionados() {
+    return this.tiposProblema.filter(p => p.seleccionado);
+  }
+
+  getServiciosSeleccionados() {
+    return this.serviciosAdicionales.filter(s => s.seleccionado);
+  }
+
+  formatearPrecio(precio: number): string {
+    return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(precio);
+  }
+
+  continuarADatos() {
+    const datosConfiguracion = {
+      equipo: this.tipoEquipoSeleccionado === 'torre' ? 'Torre / Desktop' : 'Portátil / Laptop',
+      problemas: this.tiposProblema.filter(p => p.seleccionado).map(p => p.nombre),
+      servicios: this.serviciosAdicionales.filter(s => s.seleccionado).map(s => s.nombre),
+      total: this.totalGeneral,
+      precioBase: this.preciosBase[this.tipoEquipoSeleccionado],
+      costoProblemas: this.costoProblemas,
+      costoServicios: this.costoServicios,
+      costoPersonalizacion: this.costoPersonalizacion
+    };
+    this.router.navigate(['/servicios/reparacion-tecnica/datos'], { state: datosConfiguracion });
+  }
+}"" 
+"--- DATOS ---" 
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-datos-reparacion',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './datos.html',
+  styleUrl: './datos.css'
+})
+export class DatosReparacion implements OnInit {
+  
+  datosForm!: FormGroup;
+  
+  resumenData = {
+    equipo: 'Torre / Desktop',
+    total: 0,
+    opcionesSeleccionadas: 0,
+    problemas: 0,
+    servicios: 0
+  };
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    const navigation = window.history.state;
+    if (navigation && navigation.total) {
+      this.resumenData.total = navigation.total;
+      this.resumenData.equipo = navigation.equipo || 'Torre / Desktop';
+      this.resumenData.problemas = navigation.problemas?.length || 0;
+      this.resumenData.servicios = navigation.servicios?.length || 0;
+      this.resumenData.opcionesSeleccionadas = (navigation.problemas?.length || 0) + (navigation.servicios?.length || 0);
+    } else {
+      this.resumenData.total = 350000;
+    }
+
+    this.datosForm = this.fb.group({
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      telefono: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      direccion: ['', [Validators.required, Validators.minLength(5)]],
+      descripcion: ['', [Validators.maxLength(500)]],
+      fecha: ['', Validators.required],
+      hora: ['', Validators.required]
+    });
+  }
+
+  get nombre() { return this.datosForm.get('nombre'); }
+  get email() { return this.datosForm.get('email'); }
+  get telefono() { return this.datosForm.get('telefono'); }
+  get direccion() { return this.datosForm.get('direccion'); }
+  get descripcion() { return this.datosForm.get('descripcion'); }
+  get fecha() { return this.datosForm.get('fecha'); }
+  get hora() { return this.datosForm.get('hora'); }
+
+  formatearPrecio(precio: number): string {
+    return new Intl.NumberFormat('es-CO', {
+      style: 'currency',
+      currency: 'COP',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(precio);
+  }
+
+  onSubmit(): void {
+    if (this.datosForm.valid) {
+      const datosCompletos = {
+        ...this.datosForm.value,
+        total: this.resumenData.total,
+        equipo: this.resumenData.equipo
+      };
+      console.log('Datos del cliente:', datosCompletos);
+      this.router.navigate(['/servicios/reparacion-tecnica/pago'], { state: datosCompletos });
+    } else {
+      alert('⚠️ Por favor, completa todos los campos requeridos correctamente.');
+      this.datosForm.markAllAsTouched();
+    }
+  }
+}"" 
+"--- PAGO ---" 
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-pago-reparacion',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './pago.html',
+  styleUrl: './pago.css'
+})
+export class PagoReparacion implements OnInit {
+  
+  pagoForm!: FormGroup;
+  metodoPagoSeleccionado: string = 'tarjeta';
+  
+  resumenData = {
+    equipo: 'Torre / Desktop',
+    total: 0
+  };
+  
+  subtotal: number = 350000;
+  iva: number = 0;
+  total: number = 0;
+  readonly IVA_PORCENTAJE = 0.19;
+
+  constructor(private fb: FormBuilder, private router: Router) {}
+
+  ngOnInit(): void {
+    const navigation = window.history.state;
+    if (navigation && navigation.total) {
+      this.subtotal = navigation.total;
+      this.resumenData.total = navigation.total;
+      this.resumenData.equipo = navigation.equipo || 'Torre / Desktop';
+    }
+    
+    this.calcularTotales();
+    
+    this.pagoForm = this.fb.group({
+      metodoPago: ['tarjeta', Validators.required],
+      numeroTarjeta: ['', [Validators.required, Validators.pattern('^[0-9]{16}$')]],
+      nombreTarjeta: ['', [Validators.required, Validators.minLength(3)]],
+      fechaExpiracion: ['', [Validators.required, Validators.pattern('^(0[1-9]|1[0-2])/[0-9]{2}$')]],
+      cvv: ['', [Validators.required, Validators.pattern('^[0-9]{3,4}$')]]
+    });
+    
+    this.pagoForm.get('metodoPago')?.valueChanges.subscribe(value => {
+      this.metodoPagoSeleccionado = value;
+      this.actualizarValidaciones(value);
+    });
+  }
+  
+  actualizarValidaciones(metodo: string): void {
+    const campos = ['numeroTarjeta', 'nombreTarjeta', 'fechaExpiracion', 'cvv'];
+    campos.forEach(campo => {
+      const control = this.pagoForm.get(campo);
+      if (metodo === 'tarjeta') {
+        control?.setValidators([Validators.required, campo === 'numeroTarjeta' ? Validators.pattern('^[0-9]{16}$') : 
+                                campo === 'cvv' ? Validators.pattern('^[0-9]{3,4}$') :
+                                campo === 'fechaExpiracion' ? Validators.pattern('^(0[1-9]|1[0-2])/[0-9]{2}$') :
+                                Validators.minLength(3)]);
+      } else {
+        control?.clearValidators();
+      }
+      control?.updateValueAndValidity();
+    });
+  }
+  
+  calcularTotales(): void {
+    this.iva = this.subtotal * this.IVA_PORCENTAJE;
+    this.total = this.subtotal + this.iva;
+  }
+  
+  formatearPrecio(precio: number): string {
+    return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(precio);
+  }
+  
+  seleccionarMetodoPago(metodo: string): void {
+    this.metodoPagoSeleccionado = metodo;
+    this.pagoForm.patchValue({ metodoPago: metodo });
+  }
+  
+  formatearNumeroTarjeta(event: any): void {
+    let value = event.target.value.replace(/\s/g, '');
+    if (value.length > 16) value = value.slice(0, 16);
+    let formatted = '';
+    for (let i = 0; i < value.length; i++) {
+      if (i > 0 && i % 4 === 0) formatted += ' ';
+      formatted += value[i];
+    }
+    this.pagoForm.patchValue({ numeroTarjeta: value });
+    event.target.value = formatted;
+  }
+  
+  onSubmit(): void {
+    if (this.pagoForm.valid) {
+      const datosCompletos = { ...this.pagoForm.value, subtotal: this.subtotal, iva: this.iva, total: this.total, equipo: this.resumenData.equipo };
+      this.router.navigate(['/servicios/reparacion-tecnica/confirmacion'], { state: datosCompletos });
+    } else {
+      alert('⚠️ Por favor, completa todos los campos correctamente.');
+      this.pagoForm.markAllAsTouched();
+    }
+  }
+}"" 
+"--- CONFIRMACION ---" 
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-confirmacion-reparacion',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './confirmacion.html',
+  styleUrl: './confirmacion.css'
+})
+export class ConfirmacionReparacion implements OnInit {
+  
+  datosConfirmacion = {
+    nombre: '', email: '', telefono: '', direccion: '', descripcion: '',
+    fecha: '', hora: '', equipo: 'Torre / Desktop',
+    subtotal: 0, iva: 0, total: 0, metodoPago: 'tarjeta'
+  };
+  
+  numeroSolicitud: string = '';
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    const navigation = window.history.state;
+    if (navigation && navigation.total) {
+      this.datosConfirmacion = {
+        nombre: navigation.nombre || 'Cliente',
+        email: navigation.email || '',
+        telefono: navigation.telefono || '',
+        direccion: navigation.direccion || '',
+        descripcion: navigation.descripcion || '',
+        fecha: navigation.fecha || this.formatearFecha(new Date()),
+        hora: navigation.hora || this.formatearHora(new Date()),
+        equipo: navigation.equipo || 'Torre / Desktop',
+        subtotal: navigation.subtotal || navigation.total || 350000,
+        iva: navigation.iva || 66500,
+        total: navigation.total || 416500,
+        metodoPago: navigation.metodoPago || 'tarjeta'
+      };
+    }
+    this.numeroSolicitud = this.generarNumeroSolicitud();
+  }
+  
+  formatearFecha(fecha: Date): string {
+    return `${fecha.getDate().toString().padStart(2, '0')}/${(fecha.getMonth() + 1).toString().padStart(2, '0')}/${fecha.getFullYear()}`;
+  }
+  
+  formatearHora(fecha: Date): string {
+    return `${fecha.getHours().toString().padStart(2, '0')}:${fecha.getMinutes().toString().padStart(2, '0')}`;
+  }
+  
+  generarNumeroSolicitud(): string {
+    const fecha = new Date();
+    return `TF-R-${fecha.getFullYear()}${(fecha.getMonth() + 1).toString().padStart(2, '0')}${fecha.getDate().toString().padStart(2, '0')}-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`;
+  }
+  
+  formatearPrecio(precio: number): string {
+    return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(precio);
+  }
+  
+  volverAlInicio(): void { this.router.navigate(['/']); }
+  
+  descargarComprobante(): void {
+    const comprobante = `TECHFIX SOLUTIONS - REPARACIÓN TÉCNICA
+N° Solicitud: ${this.numeroSolicitud}
+Fecha: ${this.datosConfirmacion.fecha} Hora: ${this.datosConfirmacion.hora}
+Cliente: ${this.datosConfirmacion.nombre}
+Equipo: ${this.datosConfirmacion.equipo}
+Total: ${this.formatearPrecio(this.datosConfirmacion.total)}`;
+    const blob = new Blob([comprobante], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `comprobante_${this.numeroSolicitud}.txt`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+}"" 
+"==========================================" 
+"=== ENSAMBLE DE PC ===" 
+"==========================================" 
+"" 
+"--- PRINCIPAL ---" 
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
+interface ItemEnsamble {
+  nombre: string;
+  descripcion: string;
+  categoria: string;
+  checked: boolean;
+  selected: boolean;
+  precio: number;
+}
+
+@Component({
+  selector: 'app-ensamble-pc',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './ensamble-pc.html',
+  styleUrl: './ensamble-pc.css'
+})
+export class EnsamblePc {
+  
+  tiempoTotalMinutos: number = 0;
+  costoTotalComponentes: number = 0;
+  
+  itemsEnsamble: ItemEnsamble[] = [
+    // Procesadores
+    { nombre: 'Intel Core i5 12400F', descripcion: '6 núcleos, 12 hilos, hasta 4.4GHz', categoria: 'Procesador', checked: false, selected: false, precio: 800000 },
+    { nombre: 'Intel Core i7 13700K', descripcion: '16 núcleos, 24 hilos, hasta 5.4GHz', categoria: 'Procesador', checked: false, selected: false, precio: 1600000 },
+    { nombre: 'AMD Ryzen 5 5600X', descripcion: '6 núcleos, 12 hilos, hasta 4.6GHz', categoria: 'Procesador', checked: false, selected: false, precio: 750000 },
+    { nombre: 'AMD Ryzen 7 7800X3D', descripcion: '8 núcleos, 16 hilos, caché 3D', categoria: 'Procesador', checked: false, selected: false, precio: 2100000 },
+    
+    // Tarjetas Gráficas
+    { nombre: 'NVIDIA RTX 4060', descripcion: '8GB GDDR6, Ray Tracing', categoria: 'Tarjeta Gráfica', checked: false, selected: false, precio: 1400000 },
+    { nombre: 'NVIDIA RTX 4070', descripcion: '12GB GDDR6X, DLSS 3', categoria: 'Tarjeta Gráfica', checked: false, selected: false, precio: 2200000 },
+    { nombre: 'AMD RX 7600 XT', descripcion: '16GB GDDR6, Rendimiento excepcional', categoria: 'Tarjeta Gráfica', checked: false, selected: false, precio: 1300000 },
+    { nombre: 'AMD RX 7800 XT', descripcion: '16GB GDDR6, 4K gaming', categoria: 'Tarjeta Gráfica', checked: false, selected: false, precio: 2400000 },
+    
+    // Memorias RAM
+    { nombre: '16GB DDR4 3200MHz', descripcion: '2x8GB Dual Channel', categoria: 'Memoria RAM', checked: false, selected: false, precio: 250000 },
+    { nombre: '32GB DDR4 3600MHz', descripcion: '2x16GB RGB', categoria: 'Memoria RAM', checked: false, selected: false, precio: 480000 },
+    { nombre: '16GB DDR5 6000MHz', descripcion: '2x8GB Alta velocidad', categoria: 'Memoria RAM', checked: false, selected: false, precio: 450000 },
+    { nombre: '32GB DDR5 6400MHz', descripcion: '2x16GB RGB', categoria: 'Memoria RAM', checked: false, selected: false, precio: 850000 },
+    
+    // Almacenamiento
+    { nombre: 'SSD 512GB NVMe', descripcion: 'Lectura 3500MB/s', categoria: 'Almacenamiento', checked: false, selected: false, precio: 180000 },
+    { nombre: 'SSD 1TB NVMe', descripcion: 'Lectura 5000MB/s', categoria: 'Almacenamiento', checked: false, selected: false, precio: 320000 },
+    { nombre: 'SSD 2TB NVMe', descripcion: 'Lectura 7000MB/s', categoria: 'Almacenamiento', checked: false, selected: false, precio: 580000 },
+    { nombre: 'HDD 1TB + SSD 256GB', descripcion: 'Combo almacenamiento híbrido', categoria: 'Almacenamiento', checked: false, selected: false, precio: 250000 },
+    
+    // Fuentes de Poder
+    { nombre: '650W 80 Plus Bronze', descripcion: 'Certificación eficiencia', categoria: 'Fuente de Poder', checked: false, selected: false, precio: 280000 },
+    { nombre: '750W 80 Plus Gold', descripcion: 'Modular, alta eficiencia', categoria: 'Fuente de Poder', checked: false, selected: false, precio: 450000 },
+    { nombre: '850W 80 Plus Platinum', descripcion: 'Full modular', categoria: 'Fuente de Poder', checked: false, selected: false, precio: 680000 },
+    
+    // Gabinetes
+    { nombre: 'Gabinete ATX Estándar', descripcion: 'Vidrio templado, 3 ventiladores', categoria: 'Gabinete', checked: false, selected: false, precio: 220000 },
+    { nombre: 'Gabinete Gamer RGB', descripcion: 'ARGB, panel frontal mesh', categoria: 'Gabinete', checked: false, selected: false, precio: 380000 },
+    { nombre: 'Gabinete Premium', descripcion: 'Alta calidad, 6 ventiladores', categoria: 'Gabinete', checked: false, selected: false, precio: 550000 },
+    
+    // Refrigeración
+    { nombre: 'Cooler básico', descripcion: 'Disipador de aire estándar', categoria: 'Refrigeración', checked: false, selected: false, precio: 80000 },
+    { nombre: 'Líquida 120mm', descripcion: 'AIO refrigeración líquida', categoria: 'Refrigeración', checked: false, selected: false, precio: 280000 },
+    { nombre: 'Líquida 240mm', descripcion: 'AIO doble radiador', categoria: 'Refrigeración', checked: false, selected: false, precio: 450000 }
+  ];
+
+  constructor(private router: Router) {}
+
+  actualizarSeleccion(evento: any, item: ItemEnsamble) {
+    const tiempoIncremento = 45;
+    item.checked = evento.target.checked;
+    item.selected = evento.target.checked;
+    
+    if (evento.target.checked) {
+      this.tiempoTotalMinutos += tiempoIncremento;
+      this.costoTotalComponentes += item.precio;
+    } else {
+      this.tiempoTotalMinutos -= tiempoIncremento;
+      this.costoTotalComponentes -= item.precio;
+    }
+  }
+
+  calcularHoras(): string {
+    if (this.tiempoTotalMinutos <= 0) return '0';
+    const horas = this.tiempoTotalMinutos / 60;
+    return horas === 1 ? '1 hora' : horas % 1 === 0 ? `${horas} horas` : `${horas.toFixed(1)} horas`;
+  }
+
+  formatearTiempo(): string {
+    if (this.tiempoTotalMinutos === 0) return '0 horas';
+    if (this.tiempoTotalMinutos < 60) return `${this.tiempoTotalMinutos} minutos`;
+    return this.calcularHoras();
+  }
+
+  formatearPrecio(precio: number): string {
+    return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(precio);
+  }
+
+  configurarOpciones() {
+    const datosSeleccionados = {
+      componentes: this.itemsEnsamble.filter(i => i.checked).map(i => ({ nombre: i.nombre, precio: i.precio })),
+      tiempoTotal: this.tiempoTotalMinutos,
+      costoTotal: this.costoTotalComponentes
+    };
+    this.router.navigate(['/servicios/ensamble-pc/configuracion'], { state: datosSeleccionados });
+  }
+
+  getComponentesPorCategoria(categoria: string): ItemEnsamble[] {
+    return this.itemsEnsamble.filter(i => i.categoria === categoria);
+  }
+}"" 
+"--- CONFIGURACION ---" 
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+interface TipoEquipo {
+  id: string;
+  nombre: string;
+  icono: string;
+  descripcion: string;
+  precio: number;
+}
+
+interface ServicioAdicional {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  icono: string;
+  precio: number;
+  seleccionado: boolean;
+}
+
+@Component({
+  selector: 'app-configuracion-ensamble',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './configuracion.html',
+  styleUrl: './configuracion.css'
+})
+export class ConfiguracionEnsamble implements OnInit {
+  
+  tipoEquipoSeleccionado: string = 'pc-gamer';
+  
+  tiposEquipo: TipoEquipo[] = [
+    { id: 'pc-gamer', nombre: 'PC Gamer', icono: '🎮', descripcion: 'Alto rendimiento para gaming', precio: 150000 },
+    { id: 'pc-oficina', nombre: 'PC Oficina', icono: '💼', descripcion: 'Productividad y trabajo', precio: 80000 },
+    { id: 'portatil-oficina', nombre: 'Portátil Oficina', icono: '💻', descripcion: 'Movilidad para trabajo', precio: 100000 },
+    { id: 'portatil-personal', nombre: 'Portátil Personal', icono: '📱', descripcion: 'Uso diario y multimedia', precio: 90000 },
+    { id: 'workstation', nombre: 'Workstation', icono: '🔬', descripcion: 'Diseño y edición profesional', precio: 250000 },
+    { id: 'pc-basica', nombre: 'PC Básica', icono: '🖥️', descripcion: 'Navegación y tareas simples', precio: 50000 }
+  ];
+
+  serviciosAdicionales: ServicioAdicional[] = [
+    { id: 1, nombre: 'Instalación de Windows + Drivers', descripcion: 'Sistema operativo listo para usar', icono: '🪟', precio: 120000, seleccionado: false },
+    { id: 2, nombre: 'Instalación de Software Oficina', descripcion: 'Office, correo, antivirus', icono: '📊', precio: 80000, seleccionado: false },
+    { id: 3, nombre: 'Instalación de Software Gamer', descripcion: 'Steam, Epic, Discord, etc', icono: '🎮', precio: 60000, seleccionado: false },
+    { id: 4, nombre: 'Gestión de Cables Premium', descripcion: 'Organización estética interior', icono: '🔌', precio: 45000, seleccionado: false },
+    { id: 5, nombre: 'RGB Personalizado', descripcion: 'Configuración de iluminación', icono: '🌈', precio: 35000, seleccionado: false },
+    { id: 6, nombre: 'Overclocking', descripcion: 'Optimización de rendimiento', icono: '⚡', precio: 80000, seleccionado: false },
+    { id: 7, nombre: 'Garantía Extendida 1 año', descripcion: 'Cobertura total', icono: '🛡️', precio: 100000, seleccionado: false }
+  ];
+
+  componentesPrevios: any[] = [];
+  costoComponentesPrevios: number = 0;
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    const navigation = window.history.state;
+    if (navigation && navigation.componentes) {
+      this.componentesPrevios = navigation.componentes;
+      this.costoComponentesPrevios = navigation.costoTotal || 0;
+    }
+  }
+
+  get precioBase(): number {
+    const equipo = this.tiposEquipo.find(e => e.id === this.tipoEquipoSeleccionado);
+    return equipo?.precio || 0;
+  }
+
+  get costoServicios(): number {
+    return this.serviciosAdicionales.filter(s => s.seleccionado).reduce((sum, s) => sum + s.precio, 0);
+  }
+
+  get totalGeneral(): number {
+    return this.precioBase + this.costoComponentesPrevios + this.costoServicios;
+  }
+
+  formatearPrecio(precio: number): string {
+    return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(precio);
+  }
+
+  continuarADatos() {
+    const datosConfiguracion = {
+      equipo: this.tiposEquipo.find(e => e.id === this.tipoEquipoSeleccionado)?.nombre,
+      servicios: this.serviciosAdicionales.filter(s => s.seleccionado).map(s => s.nombre),
+      componentes: this.componentesPrevios,
+      total: this.totalGeneral,
+      precioBase: this.precioBase,
+      costoServicios: this.costoServicios,
+      costoComponentes: this.costoComponentesPrevios
+    };
+    this.router.navigate(['/servicios/ensamble-pc/datos'], { state: datosConfiguracion });
+  }
+}"" 
+"--- DATOS ---" 
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-datos-ensamble',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './datos.html',
+  styleUrl: './datos.css'
+})
+export class DatosEnsamble implements OnInit {
+  
+  datosForm!: FormGroup;
+  
+  resumenData = {
+    equipo: 'PC Gamer',
+    total: 0,
+    componentes: 0,
+    servicios: 0
+  };
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    const navigation = window.history.state;
+    if (navigation.total) {
+      this.resumenData.total = navigation.total;
+      this.resumenData.equipo = navigation.equipo || 'PC Gamer';
+      this.resumenData.componentes = navigation.componentes?.length || 0;
+      this.resumenData.servicios = navigation.servicios?.length || 0;
+    } else {
+      this.resumenData.total = 150000;
+    }
+
+    this.datosForm = this.fb.group({
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      telefono: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      direccion: ['', [Validators.required, Validators.minLength(5)]],
+      descripcion: ['', [Validators.maxLength(500)]],
+      fecha: ['', Validators.required],
+      hora: ['', Validators.required]
+    });
+  }
+
+  get nombre() { return this.datosForm.get('nombre'); }
+  get email() { return this.datosForm.get('email'); }
+  get telefono() { return this.datosForm.get('telefono'); }
+  get direccion() { return this.datosForm.get('direccion'); }
+  get descripcion() { return this.datosForm.get('descripcion'); }
+  get fecha() { return this.datosForm.get('fecha'); }
+  get hora() { return this.datosForm.get('hora'); }
+
+  formatearPrecio(precio: number): string {
+    return new Intl.NumberFormat('es-CO', {
+      style: 'currency',
+      currency: 'COP',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(precio);
+  }
+
+  onSubmit(): void {
+    if (this.datosForm.valid) {
+      const datosCompletos = {
+        ...this.datosForm.value,
+        total: this.resumenData.total,
+        equipo: this.resumenData.equipo,
+        tipo: 'ensamble'
+      };
+      console.log('Datos del cliente ensamble:', datosCompletos);
+      this.router.navigate(['/servicios/ensamble-pc/pago'], { state: datosCompletos });
+    } else {
+      alert('⚠️ Por favor, completa todos los campos requeridos correctamente.');
+      this.datosForm.markAllAsTouched();
+    }
+  }
+}"" 
+"--- PAGO ---" 
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-pago-ensamble',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './pago.html',
+  styleUrl: './pago.css'
+})
+export class PagoEnsamble implements OnInit {
+  
+  pagoForm!: FormGroup;
+  metodoPagoSeleccionado: string = 'tarjeta';
+  
+  resumenData = {
+    equipo: 'PC Gamer',
+    total: 0
+  };
+  
+  subtotal: number = 150000;
+  iva: number = 0;
+  total: number = 0;
+  readonly IVA_PORCENTAJE = 0.19;
+
+  constructor(private fb: FormBuilder, private router: Router) {}
+
+  ngOnInit(): void {
+    const navigation = window.history.state;
+    if (navigation.total) {
+      this.subtotal = navigation.total;
+      this.resumenData.total = navigation.total;
+      this.resumenData.equipo = navigation.equipo || 'PC Gamer';
+    }
+    
+    this.calcularTotales();
+    
+    this.pagoForm = this.fb.group({
+      metodoPago: ['tarjeta', Validators.required],
+      numeroTarjeta: ['', [Validators.required, Validators.pattern('^[0-9]{16}$')]],
+      nombreTarjeta: ['', [Validators.required, Validators.minLength(3)]],
+      fechaExpiracion: ['', [Validators.required, Validators.pattern('^(0[1-9]|1[0-2])/[0-9]{2}$')]],
+      cvv: ['', [Validators.required, Validators.pattern('^[0-9]{3,4}$')]]
+    });
+    
+    this.pagoForm.get('metodoPago')?.valueChanges.subscribe(value => {
+      this.metodoPagoSeleccionado = value;
+      this.actualizarValidaciones(value);
+    });
+  }
+  
+  actualizarValidaciones(metodo: string): void {
+    const campos = ['numeroTarjeta', 'nombreTarjeta', 'fechaExpiracion', 'cvv'];
+    campos.forEach(campo => {
+      const control = this.pagoForm.get(campo);
+      if (metodo === 'tarjeta') {
+        control?.setValidators([Validators.required, 
+          campo === 'numeroTarjeta' ? Validators.pattern('^[0-9]{16}$') : 
+          campo === 'cvv' ? Validators.pattern('^[0-9]{3,4}$') :
+          campo === 'fechaExpiracion' ? Validators.pattern('^(0[1-9]|1[0-2])/[0-9]{2}$') :
+          Validators.minLength(3)]);
+      } else {
+        control?.clearValidators();
+      }
+      control?.updateValueAndValidity();
+    });
+  }
+  
+  calcularTotales(): void {
+    this.iva = this.subtotal * this.IVA_PORCENTAJE;
+    this.total = this.subtotal + this.iva;
+  }
+  
+  formatearPrecio(precio: number): string {
+    return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(precio);
+  }
+  
+  seleccionarMetodoPago(metodo: string): void {
+    this.metodoPagoSeleccionado = metodo;
+    this.pagoForm.patchValue({ metodoPago: metodo });
+  }
+  
+  formatearNumeroTarjeta(event: any): void {
+    let value = event.target.value.replace(/\s/g, '');
+    if (value.length > 16) value = value.slice(0, 16);
+    let formatted = '';
+    for (let i = 0; i < value.length; i++) {
+      if (i > 0 && i % 4 === 0) formatted += ' ';
+      formatted += value[i];
+    }
+    this.pagoForm.patchValue({ numeroTarjeta: value });
+    event.target.value = formatted;
+  }
+  
+  onSubmit(): void {
+    if (this.pagoForm.valid) {
+      const datosCompletos = { ...this.pagoForm.value, subtotal: this.subtotal, iva: this.iva, total: this.total, equipo: this.resumenData.equipo, tipo: 'ensamble' };
+      this.router.navigate(['/servicios/ensamble-pc/confirmacion'], { state: datosCompletos });
+    } else {
+      alert('⚠️ Por favor, completa todos los campos correctamente.');
+      this.pagoForm.markAllAsTouched();
+    }
+  }
+}"" 
+"--- CONFIRMACION ---" 
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-confirmacion-ensamble',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './confirmacion.html',
+  styleUrl: './confirmacion.css'
+})
+export class ConfirmacionEnsamble implements OnInit {
+  
+  datosConfirmacion = {
+    nombre: '', email: '', telefono: '', direccion: '', descripcion: '',
+    fecha: '', hora: '', equipo: 'PC Gamer',
+    subtotal: 0, iva: 0, total: 0, metodoPago: 'tarjeta', tipo: 'ensamble'
+  };
+  
+  numeroSolicitud: string = '';
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    const navigation = window.history.state;
+    if (navigation.total) {
+      this.datosConfirmacion = {
+        nombre: navigation.nombre || 'Cliente',
+        email: navigation.email || '',
+        telefono: navigation.telefono || '',
+        direccion: navigation.direccion || '',
+        descripcion: navigation.descripcion || '',
+        fecha: navigation.fecha || this.formatearFecha(new Date()),
+        hora: navigation.hora || this.formatearHora(new Date()),
+        equipo: navigation.equipo || 'PC Gamer',
+        subtotal: navigation.subtotal || navigation.total || 150000,
+        iva: navigation.iva || 28500,
+        total: navigation.total || 178500,
+        metodoPago: navigation.metodoPago || 'tarjeta',
+        tipo: 'ensamble'
+      };
+    }
+    this.numeroSolicitud = this.generarNumeroSolicitud();
+  }
+  
+  formatearFecha(fecha: Date): string {
+    return `${fecha.getDate().toString().padStart(2, '0')}/${(fecha.getMonth() + 1).toString().padStart(2, '0')}/${fecha.getFullYear()}`;
+  }
+  
+  formatearHora(fecha: Date): string {
+    return `${fecha.getHours().toString().padStart(2, '0')}:${fecha.getMinutes().toString().padStart(2, '0')}`;
+  }
+  
+  generarNumeroSolicitud(): string {
+    const fecha = new Date();
+    return `TF-E-${fecha.getFullYear()}${(fecha.getMonth() + 1).toString().padStart(2, '0')}${fecha.getDate().toString().padStart(2, '0')}-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`;
+  }
+  
+  formatearPrecio(precio: number): string {
+    return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(precio);
+  }
+  
+  volverAlInicio(): void { this.router.navigate(['/']); }
+  
+  descargarComprobante(): void {
+    const comprobante = `====================================
+TECHFIX SOLUTIONS - ENSAMBLE DE PC
+====================================
+N° Solicitud: ${this.numeroSolicitud}
+Fecha: ${this.datosConfirmacion.fecha}
+Hora: ${this.datosConfirmacion.hora}
+------------------------------------
+DATOS DEL CLIENTE
+Nombre: ${this.datosConfirmacion.nombre}
+Email: ${this.datosConfirmacion.email}
+Teléfono: ${this.datosConfirmacion.telefono}
+Dirección: ${this.datosConfirmacion.direccion}
+------------------------------------
+DETALLE DEL SERVICIO
+Tipo: Ensamble de PC
+Equipo: ${this.datosConfirmacion.equipo}
+Descripción: ${this.datosConfirmacion.descripcion || 'Sin detalles adicionales'}
+------------------------------------
+RESUMEN FINANCIERO
+Subtotal: ${this.formatearPrecio(this.datosConfirmacion.subtotal)}
+IVA (19%): ${this.formatearPrecio(this.datosConfirmacion.iva)}
+TOTAL PAGADO: ${this.formatearPrecio(this.datosConfirmacion.total)}
+------------------------------------
+¡Gracias por confiar en TechFix Solutions!`;
+    const blob = new Blob([comprobante], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `comprobante_ensamble_${this.numeroSolicitud}.txt`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+}"" 
+"==========================================" 
+"=== VENTA DE REPUESTOS ===" 
+"==========================================" 
+"" 
+"--- PRINCIPAL ---" 
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
+export interface Producto {
+  id: number;
+  nombre: string;
+  categoria: string;
+  descripcion: string;
+  precio: number;
+  imagen: string;
+  stock: number;
+  cantidad: number;
+}
+
+@Component({
+  selector: 'app-venta-repuestos',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './venta-repuestos.html',
+  styleUrl: './venta-repuestos.css'
+})
+export class VentaRepuestos {
+  
+  productos: Producto[] = [
+    // Procesadores
+    { id: 1, nombre: 'Intel Core i5-12400F', categoria: 'Procesadores', descripcion: '6 núcleos, 12 hilos, hasta 4.4GHz', precio: 800000, imagen: 'cpu-intel.jpg', stock: 10, cantidad: 0 },
+    { id: 2, nombre: 'Intel Core i7-13700K', categoria: 'Procesadores', descripcion: '16 núcleos, 24 hilos, hasta 5.4GHz', precio: 1600000, imagen: 'cpu-intel.jpg', stock: 5, cantidad: 0 },
+    { id: 3, nombre: 'AMD Ryzen 5 5600X', categoria: 'Procesadores', descripcion: '6 núcleos, 12 hilos, hasta 4.6GHz', precio: 750000, imagen: 'cpu-amd.jpg', stock: 8, cantidad: 0 },
+    { id: 4, nombre: 'AMD Ryzen 7 7800X3D', categoria: 'Procesadores', descripcion: '8 núcleos, 16 hilos, caché 3D', precio: 2100000, imagen: 'cpu-amd.jpg', stock: 3, cantidad: 0 },
+    
+    // Tarjetas Gráficas
+    { id: 5, nombre: 'NVIDIA RTX 4060', categoria: 'Tarjetas Gráficas', descripcion: '8GB GDDR6, Ray Tracing', precio: 1400000, imagen: 'gpu-nvidia.jpg', stock: 7, cantidad: 0 },
+    { id: 6, nombre: 'NVIDIA RTX 4070', categoria: 'Tarjetas Gráficas', descripcion: '12GB GDDR6X, DLSS 3', precio: 2200000, imagen: 'gpu-nvidia.jpg', stock: 4, cantidad: 0 },
+    { id: 7, nombre: 'AMD RX 7600 XT', categoria: 'Tarjetas Gráficas', descripcion: '16GB GDDR6', precio: 1300000, imagen: 'gpu-amd.jpg', stock: 6, cantidad: 0 },
+    { id: 8, nombre: 'AMD RX 7800 XT', categoria: 'Tarjetas Gráficas', descripcion: '16GB GDDR6, 4K gaming', precio: 2400000, imagen: 'gpu-amd.jpg', stock: 2, cantidad: 0 },
+    
+    // Memorias RAM
+    { id: 9, nombre: '16GB DDR4 3200MHz', categoria: 'Memorias RAM', descripcion: '2x8GB Dual Channel', precio: 250000, imagen: 'ram.jpg', stock: 15, cantidad: 0 },
+    { id: 10, nombre: '32GB DDR4 3600MHz', categoria: 'Memorias RAM', descripcion: '2x16GB RGB', precio: 480000, imagen: 'ram.jpg', stock: 10, cantidad: 0 },
+    { id: 11, nombre: '16GB DDR5 6000MHz', categoria: 'Memorias RAM', descripcion: '2x8GB Alta velocidad', precio: 450000, imagen: 'ram.jpg', stock: 8, cantidad: 0 },
+    { id: 12, nombre: '32GB DDR5 6400MHz', categoria: 'Memorias RAM', descripcion: '2x16GB RGB', precio: 850000, imagen: 'ram.jpg', stock: 5, cantidad: 0 },
+    
+    // Almacenamiento
+    { id: 13, nombre: 'SSD 512GB NVMe', categoria: 'Almacenamiento', descripcion: 'Lectura 3500MB/s', precio: 180000, imagen: 'ssd.jpg', stock: 20, cantidad: 0 },
+    { id: 14, nombre: 'SSD 1TB NVMe', categoria: 'Almacenamiento', descripcion: 'Lectura 5000MB/s', precio: 320000, imagen: 'ssd.jpg', stock: 12, cantidad: 0 },
+    { id: 15, nombre: 'SSD 2TB NVMe', categoria: 'Almacenamiento', descripcion: 'Lectura 7000MB/s', precio: 580000, imagen: 'ssd.jpg', stock: 6, cantidad: 0 },
+    { id: 16, nombre: 'HDD 1TB', categoria: 'Almacenamiento', descripcion: 'Almacenamiento masivo', precio: 150000, imagen: 'hdd.jpg', stock: 15, cantidad: 0 },
+    
+    // Fuentes de Poder
+    { id: 17, nombre: '650W 80 Plus Bronze', categoria: 'Fuentes de Poder', descripcion: 'Certificación eficiencia', precio: 280000, imagen: 'psu.jpg', stock: 10, cantidad: 0 },
+    { id: 18, nombre: '750W 80 Plus Gold', categoria: 'Fuentes de Poder', descripcion: 'Modular', precio: 450000, imagen: 'psu.jpg', stock: 7, cantidad: 0 },
+    { id: 19, nombre: '850W 80 Plus Platinum', categoria: 'Fuentes de Poder', descripcion: 'Full modular', precio: 680000, imagen: 'psu.jpg', stock: 4, cantidad: 0 },
+    
+    // Gabinetes
+    { id: 20, nombre: 'Gabinete ATX Estándar', categoria: 'Gabinetes', descripcion: 'Vidrio templado', precio: 220000, imagen: 'case.jpg', stock: 8, cantidad: 0 },
+    { id: 21, nombre: 'Gabinete Gamer RGB', categoria: 'Gabinetes', descripcion: 'ARGB, panel frontal mesh', precio: 380000, imagen: 'case.jpg', stock: 5, cantidad: 0 },
+    
+    // Refrigeración
+    { id: 22, nombre: 'Cooler básico', categoria: 'Refrigeración', descripcion: 'Disipador de aire', precio: 80000, imagen: 'cooler.jpg', stock: 12, cantidad: 0 },
+    { id: 23, nombre: 'Líquida 240mm', categoria: 'Refrigeración', descripcion: 'AIO doble radiador', precio: 450000, imagen: 'cooler.jpg', stock: 6, cantidad: 0 }
+  ];
+
+  categorias = ['Procesadores', 'Tarjetas Gráficas', 'Memorias RAM', 'Almacenamiento', 'Fuentes de Poder', 'Gabinetes', 'Refrigeración'];
+  
+  carrito: Producto[] = [];
+  totalCarrito: number = 0;
+
+  constructor(private router: Router) {
+    this.cargarCarrito();
+  }
+
+  cargarCarrito(): void {
+    const carritoGuardado = localStorage.getItem('carritoRepuestos');
+    if (carritoGuardado) {
+      this.carrito = JSON.parse(carritoGuardado);
+      this.actualizarTotal();
+      this.sincronizarCantidades();
+    }
+  }
+
+  guardarCarrito(): void {
+    localStorage.setItem('carritoRepuestos', JSON.stringify(this.carrito));
+  }
+
+  sincronizarCantidades(): void {
+    for (const item of this.carrito) {
+      const producto = this.productos.find(p => p.id === item.id);
+      if (producto) {
+        producto.cantidad = item.cantidad;
+      }
+    }
+  }
+
+  actualizarTotal(): void {
+    this.totalCarrito = this.carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+  }
+
+  agregarAlCarrito(producto: Producto): void {
+    if (producto.cantidad >= producto.stock) {
+      alert('No hay suficiente stock disponible');
+      return;
+    }
+    
+    const itemEnCarrito = this.carrito.find(p => p.id === producto.id);
+    if (itemEnCarrito) {
+      itemEnCarrito.cantidad++;
+    } else {
+      this.carrito.push({ ...producto, cantidad: 1 });
+    }
+    producto.cantidad++;
+    this.actualizarTotal();
+    this.guardarCarrito();
+  }
+
+  eliminarDelCarrito(producto: Producto): void {
+    const index = this.carrito.findIndex(p => p.id === producto.id);
+    if (index !== -1) {
+      const item = this.carrito[index];
+      const productoOriginal = this.productos.find(p => p.id === item.id);
+      if (productoOriginal) {
+        productoOriginal.cantidad -= item.cantidad;
+      }
+      this.carrito.splice(index, 1);
+      this.actualizarTotal();
+      this.guardarCarrito();
+    }
+  }
+
+  actualizarCantidad(item: Producto, nuevaCantidad: number): void {
+    const producto = this.productos.find(p => p.id === item.id);
+    if (producto && nuevaCantidad <= producto.stock && nuevaCantidad >= 0) {
+      const diferencia = nuevaCantidad - item.cantidad;
+      item.cantidad = nuevaCantidad;
+      producto.cantidad += diferencia;
+      if (item.cantidad === 0) {
+        this.eliminarDelCarrito(item);
+      } else {
+        this.actualizarTotal();
+        this.guardarCarrito();
+      }
+    } else if (nuevaCantidad > (producto?.stock || 0)) {
+      alert('Stock insuficiente');
+    }
+  }
+
+  obtenerCantidadEnCarrito(productoId: number): number {
+    const item = this.carrito.find(p => p.id === productoId);
+    return item ? item.cantidad : 0;
+  }
+
+  formatearPrecio(precio: number): string {
+    return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(precio);
+  }
+
+  irAlCarrito(): void {
+    if (this.carrito.length === 0) {
+      alert('⚠️ No hay productos en el carrito');
+      return;
+    }
+    this.router.navigate(['/servicios/venta-repuestos/carrito'], { state: { carrito: this.carrito, total: this.totalCarrito } });
+  }
+
+  limpiarCarrito(): void {
+    if (confirm('¿Estás seguro de vaciar el carrito?')) {
+      for (const item of this.carrito) {
+        const producto = this.productos.find(p => p.id === item.id);
+        if (producto) producto.cantidad = 0;
+      }
+      this.carrito = [];
+      this.actualizarTotal();
+      this.guardarCarrito();
+    }
+  }
+
+  getProductosPorCategoria(categoria: string): Producto[] {
+    return this.productos.filter(p => p.categoria === categoria);
+  }
+
+  scrollToCategoria(categoria: string): void {
+    const element = document.getElementById(categoria.toLowerCase().replace(' ', '-'));
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+}"" 
+"--- CARRITO ---" 
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
+interface ProductoCarrito {
+  id: number;
+  nombre: string;
+  precio: number;
+  cantidad: number;
+}
+
+@Component({
+  selector: 'app-carrito',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './carrito.html',
+  styleUrl: './carrito.css'
+})
+export class Carrito implements OnInit {
+  
+  carrito: ProductoCarrito[] = [];
+  total: number = 0;
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    const navigation = window.history.state;
+    if (navigation.carrito) {
+      this.carrito = navigation.carrito;
+      this.total = navigation.total;
+    } else {
+      const carritoGuardado = localStorage.getItem('carritoRepuestos');
+      if (carritoGuardado) {
+        this.carrito = JSON.parse(carritoGuardado);
+        this.calcularTotal();
+      }
+    }
+  }
+
+  calcularTotal(): void {
+    this.total = this.carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+  }
+
+  actualizarCantidad(item: ProductoCarrito, nuevaCantidad: number): void {
+    if (nuevaCantidad <= 0) {
+      this.eliminarProducto(item);
+    } else {
+      item.cantidad = nuevaCantidad;
+      this.calcularTotal();
+      this.guardarCarrito();
+    }
+  }
+
+  eliminarProducto(item: ProductoCarrito): void {
+    const index = this.carrito.indexOf(item);
+    if (index !== -1) {
+      this.carrito.splice(index, 1);
+      this.calcularTotal();
+      this.guardarCarrito();
+    }
+  }
+
+  guardarCarrito(): void {
+    localStorage.setItem('carritoRepuestos', JSON.stringify(this.carrito));
+  }
+
+  formatearPrecio(precio: number): string {
+    return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(precio);
+  }
+
+  continuarADatos(): void {
+    if (this.carrito.length === 0) {
+      alert('El carrito está vacío');
+      return;
+    }
+    this.router.navigate(['/servicios/venta-repuestos/datos'], { state: { carrito: this.carrito, total: this.total } });
+  }
+
+  seguirComprando(): void {
+    this.router.navigate(['/servicios/venta-repuestos']);
+  }
+}"" 
+"--- DATOS ---" 
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+interface ProductoCarrito {
+  id: number;
+  nombre: string;
+  precio: number;
+  cantidad: number;
+}
+
+@Component({
+  selector: 'app-datos-venta',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './datos.html',
+  styleUrl: './datos.css'
+})
+export class DatosVentaRepuestos implements OnInit {
+  
+  datosForm!: FormGroup;
+  
+  resumenData = {
+    total: 0,
+    cantidadProductos: 0
+  };
+  
+  carrito: ProductoCarrito[] = [];
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    const navigation = window.history.state;
+    console.log('Navigation state en datos venta:', navigation);
+    
+    if (navigation.carrito) {
+      this.carrito = navigation.carrito;
+      this.resumenData.total = navigation.total;
+      this.resumenData.cantidadProductos = this.carrito.reduce((sum, item) => sum + item.cantidad, 0);
+    } else {
+      const carritoGuardado = localStorage.getItem('carritoRepuestos');
+      if (carritoGuardado) {
+        this.carrito = JSON.parse(carritoGuardado);
+        this.resumenData.total = this.carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+        this.resumenData.cantidadProductos = this.carrito.reduce((sum, item) => sum + item.cantidad, 0);
+      }
+    }
+
+    this.datosForm = this.fb.group({
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      telefono: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      direccion: ['', [Validators.required, Validators.minLength(5)]],
+      ciudad: ['', [Validators.required, Validators.minLength(3)]],
+      codigoPostal: ['', [Validators.required, Validators.pattern('^[0-9]{5,6}$')]],
+      notas: ['', [Validators.maxLength(500)]],
+      fecha: ['', Validators.required],
+      hora: ['', Validators.required]
+    });
+  }
+
+  get nombre() { return this.datosForm.get('nombre'); }
+  get email() { return this.datosForm.get('email'); }
+  get telefono() { return this.datosForm.get('telefono'); }
+  get direccion() { return this.datosForm.get('direccion'); }
+  get ciudad() { return this.datosForm.get('ciudad'); }
+  get codigoPostal() { return this.datosForm.get('codigoPostal'); }
+  get notas() { return this.datosForm.get('notas'); }
+  get fecha() { return this.datosForm.get('fecha'); }
+  get hora() { return this.datosForm.get('hora'); }
+
+  formatearPrecio(precio: number): string {
+    return new Intl.NumberFormat('es-CO', {
+      style: 'currency',
+      currency: 'COP',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(precio);
+  }
+
+  onSubmit(): void {
+    if (this.datosForm.valid) {
+      const datosCompletos = {
+        ...this.datosForm.value,
+        carrito: this.carrito,
+        total: this.resumenData.total,
+        cantidadProductos: this.resumenData.cantidadProductos
+      };
+      
+      console.log('Datos del cliente venta:', datosCompletos);
+      this.router.navigate(['/servicios/venta-repuestos/pago'], { state: datosCompletos });
+    } else {
+      alert('⚠️ Por favor, completa todos los campos requeridos correctamente.');
+      this.datosForm.markAllAsTouched();
+    }
+  }
+}"" 
+"--- PAGO ---" 
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-pago-venta',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './pago.html',
+  styleUrl: './pago.css'
+})
+export class PagoVentaRepuestos implements OnInit {
+  
+  pagoForm!: FormGroup;
+  metodoPagoSeleccionado: string = 'tarjeta';
+  
+  resumenData = {
+    total: 0,
+    cantidadProductos: 0
+  };
+  
+  datosCliente: any = {};
+  subtotal: number = 0;
+  iva: number = 0;
+  total: number = 0;
+  readonly IVA_PORCENTAJE = 0.19;
+
+  constructor(private fb: FormBuilder, private router: Router) {}
+
+  ngOnInit(): void {
+    const navigation = window.history.state;
+    console.log('Navigation state en pago venta:', navigation);
+    
+    if (navigation.total) {
+      this.subtotal = navigation.total;
+      this.resumenData.total = navigation.total;
+      this.resumenData.cantidadProductos = navigation.cantidadProductos || 0;
+      this.datosCliente = navigation;
+    }
+    
+    this.calcularTotales();
+    
+    this.pagoForm = this.fb.group({
+      metodoPago: ['tarjeta', Validators.required],
+      numeroTarjeta: ['', [Validators.required, Validators.pattern('^[0-9]{16}$')]],
+      nombreTarjeta: ['', [Validators.required, Validators.minLength(3)]],
+      fechaExpiracion: ['', [Validators.required, Validators.pattern('^(0[1-9]|1[0-2])/[0-9]{2}$')]],
+      cvv: ['', [Validators.required, Validators.pattern('^[0-9]{3,4}$')]]
+    });
+    
+    this.pagoForm.get('metodoPago')?.valueChanges.subscribe(value => {
+      this.metodoPagoSeleccionado = value;
+      this.actualizarValidaciones(value);
+    });
+  }
+  
+  actualizarValidaciones(metodo: string): void {
+    const campos = ['numeroTarjeta', 'nombreTarjeta', 'fechaExpiracion', 'cvv'];
+    campos.forEach(campo => {
+      const control = this.pagoForm.get(campo);
+      if (metodo === 'tarjeta') {
+        if (campo === 'numeroTarjeta') control?.setValidators([Validators.required, Validators.pattern('^[0-9]{16}$')]);
+        else if (campo === 'cvv') control?.setValidators([Validators.required, Validators.pattern('^[0-9]{3,4}$')]);
+        else if (campo === 'fechaExpiracion') control?.setValidators([Validators.required, Validators.pattern('^(0[1-9]|1[0-2])/[0-9]{2}$')]);
+        else control?.setValidators([Validators.required, Validators.minLength(3)]);
+      } else {
+        control?.clearValidators();
+      }
+      control?.updateValueAndValidity();
+    });
+  }
+  
+  calcularTotales(): void {
+    this.iva = this.subtotal * this.IVA_PORCENTAJE;
+    this.total = this.subtotal + this.iva;
+  }
+  
+  formatearPrecio(precio: number): string {
+    return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(precio);
+  }
+  
+  seleccionarMetodoPago(metodo: string): void {
+    this.metodoPagoSeleccionado = metodo;
+    this.pagoForm.patchValue({ metodoPago: metodo });
+  }
+  
+  formatearNumeroTarjeta(event: any): void {
+    let value = event.target.value.replace(/\s/g, '');
+    if (value.length > 16) value = value.slice(0, 16);
+    let formatted = '';
+    for (let i = 0; i < value.length; i++) {
+      if (i > 0 && i % 4 === 0) formatted += ' ';
+      formatted += value[i];
+    }
+    this.pagoForm.patchValue({ numeroTarjeta: value });
+    event.target.value = formatted;
+  }
+  
+  onSubmit(): void {
+    if (this.pagoForm.valid) {
+      const datosCompletos = { 
+        ...this.datosCliente,
+        ...this.pagoForm.value, 
+        subtotal: this.subtotal, 
+        iva: this.iva, 
+        total: this.total
+      };
+      console.log('Datos de pago venta:', datosCompletos);
+      this.router.navigate(['/servicios/venta-repuestos/confirmacion'], { state: datosCompletos });
+    } else {
+      alert('⚠️ Por favor, completa todos los campos correctamente.');
+      this.pagoForm.markAllAsTouched();
+    }
+  }
+}"" 
+"--- CONFIRMACION ---" 
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
+interface ProductoCarrito {
+  id: number;
+  nombre: string;
+  precio: number;
+  cantidad: number;
+}
+
+@Component({
+  selector: 'app-confirmacion-venta',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './confirmacion.html',
+  styleUrl: './confirmacion.css'
+})
+export class ConfirmacionVentaRepuestos implements OnInit {
+  
+  datosConfirmacion = {
+    nombre: '', email: '', telefono: '', direccion: '', ciudad: '', codigoPostal: '',
+    fecha: '', hora: '', notas: '',
+    subtotal: 0, iva: 0, total: 0, metodoPago: 'tarjeta',
+    cantidadProductos: 0
+  };
+  
+  carrito: ProductoCarrito[] = [];
+  numeroSolicitud: string = '';
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    const navigation = window.history.state;
+    console.log('Navigation state en confirmacion venta:', navigation);
+    
+    if (navigation.total) {
+      this.datosConfirmacion = {
+        nombre: navigation.nombre || 'Cliente',
+        email: navigation.email || '',
+        telefono: navigation.telefono || '',
+        direccion: navigation.direccion || '',
+        ciudad: navigation.ciudad || '',
+        codigoPostal: navigation.codigoPostal || '',
+        notas: navigation.notas || '',
+        fecha: navigation.fecha || this.formatearFecha(new Date()),
+        hora: navigation.hora || this.formatearHora(new Date()),
+        subtotal: navigation.subtotal || navigation.total || 0,
+        iva: navigation.iva || 0,
+        total: navigation.total || 0,
+        metodoPago: navigation.metodoPago || 'tarjeta',
+        cantidadProductos: navigation.cantidadProductos || 0
+      };
+      this.carrito = navigation.carrito || [];
+    }
+    this.numeroSolicitud = this.generarNumeroSolicitud();
+    this.limpiarCarritoStorage();
+  }
+  
+  limpiarCarritoStorage(): void {
+    localStorage.removeItem('carritoRepuestos');
+  }
+  
+  formatearFecha(fecha: Date): string {
+    return `${fecha.getDate().toString().padStart(2, '0')}/${(fecha.getMonth() + 1).toString().padStart(2, '0')}/${fecha.getFullYear()}`;
+  }
+  
+  formatearHora(fecha: Date): string {
+    return `${fecha.getHours().toString().padStart(2, '0')}:${fecha.getMinutes().toString().padStart(2, '0')}`;
+  }
+  
+  generarNumeroSolicitud(): string {
+    const fecha = new Date();
+    return `TF-R-${fecha.getFullYear()}${(fecha.getMonth() + 1).toString().padStart(2, '0')}${fecha.getDate().toString().padStart(2, '0')}-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`;
+  }
+  
+  formatearPrecio(precio: number): string {
+    return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(precio);
+  }
+  
+  volverAlInicio(): void { 
+    this.router.navigate(['/']); 
+  }
+  
+  descargarComprobante(): void {
+    let productosTexto = '';
+    for (const item of this.carrito) {
+      productosTexto += `  - ${item.nombre} x${item.cantidad} = ${this.formatearPrecio(item.precio * item.cantidad)}\n`;
+    }
+    
+    const comprobante = `====================================
+TECHFIX SOLUTIONS - VENTA DE REPUESTOS
+====================================
+N° Pedido: ${this.numeroSolicitud}
+Fecha: ${this.datosConfirmacion.fecha}
+Hora: ${this.datosConfirmacion.hora}
+------------------------------------
+DATOS DEL CLIENTE
+Nombre: ${this.datosConfirmacion.nombre}
+Email: ${this.datosConfirmacion.email}
+Teléfono: ${this.datosConfirmacion.telefono}
+Dirección: ${this.datosConfirmacion.direccion}
+Ciudad: ${this.datosConfirmacion.ciudad}
+Código Postal: ${this.datosConfirmacion.codigoPostal}
+------------------------------------
+PRODUCTOS
+${productosTexto}
+------------------------------------
+RESUMEN FINANCIERO
+Subtotal: ${this.formatearPrecio(this.datosConfirmacion.subtotal)}
+IVA (19%): ${this.formatearPrecio(this.datosConfirmacion.iva)}
+Envío: Gratis
+TOTAL PAGADO: ${this.formatearPrecio(this.datosConfirmacion.total)}
+------------------------------------
+Método de pago: ${this.datosConfirmacion.metodoPago === 'tarjeta' ? 'Tarjeta' : this.datosConfirmacion.metodoPago === 'transferencia' ? 'Transferencia' : 'Contraentrega'}
+------------------------------------
+¡Gracias por comprar en TechFix Solutions!`;
+    const blob = new Blob([comprobante], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `comprobante_venta_${this.numeroSolicitud}.txt`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+}"" 
+"==========================================" 
+"=== LOGIN Y CATALOGO ===" 
+"==========================================" 
+"" 
+"--- LOGIN ---" 
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [],
+  templateUrl: './login.html',
+  styleUrl: './login.css',
+})
+export class Login {}"" 
+"--- CATALOGO ---" 
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-catalogo',
+  standalone: true,
+  imports: [],
+  templateUrl: './catalogo.html',
+  styleUrl: './catalogo.css',
+})
+export class Catalogo {}"" 
+"==========================================" 
+"=== PACKAGE.JSON ===" 
+"==========================================" 
+"" 
+{
+  "name": "tech-fix-solutions",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "private": true,
+  "packageManager": "npm@11.6.2",
+  "dependencies": {
+    "@angular/animations": "^21.2.11",
+    "@angular/common": "^21.2.0",
+    "@angular/compiler": "^21.2.0",
+    "@angular/core": "^21.2.0",
+    "@angular/forms": "^21.2.0",
+    "@angular/platform-browser": "^21.2.0",
+    "@angular/router": "^21.2.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "^0.16.1"
+  },
+  "devDependencies": {
+    "@angular/build": "^21.2.7",
+    "@angular/cli": "^21.2.7",
+    "@angular/compiler-cli": "^21.2.0",
+    "jsdom": "^28.0.0",
+    "prettier": "^3.8.1",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.8"
+  }
+}
+"" 
+"==========================================" 
+"=== ESTILOS GLOBALES ===" 
+"==========================================" 
+"" 
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* Estilos globales */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Utilidades */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.text-center {
+  text-align: center;
+}"" 
+"==========================================" 
+"=== FIN DEL REPORTE ===" 
+"==========================================" 

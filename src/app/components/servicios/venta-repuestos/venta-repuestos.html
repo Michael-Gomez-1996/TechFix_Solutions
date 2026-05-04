@@ -1,0 +1,41 @@
+<div class="venta-container">
+  
+  <div class="venta-header">
+    <img src="logo-techfix.jpg" alt="TechFix" class="main-logo" routerLink="/" style="cursor: pointer;">
+    <div class="carrito-indicador" (click)="irAlCarrito()">
+      <span class="carrito-icono">🛒</span>
+      <span class="carrito-cantidad" *ngIf="carrito.length > 0">{{ carrito.length }}</span>
+    </div>
+  </div>
+
+  <h1 class="page-title">🛒 VENTA DE REPUESTOS TECNOLÓGICOS</h1>
+
+  <div class="categorias-tabs">
+    <button *ngFor="let categoria of categorias" class="tab-btn" [class.active]="categoria === 'Procesadores'" (click)="scrollToCategoria(categoria)">{{ categoria }}</button>
+  </div>
+
+  <div *ngFor="let categoria of categorias" class="categoria-section">
+    <h2>{{ categoria }}</h2>
+    <div class="productos-grid">
+      <div class="producto-card" *ngFor="let producto of getProductosPorCategoria(categoria)">
+        <div class="producto-imagen">🖥️</div>
+        <div class="producto-info">
+          <div class="producto-nombre">{{ producto.nombre }}</div>
+          <div class="producto-descripcion">{{ producto.descripcion }}</div>
+          <div class="producto-stock" [class.stock-bajo]="producto.stock < 5">Stock: {{ producto.stock }} unidades</div>
+          <div class="producto-precio">{{ formatearPrecio(producto.precio) }}</div>
+          <div class="producto-accion">
+            <button class="btn-agregar" (click)="agregarAlCarrito(producto)" [disabled]="producto.cantidad >= producto.stock">
+              {{ obtenerCantidadEnCarrito(producto.id) > 0 ? 'Agregar otro +' : 'Agregar al carrito' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="floating-cart" *ngIf="carrito.length > 0" (click)="irAlCarrito()">
+    <span>🛒</span>
+    <span>{{ formatearPrecio(totalCarrito) }}</span>
+  </div>
+</div>

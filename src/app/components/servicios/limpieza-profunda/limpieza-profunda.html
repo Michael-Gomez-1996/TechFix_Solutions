@@ -1,0 +1,101 @@
+<div class="detail-container">
+  
+
+  <h2 class="service-title">DETALLE DEL SERVICIO: LIMPIEZA PROFUNDA</h2>
+
+  <main class="detail-content">
+    <section class="visual-section">
+      <div class="main-image-container">
+        <img src="limpieza-profunda.jpg" alt="Técnico trabajando" class="service-illustration">
+      </div>
+    </section>
+
+    <section class="info-section">
+      
+      <!-- Mantenimiento Preventivo -->
+      <div class="service-block">
+        <div class="block-header">
+        
+          <h3>Mantenimiento Preventivo</h3>
+        </div>
+        
+        <div class="checklist-interactive">
+          <label class="check-item" [class.selected]="item1.checked">
+            <input type="checkbox" #item1 checked (change)="actualizarTiempo($event)">
+            <span class="custom-check"></span>
+            <span class="check-text">Limpieza de polvo (Soplado Técnico)</span>
+          </label>
+          
+          <label class="check-item" [class.selected]="item2.checked">
+            <input type="checkbox" #item2 (change)="actualizarTiempo($event)">
+            <span class="custom-check"></span>
+            <span class="check-text">Lubricación de Ventiladores (anti-ruido)</span>
+          </label>
+          
+          <label class="check-item" [class.selected]="item3.checked">
+            <input type="checkbox" #item3 (change)="actualizarTiempo($event)">
+            <span class="custom-check"></span>
+            <span class="check-text">Revisión de Voltajes (Fuente de Poder)</span>
+          </label>
+          
+          <label class="check-item" [class.selected]="item4.checked">
+            <input type="checkbox" #item4 (change)="actualizarTiempo($event)">
+            <span class="custom-check"></span>
+            <span class="check-text">Organización de Cables (Mejor Flujo)</span>
+          </label>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- Mantenimiento General -->
+      <div class="service-block">
+        <div class="block-header">
+          
+          <h3>Mantenimiento General</h3>
+        </div>
+        
+        <div class="checklist-interactive">
+          <label class="check-item" [class.selected]="item5.checked">
+            <input type="checkbox" #item5 (change)="actualizarTiempo($event)">
+            <span class="custom-check"></span>
+            <span class="check-text">*Incluye todo lo preventivo*</span>
+          </label>
+          
+          <label class="check-item" [class.selected]="item6.checked">
+            <input type="checkbox" #item6 (change)="actualizarTiempo($event)">
+            <span class="custom-check"></span>
+            <span class="check-text">Cambio de pasta térmica (CPU/GPU)</span>
+          </label>
+          
+          <label class="check-item" [class.selected]="item7.checked">
+            <input type="checkbox" #item7 (change)="actualizarTiempo($event)">
+            <span class="custom-check"></span>
+            <span class="check-text">Limpieza Química de Contactos (Ram)</span>
+          </label>
+          
+          <label class="check-item" [class.selected]="item8.checked">
+            <input type="checkbox" #item8 (change)="actualizarTiempo($event)">
+            <span class="custom-check"></span>
+            <span class="check-text">Limpieza Externa (Chasis/Pantalla)</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="action-area">
+        <div class="time-info">
+          <p>Tiempo Estimado:</p>
+          <div class="time-badge">
+            
+            <!-- Muestra 0, 0.5, 1, 1.5, etc. -->
+            <span>{{ calcularHoras() }} horas</span>
+          </div>
+        </div>
+        <button class="btn-config" (click)="procesarOpciones()">
+          CONFIGURAR OPCIONES
+        </button>
+      </div>
+
+    </section>
+  </main>
+</div>

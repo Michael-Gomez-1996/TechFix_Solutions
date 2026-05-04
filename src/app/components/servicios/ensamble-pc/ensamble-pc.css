@@ -1,0 +1,138 @@
+.detail-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #0056a3;
+}
+
+.main-logo { height: 65px; }
+.icon-badge { height: 50px; cursor: pointer; }
+
+.service-title {
+  text-align: center;
+  font-weight: 800;
+  font-size: 1.8rem;
+  margin: 30px 0;
+  color: #0056a3;
+}
+
+.detail-content {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  min-height: 600px;
+}
+
+.visual-section { flex: 1; }
+.main-image-container {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+.service-illustration { width: 100%; height: auto; }
+
+.info-section { flex: 1.2; max-height: 80vh; overflow-y: auto; padding-right: 10px; }
+
+.categoria-titulo {
+  font-weight: bold;
+  color: #0056a3;
+  margin: 15px 0 10px 0;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #0056a3;
+}
+
+.checklist-interactive { display: flex; flex-direction: column; gap: 5px; }
+
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s;
+  background: white;
+}
+.check-item:hover { transform: translateX(5px); border-color: #0056a3; }
+.check-item.selected { background: #f0f7ff; border-color: #0056a3; }
+.check-item input { position: absolute; opacity: 0; }
+
+.custom-check {
+  min-width: 24px;
+  width: 24px;
+  height: 24px;
+  background: white;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  margin-top: 2px;
+}
+.check-item input:checked ~ .custom-check { background: #0056a3; border-color: #0056a3; }
+.custom-check:after {
+  content: "";
+  display: none;
+  left: 7px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  position: relative;
+}
+.check-item input:checked ~ .custom-check:after { display: block; }
+
+.check-content { flex: 1; }
+.check-text { font-weight: 500; font-size: 0.95rem; display: block; color: #333; }
+.check-desc { font-size: 0.75rem; color: #6c757d; display: block; }
+.check-precio { font-size: 0.8rem; color: #0056a3; font-weight: bold; display: block; margin-top: 4px; }
+
+.action-area {
+  margin-top: 30px;
+  padding: 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.time-label { font-size: 0.85rem; color: #6c757d; margin-bottom: 5px; }
+.time-badge { display: flex; align-items: center; gap: 10px; }
+.time-icon { font-size: 1.5rem; }
+.time-value { font-size: 1.3rem; font-weight: bold; color: #0056a3; }
+.costo-label { margin-top: 8px; font-weight: bold; color: #28a745; }
+
+.btn-config {
+  width: 100%;
+  background: linear-gradient(135deg, #0056a3 0%, #003d75 100%);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 15px;
+}
+.btn-config:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(0,86,163,0.4); }
+
+.detail-footer { text-align: center; margin-top: 50px; padding-top: 20px; color: #6c757d; border-top: 1px solid #dee2e6; }
+
+.info-section::-webkit-scrollbar { width: 6px; }
+.info-section::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+.info-section::-webkit-scrollbar-thumb { background: #0056a3; border-radius: 10px; }
+
+@media (max-width: 968px) {
+  .detail-content { flex-direction: column; }
+  .detail-container { padding: 20px; }
+  .service-title { font-size: 1.4rem; }
+}

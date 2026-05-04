@@ -1,0 +1,102 @@
+<div class="config-container">
+  
+  <div class="stepper">
+    <div class="step active"><div class="step-number">🖥️</div><div class="step-label">Selección</div></div>
+    <div class="step-line"></div>
+    <div class="step"><div class="step-number">2</div><div class="step-label">Datos</div></div>
+    <div class="step-line"></div>
+    <div class="step"><div class="step-number">3</div><div class="step-label">Pago</div></div>
+    <div class="step-line"></div>
+    <div class="step"><div class="step-number">4</div><div class="step-label">Confirmación</div></div>
+  </div>
+
+  <h1 class="page-title">🖥️ CONFIGURAR MI ENSAMBLE DE PC</h1>
+
+  <div class="three-columns">
+    
+    <!-- COLUMNA 1 -->
+    <div class="column equipo-column">
+      <h3>💻 Tipo de equipo</h3>
+      
+      <div class="equipos-grid">
+        <div class="equipo-card" *ngFor="let equipo of tiposEquipo" 
+             [class.selected]="tipoEquipoSeleccionado === equipo.id" 
+             (click)="tipoEquipoSeleccionado = equipo.id">
+          <div class="equipo-emoji">{{ equipo.icono }}</div>
+          <div class="equipo-info">
+            <div class="equipo-nombre">{{ equipo.nombre }}</div>
+            <div class="equipo-desc">{{ equipo.descripcion }}</div>
+            <div class="equipo-precio">+ {{ formatearPrecio(equipo.precio) }}</div>
+          </div>
+          <div class="equipo-radio">
+            <div class="radio-custom" [class.radio-checked]="tipoEquipoSeleccionado === equipo.id"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="componentes-seleccionados" *ngIf="componentesPrevios.length > 0">
+        <h4>📦 Componentes seleccionados</h4>
+        <div class="componente-item" *ngFor="let comp of componentesPrevios">
+          <span>{{ comp.nombre }}</span>
+          <span>{{ formatearPrecio(comp.precio) }}</span>
+        </div>
+        <div class="componente-total">Total componentes: {{ formatearPrecio(costoComponentesPrevios) }}</div>
+      </div>
+    </div>
+
+    <!-- COLUMNA 2 -->
+    <div class="column configuracion-column">
+      <div class="servicios-section">
+        <h3>✨ Servicios adicionales</h3>
+        <div class="servicio-item" *ngFor="let servicio of serviciosAdicionales">
+          <label class="servicio-checkbox">
+            <input type="checkbox" [(ngModel)]="servicio.seleccionado">
+            <span class="checkbox-custom"></span>
+          </label>
+          <div class="servicio-icono">{{ servicio.icono }}</div>
+          <div class="servicio-info">
+            <div class="servicio-nombre">{{ servicio.nombre }}</div>
+            <div class="servicio-descripcion">{{ servicio.descripcion }}</div>
+          </div>
+          <div class="servicio-precio">{{ formatearPrecio(servicio.precio) }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUMNA 3 -->
+    <div class="column resumen-column">
+      <div class="resumen-sticky">
+        <h3>💰 Resumen del servicio</h3>
+        <div class="total-grande">{{ formatearPrecio(totalGeneral) }}</div>
+        
+        <div class="resumen-items">
+          <div class="resumen-item">
+            <div class="item-titulo">🖥️ Tipo de equipo</div>
+            <div class="item-valor">{{ tiposEquipo.find(e => e.id === tipoEquipoSeleccionado)?.nombre }}</div>
+            <div class="item-precio">{{ formatearPrecio(precioBase) }}</div>
+          </div>
+
+          <div class="resumen-item" *ngIf="costoComponentesPrevios > 0">
+            <div class="item-titulo">📦 Componentes</div>
+            <div class="item-valor">{{ componentesPrevios.length }} componentes</div>
+            <div class="item-precio">{{ formatearPrecio(costoComponentesPrevios) }}</div>
+          </div>
+
+          <div class="resumen-item" *ngIf="costoServicios > 0">
+            <div class="item-titulo">✨ Servicios adicionales</div>
+            <div class="item-valor">{{ serviciosAdicionales.filter(s => s.seleccionado).length }} servicios</div>
+            <div class="item-precio">{{ formatearPrecio(costoServicios) }}</div>
+          </div>
+        </div>
+
+        <div class="total-linea">
+          <span>TOTAL</span>
+          <span class="total-final">{{ formatearPrecio(totalGeneral) }}</span>
+        </div>
+
+        <button class="btn-continuar" (click)="continuarADatos()">CONTINUAR A DATOS →</button>
+      </div>
+    </div>
+
+  </div>
+</div>

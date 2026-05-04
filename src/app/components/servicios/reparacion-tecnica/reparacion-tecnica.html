@@ -1,0 +1,77 @@
+<div class="detail-container">
+  
+  <div class="detail-header">
+    <img src="logo-techfix.jpg" alt="TechFix Solutions" class="main-logo" routerLink="/" style="cursor: pointer;">
+    <img src="seal-quality.png" alt="Sello de Calidad" class="icon-badge">
+  </div>
+
+  <h2 class="service-title">🔧 DETALLE DEL SERVICIO: REPARACIÓN TÉCNICA</h2>
+
+  <main class="detail-content">
+    
+    <section class="visual-section">
+      <div class="main-image-container">
+        <img src="reparacion-tecnica.jpg" alt="Técnico reparando placa base" class="service-illustration">
+      </div>
+    </section>
+
+    <section class="info-section">
+      
+      <div class="service-block">
+        <div class="block-header">
+          <span class="header-icono">🛡️</span>
+          <h3>Diagnóstico Especializado</h3>
+        </div>
+        
+        <div class="checklist-interactive">
+          <label class="check-item" *ngFor="let item of itemsDiagnostico" [class.selected]="item.selected">
+            <input type="checkbox" [checked]="item.checked" (change)="actualizarTiempoDiagnostico($event, item)">
+            <span class="custom-check"></span>
+            <div class="check-content">
+              <span class="check-text">{{ item.nombre }}</span>
+              <span class="check-desc">{{ item.descripcion }}</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="service-block">
+        <div class="block-header">
+          <span class="header-icono">⚙️</span>
+          <h3>Cambio General de Piezas</h3>
+        </div>
+        
+        <div class="checklist-interactive">
+          <label class="check-item" *ngFor="let item of itemsPiezas" [class.selected]="item.selected">
+            <input type="checkbox" [checked]="item.checked" (change)="actualizarTiempoPieza($event, item)">
+            <span class="custom-check"></span>
+            <div class="check-content">
+              <span class="check-text">{{ item.nombre }}</span>
+              <span class="check-desc">{{ item.descripcion }}</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="action-area">
+        <div class="time-info">
+          <p class="time-label">Tiempo Estimado:</p>
+          <div class="time-badge">
+            <span class="time-icon">⏱️</span>
+            <span class="time-value">{{ formatearTiempoParaMostrar() }}</span>
+          </div>
+        </div>
+        <button class="btn-config" (click)="configurarOpciones()">
+          ⚙️ CONFIGURAR OPCIONES
+        </button>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="detail-footer">
+    <p>🔧 Diagnóstico preciso - Reparación garantizada - Piezas originales</p>
+  </footer>
+</div>

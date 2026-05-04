@@ -1,0 +1,195 @@
+/* --- ESTRUCTURA GENERAL --- */
+.about-page-container {
+  display: flex;
+  width: 100%;
+  min-height: 80vh;
+  font-family: 'Arial', sans-serif;
+}
+
+.column {
+  flex: 1;
+  padding: 40px 30px;
+}
+
+/* --- COLUMNA IZQUIERDA (AZUL) --- */
+.column-blue {
+  background-color: #004a99;
+  color: white;
+}
+.column-blue p {
+  font-size: 1.1rem; /* Aumentado de los ~14px estándar a unos ~18px */
+  line-height: 1.6;  /* Más espacio entre líneas para que no se vea amontonado */
+  margin-bottom: 30px; /* Espacio antes del siguiente título (Misión) */
+  color: rgba(255, 255, 255, 0.95); /* Un blanco casi puro para mejor contraste */
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-badge { 
+  width: 120px;
+  height: auto;
+  filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.2));
+}
+
+/* --- COLUMNA CENTRAL (CONTENIDO PRINCIPAL) --- */
+.column-white-center {
+  background-color: white;
+  color: #333;
+  text-align: center;
+}
+
+.main-title { 
+  color: #004a99; 
+  font-weight: bold; 
+}
+
+.subtitle { 
+  color: #666; 
+  margin-bottom: 20px; 
+}
+
+/* Cuadrícula de Valores 2x2 (Diseño Limpio) */
+.values-section-central {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.values-grid-central {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Mantiene el 2x2 */
+  gap: 30px; 
+  margin: 30px auto; /* El 'auto' en los laterales es la clave para centrarlo */
+  max-width: 400px;  /* Aumenté esto para que las imágenes grandes tengan espacio */
+  justify-items: center; /* Centra el contenido dentro de cada celda de la rejilla */
+  align-items: center;
+}
+
+.value-box-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+}
+
+.value-box-item img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  /* Sombra suave para dar profundidad a la imagen */
+  filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1));
+}
+
+.value-box-item img:hover {
+  transform: translateY(-5px) scale(1.1);
+}
+
+/* Botón de contacto centrado */
+.btn-contact {
+  background-color: #004a99;
+  color: white;
+  border: none;
+  padding: 30px 90px;
+  width: auto;
+  min-width: 200px;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.btn-contact:hover {
+  background-color: #003366;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* --- COLUMNA DERECHA (EQUIPO) --- */
+.column-white-right {
+  background-color: white;
+  color: #333;
+  border-left: 1px solid #eee;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px 20px;
+  margin-top: 20px;
+}
+
+.member { 
+  text-align: center; 
+}
+
+.member img { 
+  width: 100%; 
+  border: 2px solid #004a99; 
+  background: #fdfdfd;
+  border-radius: 4px;
+}
+
+.member h3 { 
+  font-size: 1.2rem;
+  margin: 10px 0 5px 0; 
+  color: #004a99; 
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.member p { 
+  font-size: 12px;
+  color: #555; 
+  line-height: 1.3;
+}
+
+/* --- CARRUSEL --- */
+.carousel-container {
+  width: 100%;
+  max-width: 550px;
+  margin: 20px auto;
+  overflow: hidden;
+  border: 2px solid #004a99;
+  background-color: #1a1a1a; 
+  border-radius: 8px;
+}
+
+.carousel-slide {
+  display: flex;
+  width: 400%; 
+  animation: scroll-carousel 15s infinite ease-in-out;
+}
+
+.carousel-item {
+  width: 25%;
+  height: 350px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.carousel-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+@keyframes scroll-carousel {
+  0%, 25% { transform: translateX(0); }
+  30%, 55% { transform: translateX(-25%); }
+  60%, 85% { transform: translateX(-50%); }
+  90%, 100% { transform: translateX(-75%); }
+}
+
+/* --- ESPACIADORES --- */
+.mt-lg { margin-top: 30px; }
+.mt-xl { margin-top: 50px; }

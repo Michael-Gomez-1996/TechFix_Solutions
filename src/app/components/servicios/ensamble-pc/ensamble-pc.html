@@ -1,0 +1,64 @@
+<div class="detail-container">
+  
+  <div class="detail-header">
+    <img src="logo-techfix.jpg" alt="TechFix Solutions" class="main-logo" routerLink="/" style="cursor: pointer;">
+    <img src="seal-quality.png" alt="Sello de Calidad" class="icon-badge">
+  </div>
+
+  <h2 class="service-title">🖥️ DETALLE DEL SERVICIO: ENSAMBLE DE PC</h2>
+
+  <main class="detail-content">
+    
+    <section class="visual-section">
+      <div class="main-image-container">
+        <img src="ensamble-pc.jpg" alt="Ensamble de PC" class="service-illustration">
+      </div>
+    </section>
+
+    <section class="info-section">
+      
+      <div class="service-block">
+        <div class="block-header">
+          <span class="header-icono">🛠️</span>
+          <h3>Componentes para Ensamble</h3>
+        </div>
+        
+        <div class="checklist-interactive">
+          <div *ngFor="let categoria of ['Procesador', 'Tarjeta Gráfica', 'Memoria RAM', 'Almacenamiento', 'Fuente de Poder', 'Gabinete', 'Refrigeración']">
+            <div class="categoria-titulo">{{ categoria }}</div>
+            <label class="check-item" *ngFor="let item of getComponentesPorCategoria(categoria)" [class.selected]="item.selected">
+              <input type="checkbox" [checked]="item.checked" (change)="actualizarSeleccion($event, item)">
+              <span class="custom-check"></span>
+              <div class="check-content">
+                <span class="check-text">{{ item.nombre }}</span>
+                <span class="check-desc">{{ item.descripcion }}</span>
+                <span class="check-precio">{{ formatearPrecio(item.precio) }}</span>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-area">
+        <div class="time-info">
+          <p class="time-label">Tiempo Estimado de Ensamble:</p>
+          <div class="time-badge">
+            <span class="time-icon">⏱️</span>
+            <span class="time-value">{{ formatearTiempo() }}</span>
+          </div>
+          <p class="costo-label" *ngIf="costoTotalComponentes > 0">
+            Costo componentes: {{ formatearPrecio(costoTotalComponentes) }}
+          </p>
+        </div>
+        <button class="btn-config" (click)="configurarOpciones()">
+          ⚙️ CONFIGURAR OPCIONES
+        </button>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="detail-footer">
+    <p>🖥️ Ensamble profesional - Componentes originales - Garantía 1 año</p>
+  </footer>
+</div>

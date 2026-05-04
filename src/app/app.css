@@ -1,0 +1,5 @@
+main {
+  position: relative;
+  overflow: hidden;
+  min-height: 80vh; /* Para que el footer no suba mucho si la página es corta */
+}

@@ -1,0 +1,63 @@
+<div class="carrito-container">
+  
+  <div class="stepper">
+    <div class="step active"><div class="step-number">🛒</div><div class="step-label">Carrito</div></div>
+    <div class="step-line"></div>
+    <div class="step"><div class="step-number">2</div><div class="step-label">Datos</div></div>
+    <div class="step-line"></div>
+    <div class="step"><div class="step-number">3</div><div class="step-label">Pago</div></div>
+    <div class="step-line"></div>
+    <div class="step"><div class="step-number">4</div><div class="step-label">Confirmación</div></div>
+  </div>
+
+  <h1 class="page-title">🛒 TU CARRITO DE COMPRAS</h1>
+
+  <div class="carrito-grid">
+    
+    <div class="carrito-items">
+      <div class="carrito-header">
+        <span>Producto</span>
+        <span>Precio</span>
+        <span>Cantidad</span>
+        <span>Subtotal</span>
+        <span></span>
+      </div>
+      
+      <div class="carrito-item" *ngFor="let item of carrito">
+        <span class="item-nombre">{{ item.nombre }}</span>
+        <span class="item-precio">{{ formatearPrecio(item.precio) }}</span>
+        <div class="item-cantidad">
+          <button (click)="actualizarCantidad(item, item.cantidad - 1)">-</button>
+          <span>{{ item.cantidad }}</span>
+          <button (click)="actualizarCantidad(item, item.cantidad + 1)">+</button>
+        </div>
+        <span class="item-subtotal">{{ formatearPrecio(item.precio * item.cantidad) }}</span>
+        <button class="item-eliminar" (click)="eliminarProducto(item)">🗑️</button>
+      </div>
+
+      <div class="carrito-vacio" *ngIf="carrito.length === 0">
+        <p>🛒 El carrito está vacío</p>
+        <button class="btn-seguir" (click)="seguirComprando()">Ver productos</button>
+      </div>
+    </div>
+
+    <div class="carrito-resumen">
+      <h3>Resumen de compra</h3>
+      <div class="resumen-item">
+        <span>Subtotal</span>
+        <span>{{ formatearPrecio(total) }}</span>
+      </div>
+      <div class="resumen-item">
+        <span>Envío</span>
+        <span>{{ formatearPrecio(0) }}</span>
+      </div>
+      <div class="resumen-item total">
+        <span>TOTAL</span>
+        <span>{{ formatearPrecio(total) }}</span>
+      </div>
+      <button class="btn-finalizar" [disabled]="carrito.length === 0" (click)="continuarADatos()">CONTINUAR A DATOS →</button>
+      <button class="btn-seguir-mas" (click)="seguirComprando()">Seguir comprando</button>
+    </div>
+
+  </div>
+</div>

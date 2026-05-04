@@ -1,0 +1,40 @@
+<div class="confirmacion-container fade-in">
+  
+  <div class="stepper">
+    <div class="step completed"><div class="step-number">✓</div><div class="step-label">Selección</div></div>
+    <div class="step-line completed-line"></div>
+    <div class="step completed"><div class="step-number">✓</div><div class="step-label">Datos</div></div>
+    <div class="step-line completed-line"></div>
+    <div class="step completed"><div class="step-number">✓</div><div class="step-label">Pago</div></div>
+    <div class="step-line completed-line"></div>
+    <div class="step active"><div class="step-number">📋</div><div class="step-label">Confirmación</div></div>
+  </div>
+
+  <div class="success-banner">
+    <div class="banner-icono">🔧🖥️</div>
+    <div class="banner-mensaje">
+      <h1 class="titulo-exito">REPARACIÓN AGENDADA</h1>
+      <p class="subtitulo-exito">Tu servicio de reparación ha sido agendado correctamente</p>
+    </div>
+  </div>
+
+  <div class="detalles-grid">
+    <div class="card"><h3>🔧 Servicio solicitado</h3><div class="servicio-item">Reparación Técnica Especializada</div></div>
+    <div class="card"><h3>📅 Fecha programada</h3><div class="fecha-item">{{ datosConfirmacion.fecha }} - {{ datosConfirmacion.hora }} hrs</div></div>
+    <div class="card"><h3>💰 Total pagado</h3><div class="total-monto">{{ formatearPrecio(datosConfirmacion.total) }}</div></div>
+  </div>
+
+  <div class="info-adicional-card">
+    <div class="info-header"><span>ℹ️</span><h3>Detalles de tu solicitud</h3></div>
+    <div class="info-body">
+      <div class="info-linea"><strong>N° Solicitud:</strong> {{ numeroSolicitud }}</div>
+      <div class="info-linea"><strong>Equipo:</strong> {{ datosConfirmacion.equipo }}</div>
+      <div class="info-linea"><strong>Contacto:</strong> {{ datosConfirmacion.nombre }} | {{ datosConfirmacion.telefono }}</div>
+    </div>
+  </div>
+
+  <div class="acciones-botones">
+    <button class="btn-descargar" (click)="descargarComprobante()">📄 DESCARGAR COMPROBANTE</button>
+    <button class="btn-inicio" (click)="volverAlInicio()">🏠 VOLVER AL INICIO</button>
+  </div>
+</div>

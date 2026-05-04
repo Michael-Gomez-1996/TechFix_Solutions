@@ -1,0 +1,45 @@
+.hero-container {
+  /* Fondo gris muy claro como en tu diseño */
+  background-color: #c5c5c5; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 10%; /* Espaciado lateral para que no toque los bordes */
+  min-height: 350px;
+}
+
+.main-title {
+  /* Tipografía Serif para elegancia, similar a tu diseño */
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 3.5rem;
+  color: #1a1a1a;
+  margin: 0;
+  font-weight: bold;
+}
+
+.main-subtitle {
+  font-size: 1.5rem;
+  color: #444;
+  margin-top: 10px;
+  font-style: italic; /* Como se ve en tu imagen */
+}
+
+.btn-solicitar {
+  background-color: #005691;
+  color: white;
+  border: none;
+  margin-right: 100px;
+  padding: 20px 45px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 86, 145, 0.3);
+}
+
+.btn-solicitar:hover {
+  background-color: #003d66;
+  transform: scale(1.05); /* Se agranda un poquito al pasar el mouse */
+  box-shadow: 0 6px 20px rgba(0, 86, 145, 0.4);
+}

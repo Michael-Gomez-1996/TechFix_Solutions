@@ -1,0 +1,184 @@
+<div class="config-container">
+  
+  <div class="stepper">
+    <div class="step active">
+      <div class="step-number">🛡️</div>
+      <div class="step-label">Selección</div>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-label">Datos</div>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-label">Pago</div>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-number">4</div>
+      <div class="step-label">Confirmación</div>
+    </div>
+  </div>
+
+  <h1 class="page-title">🔧 CONFIGURAR MI REPARACIÓN TÉCNICA</h1>
+
+  <div class="three-columns">
+    
+    <!-- COLUMNA 1 -->
+    <div class="column equipo-column">
+      <h3><span class="circulo-azul">💻</span> Tipo de equipo</h3>
+      
+      <div class="equipos-horizontal">
+        <div class="equipo-card" [class.selected]="tipoEquipoSeleccionado === 'torre'" (click)="seleccionarEquipo('torre')">
+          <div class="equipo-radio">
+            <div class="radio-custom" [class.radio-checked]="tipoEquipoSeleccionado === 'torre'"></div>
+          </div>
+          <div class="equipo-emoji">🖥️</div>
+          <div class="equipo-detalle">
+            <div class="equipo-nombre">Torre / Desktop</div>
+            <div class="equipo-precio-base">{{ formatearPrecio(preciosBase.torre) }}</div>
+            <div class="equipo-desc">PC de escritorio</div>
+          </div>
+        </div>
+
+        <div class="equipo-card" [class.selected]="tipoEquipoSeleccionado === 'portatil'" (click)="seleccionarEquipo('portatil')">
+          <div class="equipo-radio">
+            <div class="radio-custom" [class.radio-checked]="tipoEquipoSeleccionado === 'portatil'"></div>
+          </div>
+          <div class="equipo-emoji">💻</div>
+          <div class="equipo-detalle">
+            <div class="equipo-nombre">Portátil / Laptop</div>
+            <div class="equipo-precio-base">{{ formatearPrecio(preciosBase.portatil) }}</div>
+            <div class="equipo-desc">Computador portátil</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Opciones personalización TORRE -->
+      <div class="opciones-personalizacion" *ngIf="tipoEquipoSeleccionado === 'torre'">
+        <div class="personalizacion-titulo"><span>⚙️</span> Personaliza tu Torre</div>
+        <div class="personalizacion-grid">
+          <div class="personalizacion-item" *ngFor="let opcion of opcionesTorre">
+            <label class="personalizacion-label">
+              <span class="personalizacion-nombre">{{ opcion.nombre }}</span>
+              <select class="personalizacion-select" [(ngModel)]="opcion.seleccion">
+                <option *ngFor="let opt of opcion.opciones" [value]="opt.valor">
+                  {{ opt.valor }} ({{ opt.precio > 0 ? '+' : '' }}{{ formatearPrecio(opt.precio) }}) - {{ opt.descripcion }}
+                </option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Opciones personalización PORTÁTIL -->
+      <div class="opciones-personalizacion" *ngIf="tipoEquipoSeleccionado === 'portatil'">
+        <div class="personalizacion-titulo"><span>⚙️</span> Personaliza tu Portátil</div>
+        <div class="personalizacion-grid">
+          <div class="personalizacion-item" *ngFor="let opcion of opcionesPortatil">
+            <label class="personalizacion-label">
+              <span class="personalizacion-nombre">{{ opcion.nombre }}</span>
+              <select class="personalizacion-select" [(ngModel)]="opcion.seleccion">
+                <option *ngFor="let opt of opcion.opciones" [value]="opt.valor">
+                  {{ opt.valor }} ({{ opt.precio > 0 ? '+' : '' }}{{ formatearPrecio(opt.precio) }}) - {{ opt.descripcion }}
+                </option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUMNA 2 -->
+    <div class="column configuracion-column">
+      
+      <div class="problema-section">
+        <h3>⚠️ Tipo de Problema</h3>
+        <div class="problema-item" *ngFor="let problema of tiposProblema">
+          <label class="problema-checkbox">
+            <input type="checkbox" [(ngModel)]="problema.seleccionado">
+            <span class="checkbox-custom"></span>
+          </label>
+          <div class="problema-icono">{{ problema.icono }}</div>
+          <div class="problema-info">
+            <div class="problema-nombre">{{ problema.nombre }}</div>
+            <div class="problema-descripcion">{{ problema.descripcion }}</div>
+          </div>
+          <div class="problema-precio">{{ formatearPrecio(problema.precio) }}</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="servicios-section">
+        <h3>✨ Servicios adicionales</h3>
+        <div class="servicio-item" *ngFor="let servicio of serviciosAdicionales">
+          <label class="servicio-checkbox">
+            <input type="checkbox" [(ngModel)]="servicio.seleccionado">
+            <span class="checkbox-custom"></span>
+          </label>
+          <div class="servicio-info">
+            <div class="servicio-nombre">{{ servicio.nombre }}</div>
+            <div class="servicio-descripcion">{{ servicio.descripcion }}</div>
+          </div>
+          <div class="servicio-icono-precio">
+            <span class="servicio-icono">{{ servicio.icono }}</span>
+            <span class="servicio-precio">{{ formatearPrecio(servicio.precio) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUMNA 3: RESUMEN -->
+    <div class="column resumen-column">
+      <div class="resumen-sticky">
+        <h3>💰 Resumen del servicio</h3>
+        <div class="total-grande">{{ formatearPrecio(totalGeneral) }}</div>
+
+        <div class="resumen-items">
+          <div class="resumen-item">
+            <div class="item-titulo">📦 Tipo de equipo</div>
+            <div class="item-valor">{{ tipoEquipoSeleccionado === 'torre' ? 'Torre / Desktop' : 'Portátil / Laptop' }}</div>
+          </div>
+
+          <div class="resumen-item">
+            <div class="item-titulo">🔍 Problema seleccionado</div>
+            <div class="item-valor">
+              <span *ngIf="getProblemasSeleccionados().length === 0">Ninguno</span>
+              <span *ngFor="let problema of getProblemasSeleccionados(); let i = index">
+                {{ problema.nombre }}<span *ngIf="i < getProblemasSeleccionados().length - 1">, </span>
+              </span>
+            </div>
+            <div class="item-precio" *ngIf="costoProblemas > 0">{{ formatearPrecio(costoProblemas) }}</div>
+          </div>
+
+          <div class="resumen-item" *ngIf="costoServicios > 0">
+            <div class="item-titulo">✨ Servicios adicionales</div>
+            <div class="item-valor">
+              <span *ngFor="let servicio of getServiciosSeleccionados(); let i = index">
+                {{ servicio.nombre }}<span *ngIf="i < getServiciosSeleccionados().length - 1">, </span>
+              </span>
+            </div>
+            <div class="item-precio">{{ formatearPrecio(costoServicios) }}</div>
+          </div>
+
+          <div class="resumen-item" *ngIf="costoPersonalizacion !== 0">
+            <div class="item-titulo">⚙️ Personalización</div>
+            <div class="item-valor">Componentes seleccionados</div>
+            <div class="item-precio">{{ formatearPrecio(costoPersonalizacion) }}</div>
+          </div>
+        </div>
+
+        <div class="total-linea">
+          <span>TOTAL</span>
+          <span class="total-final">{{ formatearPrecio(totalGeneral) }}</span>
+        </div>
+
+        <button class="btn-continuar" (click)="continuarADatos()">CONTINUAR A DATOS →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
