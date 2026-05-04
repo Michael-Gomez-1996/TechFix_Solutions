@@ -38,17 +38,27 @@
   <!-- Grid de Detalles -->
   <div class="detalles-grid">
     
-    <!-- Tarjetas de Servicios -->
+    <!-- Tarjetas de Servicios - AHORA CON PRECIO Y CORREGIDO -->
     <div class="card servicios-card">
       <h3>🛠️ Servicios realizados</h3>
+      
+      <!-- Mensaje cuando no hay servicios seleccionados -->
+      <div *ngIf="serviciosRealizados.length === 0" class="sin-servicios">
+        <span class="sin-servicios-icono">ℹ️</span>
+        <p>No se seleccionaron servicios adicionales</p>
+      </div>
+      
+      <!-- Lista de servicios seleccionados -->
       <div class="servicio-item" *ngFor="let servicio of serviciosRealizados">
-        <div class="servicio-icono">{{ servicio.icono }}</div>
+        <div class="servicio-icono">{{ servicio.icono || '🛠️' }}</div>
         <div class="servicio-info">
           <div class="servicio-nombre">{{ servicio.nombre }}</div>
-          <div class="servicio-checkbox" *ngIf="servicio.completado">
-            <span class="checkbox-checked">✓</span>
-            <span>Completado</span>
-          </div>
+          <div class="servicio-descripcion">{{ servicio.descripcion }}</div>
+          <div class="servicio-precio">{{ formatearPrecio(servicio.precio) }}</div>
+        </div>
+        <div class="servicio-checkbox">
+          <span class="checkbox-checked">✓</span>
+          <span>Incluido</span>
         </div>
       </div>
     </div>

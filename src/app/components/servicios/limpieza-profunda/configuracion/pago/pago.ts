@@ -15,6 +15,9 @@ export class PagoLimpieza implements OnInit {
   pagoForm!: FormGroup;
   metodoPagoSeleccionado: string = 'tarjeta';
   
+  // ✅ NUEVO: Almacenar los servicios seleccionados para enviarlos a confirmación
+  serviciosSeleccionados: any[] = [];
+  
   resumenData = {
     equipo: 'Torre / Desktop',
     total: 0,
@@ -39,6 +42,12 @@ export class PagoLimpieza implements OnInit {
       this.resumenData.equipo = navigation.equipo || 'Torre / Desktop';
       this.resumenData.nivelSuciedad = navigation.nivelSuciedad || 'Bajo';
       this.resumenData.opcionesSeleccionadas = navigation.opcionesCount || 0;
+      
+      // ✅ GUARDAR servicios seleccionados para enviar a confirmación
+      this.serviciosSeleccionados = navigation.servicios || [];
+      
+      // Debug: ver qué servicios llegaron
+      console.log('Servicios recibidos en pago:', this.serviciosSeleccionados);
     }
     
     this.calcularTotales();
@@ -128,9 +137,10 @@ export class PagoLimpieza implements OnInit {
         iva: this.iva, 
         total: this.total, 
         equipo: this.resumenData.equipo,
-        nivelSuciedad: this.resumenData.nivelSuciedad
+        nivelSuciedad: this.resumenData.nivelSuciedad,
+        servicios: this.serviciosSeleccionados  // ✅ Enviar servicios a confirmación
       };
-      console.log('Datos de pago:', datosCompletos);
+      console.log('Datos de pago con servicios:', datosCompletos);
       this.router.navigate(['/servicios/limpieza-profunda/confirmacion'], { state: datosCompletos });
     } else {
       alert('⚠️ Por favor, completa todos los campos correctamente.');

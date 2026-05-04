@@ -32,18 +32,18 @@ interface OpcionPortatil {
   styleUrl: './configuracion.css'
 })
 export class Configuracion {
-  
-  constructor(private router: Router) {}
+
+  constructor(private router: Router) { }
 
   tipoEquipoSeleccionado: 'torre' | 'portatil' = 'torre';
-  
+
   preciosBase = {
     torre: 250000,
     portatil: 200000
   };
-  
+
   nivelSuciedad: number = 0;
-  
+
   opcionesTorre: OpcionTorre[] = [
     {
       nombre: 'Tipo de Gabinete',
@@ -261,19 +261,19 @@ export class Configuracion {
     { id: 4, nombre: 'Antivirus Premium', descripcion: 'Protección completa por 1 año', icono: '🛡️', precio: 60000, seleccionado: false },
     { id: 5, nombre: 'Limpieza de Pantalla', descripcion: 'Limpieza especializada de pantalla', icono: '🖥️', precio: 25000, seleccionado: false }
   ];
-  
+
   get recargoSuciedad(): number {
     if (this.nivelSuciedad === 100) return 50000;
     if (this.nivelSuciedad >= 50) return 25000;
     return 0;
   }
-  
+
   get textoNivelSuciedad(): string {
     if (this.nivelSuciedad === 100) return 'Alto';
     if (this.nivelSuciedad >= 50) return 'Medio';
     return 'Bajo';
   }
-  
+
   get costoTorreOpciones(): number {
     if (this.tipoEquipoSeleccionado !== 'torre') return 0;
     let total = 0;
@@ -283,7 +283,7 @@ export class Configuracion {
     }
     return total;
   }
-  
+
   get costoPortatilOpciones(): number {
     if (this.tipoEquipoSeleccionado !== 'portatil') return 0;
     let total = 0;
@@ -293,20 +293,20 @@ export class Configuracion {
     }
     return total;
   }
-  
+
   get subtotalServicios(): number {
     return this.serviciosAdicionales.filter(s => s.seleccionado).reduce((sum, s) => sum + s.precio, 0);
   }
-  
+
   get costoPersonalizacion(): number {
     return this.tipoEquipoSeleccionado === 'torre' ? this.costoTorreOpciones : this.costoPortatilOpciones;
   }
-  
+
   get totalGeneral(): number {
     const precioBase = this.preciosBase[this.tipoEquipoSeleccionado];
     return precioBase + this.subtotalServicios + this.recargoSuciedad + this.costoPersonalizacion;
   }
-  
+
   getPrecioOpcionTorre(nombre: string): number {
     const opcion = this.opcionesTorre.find(o => o.nombre === nombre);
     if (opcion) {
@@ -315,7 +315,7 @@ export class Configuracion {
     }
     return 0;
   }
-  
+
   getPrecioOpcionPortatil(nombre: string): number {
     const opcion = this.opcionesPortatil.find(o => o.nombre === nombre);
     if (opcion) {
@@ -324,7 +324,7 @@ export class Configuracion {
     }
     return 0;
   }
-  
+
   formatearPrecio(precio: number): string {
     return new Intl.NumberFormat('es-CO', {
       style: 'currency',
@@ -333,30 +333,41 @@ export class Configuracion {
       maximumFractionDigits: 0
     }).format(precio);
   }
-  
+
   seleccionarEquipo(tipo: 'torre' | 'portatil') {
     this.tipoEquipoSeleccionado = tipo;
   }
-  
+
   getProblemasSeleccionados() {
     return [];
   }
-  
+
   getServiciosSeleccionados() {
     return this.serviciosAdicionales.filter(s => s.seleccionado);
   }
-  
+
   continuarADatos() {
+    // Obtener servicios seleccionados con todos sus datos
+    const serviciosSeleccionados = this.serviciosAdicionales
+      .filter(s => s.seleccionado)
+      .map(s => ({
+        id: s.id,
+        nombre: s.nombre,
+        descripcion: s.descripcion,
+        icono: s.icono,
+        precio: s.precio
+      }));
+
     const datosConfiguracion = {
       equipo: this.tipoEquipoSeleccionado === 'torre' ? 'Torre / Desktop' : 'Portátil / Laptop',
-      servicios: this.serviciosAdicionales.filter(s => s.seleccionado).map(s => s.nombre),
+      servicios: serviciosSeleccionados,  // ✅ Ahora enviamos objetos completos
       total: this.totalGeneral,
       recargoSuciedad: this.recargoSuciedad,
       nivelSuciedad: this.textoNivelSuciedad,
       opcionesCount: this.tipoEquipoSeleccionado === 'torre' ? this.opcionesTorre.length : this.opcionesPortatil.length
     };
-    
-    console.log('Navegando a datos con:', datosConfiguracion);
+
+    console.log('Enviando a datos:', datosConfiguracion);
     this.router.navigate(['/servicios/limpieza-profunda/datos'], { state: datosConfiguracion });
   }
 }

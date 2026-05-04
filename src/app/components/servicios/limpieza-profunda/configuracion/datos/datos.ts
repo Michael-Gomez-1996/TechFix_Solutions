@@ -14,6 +14,9 @@ export class DatosLimpieza implements OnInit {
   
   datosForm!: FormGroup;
   
+  // ✅ NUEVO: Almacenar los servicios seleccionados para enviarlos al pago
+  serviciosSeleccionados: any[] = [];
+  
   resumenData = {
     equipo: 'Torre / Desktop',
     total: 0,
@@ -37,6 +40,9 @@ export class DatosLimpieza implements OnInit {
       this.resumenData.nivelSuciedad = navigation.nivelSuciedad || 'Bajo';
       this.resumenData.servicios = navigation.servicios?.length || 0;
       this.resumenData.opcionesSeleccionadas = navigation.opcionesCount || 0;
+      
+      // ✅ GUARDAR servicios seleccionados para enviar al pago
+      this.serviciosSeleccionados = navigation.servicios || [];
     } else {
       // Datos por defecto en caso de que no haya navegación
       this.resumenData.total = 250000;
@@ -76,10 +82,11 @@ export class DatosLimpieza implements OnInit {
         ...this.datosForm.value,
         total: this.resumenData.total,
         equipo: this.resumenData.equipo,
-        nivelSuciedad: this.resumenData.nivelSuciedad
+        nivelSuciedad: this.resumenData.nivelSuciedad,
+        servicios: this.serviciosSeleccionados  // ✅ Enviar servicios al pago
       };
       
-      console.log('Datos del cliente:', datosCompletos);
+      console.log('Datos del cliente con servicios:', datosCompletos);
       this.router.navigate(['/servicios/limpieza-profunda/pago'], { state: datosCompletos });
     } else {
       alert('⚠️ Por favor, completa todos los campos requeridos correctamente.');
