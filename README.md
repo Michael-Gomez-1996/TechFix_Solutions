@@ -2,6 +2,15 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
 
+# Descripción:
+TechFixSolutions es una aplicación web desarrollada para la gestión de soporte técnico. Permite a los usuarios registrar incidencias, mientras que los técnicos pueden administrarlas, dar seguimiento y resolverlas de manera eficiente.
+
+# Integrantes
+- Michael Gomez
+- Brayan Fuentes
+- Carlos Quintero
+- Santiago Velasquez
+
 ## Development server
 
 To start a local development server, run:
