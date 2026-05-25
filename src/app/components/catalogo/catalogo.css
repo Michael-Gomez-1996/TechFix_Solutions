@@ -1,0 +1,193 @@
+.catalogo-container {
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
+.catalogo-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.catalogo-header .page-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #212529;
+}
+
+.catalogo-header .subtitle {
+  color: #6c757d;
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+/* Contenedor de la barra de filtros */
+.filtros-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+/* Botones interactivos de filtrado (Estilo similar a AdoptaPet) */
+.filter-btn {
+  padding: 10px 22px;
+  border-radius: 30px;
+  background: white;
+  border: 2px solid #dee2e6;
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-btn:hover {
+  border-color: #0056a3;
+  color: #0056a3;
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: #0056a3;
+  border-color: #0056a3;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 86, 163, 0.2);
+}
+
+/* Rejilla de productos completamente fluida y responsiva */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* Diseño de la Tarjeta del Producto */
+.producto-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.producto-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-image-wrapper {
+  position: relative;
+  height: 200px;
+  background: #f8f9fa;
+}
+
+.producto-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.badge-categoria {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.producto-titulo {
+  font-size: 1.15rem;
+  color: #212529;
+  margin-bottom: 10px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.producto-descripcion {
+  color: #6c757d;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.card-footer-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f1f3f5;
+  padding-top: 15px;
+  margin-bottom: 20px;
+}
+
+.precio-box, .stock-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.precio-label, .stock-label {
+  font-size: 0.75rem;
+  color: #adb5bd;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.precio-valor {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0056a3;
+}
+
+.stock-valor {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #28a745;
+}
+
+/* Enlace/Botón integrado al sistema de rutas de TechFix */
+.btn-solicitar {
+  display: block;
+  text-align: center;
+  background: #f8f9fa;
+  color: #0056a3;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.btn-solicitar:hover {
+  background: #0056a3;
+  color: white;
+}
+
+/* Mensaje alternativo cuando no hay stock */
+.no-results {
+  grid-column: 1 / -1;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.no-results-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}

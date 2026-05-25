@@ -4,7 +4,6 @@
   </div>
 
   <nav class="menu">
-    <!-- Botón Servicios con dropdown -->
     <div class="dropdown">
       <button class="nav-btn dropdown-btn" (click)="toggleMenuServicios()">
         Servicios
@@ -19,12 +18,11 @@
       </div>
     </div>
 
-    <button class="nav-btn" routerLink="/servicios/venta-repuestos">Tienda</button>
+    <button class="nav-btn" routerLink="/catalogo">Tienda</button>
     <button class="nav-btn" routerLink="/nosotros">Nosotros</button>
   </nav>
 
   <div class="user-area">
-    <!-- Mostrar diferente si está logueado o no -->
     <div *ngIf="estaLogueado; else invitado">
       <span class="user-name">Hola, {{ usuario }}</span>
       <button class="logout-btn" (click)="cerrarSesion()">Cerrar sesión</button>

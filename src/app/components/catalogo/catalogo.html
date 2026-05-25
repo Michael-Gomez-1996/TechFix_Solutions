@@ -1,1 +1,79 @@
-<p>catalogo works!</p>
+<div class="catalogo-container container">
+  <header class="catalogo-header">
+    <h1 class="page-title">Catálogo de Repuestos y Componentes</h1>
+    <p class="subtitle">Hardware certificado y componentes de alta calidad con garantía directa de TechFix.</p>
+  </header>
+
+  <div class="filtros-wrapper">
+    <button 
+      class="filter-btn" 
+      [class.active]="categoriaSeleccionada === 'todos'" 
+      (click)="filtrarCategoria('todos')">
+      ✨ Todos
+    </button>
+    <button 
+      class="filter-btn" 
+      [class.active]="categoriaSeleccionada === 'componentes'" 
+      (click)="filtrarCategoria('componentes')">
+      ⚙️ Componentes
+    </button>
+    <button 
+      class="filter-btn" 
+      [class.active]="categoriaSeleccionada === 'almacenamiento'" 
+      (click)="filtrarCategoria('almacenamiento')">
+      💾 Almacenamiento
+    </button>
+    <button 
+      class="filter-btn" 
+      [class.active]="categoriaSeleccionada === 'refrigeracion'" 
+      (click)="filtrarCategoria('refrigeracion')">
+      ⚡ Refrigeración
+    </button>
+    <button 
+      class="filter-btn" 
+      [class.active]="categoriaSeleccionada === 'perifericos'" 
+      (click)="filtrarCategoria('perifericos')">
+      ⌨️ Periféricos
+    </button>
+  </div>
+
+  <div class="productos-grid">
+    @for (producto of productosFiltrados; track producto.id) {
+      <div class="producto-card">
+        <div class="card-image-wrapper">
+          <img [src]="producto.imagen" [alt]="producto.nombre" class="producto-img">
+          <span class="badge-categoria">{{ producto.categoria | uppercase }}</span>
+        </div>
+        
+        <div class="card-body">
+          <h3 class="producto-titulo">{{ producto.nombre }}</h3>
+          <p class="producto-descripcion">{{ producto.descripcion }}</p>
+          
+          <div class="card-footer-info">
+            <div class="precio-box">
+              <span class="precio-label">Precio</span>
+              <span class="precio-valor">{{ producto.precio | currency:'COP':'$':'1.0-0' }}</span>
+            </div>
+            <div class="stock-box">
+              <span class="stock-label">Stock disponible</span>
+              <span class="stock-valor">{{ producto.stock }} unds</span>
+            </div>
+          </div>
+
+          <a 
+            [routerLink]="['/servicios/venta-repuestos']" 
+            class="btn-solicitar"
+            (click)="solicitarRepuesto(producto)">
+            Solicitar Repuesto 🚀
+          </a>
+        </div>
+      </div>
+    } @empty {
+      <div class="no-results text-center">
+        <p class="no-results-icon">🔍</p>
+        <h3>No se encontraron componentes</h3>
+        <p>Pronto abasteceremos más inventario en esta sección.</p>
+      </div>
+    }
+  </div>
+</div>
